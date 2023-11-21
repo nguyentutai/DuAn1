@@ -14,6 +14,9 @@
     width: 100%;
     z-index: 999;
 }
+.container-1{
+    padding-top: 76px;
+}
 .container {
     max-width: calc((1300/1688)*100%);
     margin: auto;
@@ -83,13 +86,13 @@
 #menu ul{
     display: flex;
 }
-#menu ul li{
+#menu>ul>li{
     display: flex;
     list-style: none;
     margin: 0 40px;
     align-items: center;
 }
-#menu ul li a{
+#menu>ul>li>a{
     text-decoration: none;
     font-size: 19px;
     color: white;
@@ -209,10 +212,11 @@
     transform: translateX(0);
 }
 
-#header{
+/* #header{
     position: relative;
-}
+} */
 #load-menu{
+    margin-top: 76px;
     position: absolute;
     display: flex;
 }
@@ -294,9 +298,13 @@
 .title-product-sell{
     max-width: 100%;
     text-align: center;
+    font-family: sans-serif;
     padding: 20px;
     background-color: rgba(255, 168, 0, 1);
     border-radius: 30px 30px 0 0;
+}
+.banner-sale{
+    margin-top: 40px;
 }
 .title-product-sell h3{
     width: 100%;
@@ -414,6 +422,7 @@
 .title-category-man{
     padding: 10px 20px;
     background-color: rgba(183, 183, 183, 1);
+    border-radius: 7px 7px 0 0;
 }
 
 .title-category-man h3{
@@ -457,3 +466,401 @@
 .container-woman{
     margin-top: 50px;
 }
+footer{
+    margin-top: 50px;
+    background-color: var(--black-color);
+    max-width: 100%;
+}
+.container-footer{
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 80px;
+}
+.container-footer h3{
+    font-size: 22px;
+    color: white;
+}
+.facebook,.instagram,.youtube{
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+.facebook img{
+    border-radius: 50%;
+    width: 100%;
+}
+.facebook-image{
+    max-width: 60px;
+    margin-right: 15px;
+}
+.instagram img{
+    width: 100%;
+}
+.instagram-image{
+    max-width: 60px;
+    margin-right: 15px;
+}
+.youtube img{
+    width: 100%;
+}
+.youtube-image{
+    max-width: 60px;
+    margin-right: 15px;
+}
+.container-footer a{
+    text-decoration: none;
+    font-size: 21px;
+    color: rgb(233, 233, 233);
+    font-family: sans-serif;
+}
+.container-footer a:hover{
+    color: red;
+    transition: 1s ease-in-out;
+}
+.service-content{
+    margin-top: 20px;
+    line-height: 40px;
+    margin-left: 10px;
+}
+.connect-content{
+    margin-left: 10px;
+}
+.pay-content{
+    margin-top: 20px;
+}
+.vnpay{
+    margin: 20px 0;
+}
+.pay-content{
+    margin-left: 15px;
+}
+.transport-content{
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.tb{
+    text-align: center;
+    margin-top: 20px;
+}
+.container-login{
+    margin-top: 50px;
+    font-family: sans-serif;
+    border-radius: 10px;
+    padding: 45px 0;
+    max-width: 800px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+.login{
+    width: 100%;
+}
+.login h2{
+    margin: 0 auto;
+    max-width: 160px;
+    background-color: var(--yellow-color);
+    border-radius: 15px;
+    padding: 15px;
+    font-family: sans-serif;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+.user{
+    margin: 40px 10px 0 50px;
+}
+.pass{
+    margin: 30px 10px 20px 50px;
+}
+.user,.pass p{
+    font-size: 18px;
+    font-family: sans-serif;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.pass input{
+    width: 91%;
+    padding: 10px 10px;
+    margin-left: 10px;
+    border-radius: 5px;
+}
+.user input{
+    margin-top: 5px;
+    width: 91%;
+    border-radius: 5px;
+    padding: 10px 10px;
+    margin-left: 10px;
+}
+.showpass{
+    margin-left: 60px;
+    margin-top: -15px;
+}
+.showpass input{
+    margin-top: 5px;
+    width: 20px;
+}
+.btn-login{
+    text-align: center;
+    margin-top: 30px;
+}
+.btn-login button{
+    padding: 15px 24px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: brown;
+    color: wheat;
+    font-weight: bold;
+    cursor: pointer;
+}
+.btn-login button:hover{
+    color: rgb(35, 35, 35);
+    background-color: rgb(250, 179, 46);
+    transition: .7s ease-in-out;
+}
+.container-directional{
+    background-color: rgb(240, 240, 240);
+    height: 35px;
+    line-height: 35px;
+}
+.directional a{
+    text-decoration: none;
+    color: black;
+}
+.list-category-fa{
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+.list-category-fa ul{
+    display: flex;
+    flex-wrap: wrap;
+}
+.list-category-fa ul li{
+    list-style: none;
+    padding: 10px 20px;
+}
+.list-category-fa ul li a{
+    text-decoration: none;
+    font-size: 17px;
+    color: var(--black-color);
+    font-weight: bold;
+    font-family: sans-serif;
+}
+.list-category-children-image{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.list-category-children{
+    max-width: 100%;
+}
+.categry-children-image{
+    width: 10%;
+}
+.categry-children-image img{
+    padding: 10px;
+    width: 100%;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+}
+.list-product-all{
+    background-color: rgb(243, 243, 243);
+}
+.list-product-max{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.list-product{
+    background-color: rgb(255, 255, 255);
+    width: 18%;
+    margin: 15px 0;
+    position: relative;
+    text-decoration: none;
+    border-radius: 10px;
+}
+.list-product-image{
+    max-width: 350px;
+}
+.list-product-image img{
+    border-radius: 10px 10px 0 0;
+    width: 100%;
+}
+.list-product-price{
+    color: red;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.list-product-content{
+    color: var(--black-color);
+}
+.list-product-dis{
+    color: rgb(74, 74, 74);
+    margin: 10px 0;
+}
+.list-product-bot{
+    margin: 5px 0 10px 10px;
+}
+.list-product-content{
+    font-family: sans-serif;
+    font-size: 15px;
+    line-height: 20px;
+}
+.confim-pass{
+    margin-top: 20px;
+}
+.phone-email{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.phone{
+    width: 37%;
+    margin-left: 10px;
+}
+.phone input{
+    width: 100%;
+    border-radius: 5px;
+    padding: 10px 10px;
+    margin-left: 10px;
+}
+.email{
+    width: 37%;
+    margin-right: 30px;
+}
+.email input{
+    width: 100%;
+    border-radius: 5px;
+    padding: 10px 10px;
+    margin-left: 10px;
+    
+}
+.email,.phone{
+    font-size: 18px;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+.image-contai{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+.image input{
+    display: none;
+}
+.showimage{
+    width: 30%;
+    margin-right: 90px;
+}
+.showimage img{
+    width: 100%;
+}
+.image{
+    margin-left: 44px;
+    width: 30%;
+}
+.image p{
+    font-size: 18px;
+    font-family: sans-serif;
+    font-weight: bold;
+    margin-left: 8px;
+}
+.image label i{
+    font-size: 50px;
+    margin-top: 20px;
+}
+.image label{
+    margin-left: 140px;
+}
+.showimage img{
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+}
+.account_image{
+    border-radius: 50%;
+    width: 40px;
+}
+.name_account{
+    padding-left: 10px;
+}
+
+/* Điều hướng header */
+.function{
+    position: relative;
+    padding: 18px 0;
+}
+.admini{
+    display: none;
+    background-color: rgb(240, 240, 240);
+    top: 100%;
+    position: absolute;
+    left: -20%;
+}
+.admini ul{
+    width: 229px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.admini ul li{
+    padding: 8px 10px;
+    width: 100%;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    background-color: rgb(245, 245, 245);
+}
+.admini ul li:hover{
+    transition: .5s ease-in-out;
+    background-color: var(--yellow-color);
+}
+.admini ul li a{
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    padding-left: 10px;
+}
+.function:hover .admini{
+    display: block;
+}
+
+.account{
+    position: relative;
+    cursor: pointer;
+    padding: 26px 0;
+}
+.login-regis{
+    display: none;
+    background-color: rgb(240, 240, 240);
+    top: 100%;
+    position: absolute;
+}
+.login-regis ul{
+    width: 190px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.login-regis ul li{
+    padding: 8px 10px;
+    cursor: pointer;
+    width: 100%;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    background-color: rgb(245, 245, 245);
+}
+.login-regis ul li:hover{
+    transition: .5s ease-in-out;
+    background-color: var(--yellow-color);
+}
+.login-regis ul li a{
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    padding-left: 10px;
+}
+.account:hover .login-regis{
+    display: block;
+}
+
+/* End điều hướng header */
