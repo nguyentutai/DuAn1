@@ -45,12 +45,10 @@
                         <label style="color: red;font-size:15px;margin-top:30px;"><?= is_error('image') ?></label>
                     </div>
                 </div>
-
                 <div class="btn-login">
                     <button type="submit" name="btn-register">Đăng Ký</button>
                     <p>Bạn đã có tài khoản <a href="?act=login">Đăng Nhập</a></p>
                 </div>
-
             </form>
         </div>
     </div>

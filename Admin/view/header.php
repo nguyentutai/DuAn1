@@ -20,7 +20,11 @@
             height: 190px;
             line-height: 190px;
         }
-
+        .imagedm{
+            width: 150px;
+            height: 150px;
+            line-height: 150px;
+        }
         ul {
             position: static;
         }

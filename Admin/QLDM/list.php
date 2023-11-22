@@ -19,23 +19,29 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Đồng hồ Citizen CT-EU6080-58D</td>
-                        <td><img class="rounded mx-auto d-block img-fluid image" src="../img/1721098998_dong_ho_nu_ct_eu6080_58djpg_1626777518.jpg" alt="">
-                        </td>
-                        <td>Đường kính mặt: 31.8 mm
-                            Chống nước: 5 ATM
-                            Chất liệu mặt kính: Kính khoáng (Mineral)
-                            Bộ máy: Quartz/Pin</td>
-                        <td><a href="" class="btn btn-danger fw-bold ">Xóa</a></td>
-                        <td><a href="" class="btn btn-success fw-bold">Sửa</a></td>
-                    </tr>
+                    <?php $i = 0;
+                    foreach ($load_all_category_children as $loaddm) {
+                        extract($loaddm) ?>
+                        <tr>
+                            <td><?= $i+=1; ?></td>
+                            <td><?= $name_category ?></td>
+                            <td><img class="rounded mx-auto d-block img-fluid w-50 imagedm mt-3" src="../upload/<?= $image_category ?>" alt="">
+                            </td>
+                            <td><?= $link_category ?></td>
+                            <?php 
+                                if($parent_id == 0){
+                            ?>
+                                <td><a href="?act=listdm&id=<?= $id_category ?>" class="btn btn-dark fw-bold ">Danh mục con</a></td>
+                            <?php } ?>
+                            <td><a href="?act=deletedm&id=<?= $id_category ?>" class="btn btn-danger fw-bold ">Xóa</a></td>
+                            <td><a href="?act=suadm&id=<?= $id_category ?>" class="btn btn-success fw-bold">Sửa</a></td>
+                        </tr>
+                    <?php } ?>
+
                 </tbody>
             </table>
         </div>
     </div>
-
     <a href="?act=adddm" class="btn btn-primary fw-bold">Thêm danh mục</a>
     <a href="" class="btn btn-dark fw-bold">Thùng rác</a>
 </div>
