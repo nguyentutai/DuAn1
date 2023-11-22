@@ -1,4 +1,4 @@
-<div class="col-md-10">
+a<div class="col-md-10">
     <?php extract($load_one_category); ?>
     <div class="row bg-dark p-2 text-end">
         <a href="" class="text-light text-none"><i class="fa-solid fa-right-from-bracket fs-5 me-5"></i></a>
