@@ -25,7 +25,9 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
                         $password = md5($_POST['password']);
                     }
                 }
+                //Kiểm tra nếu mảng $error rỗng thì thực hiện so sánh với database
                 if (empty($error)) {
+                    //Hàm thực hiện so sánh với database
                     $login = check_login($username, $password);
                     if (is_array($login)) {
                         $_SESSION['login'] = $login;
@@ -46,15 +48,14 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
                 if (empty($_POST['username'])) {
                     $error['username'] = 'Vui lòng nhập thông tin tài khoản';
                 } else {
+                    //Thực hiện kiểm tra xem username nhập vào có tồn tại trên database hay không
                     $check_user = check_register($_POST['username']);
-                    // echo '<pre>';
-                    // print_r($check_user);
                     if (is_array($check_user)) {
                         $error['username'] = 'Tên tài khoản đã tồn tại';
                     } else {
                         $username = $_POST['username'];
                     }
-                }
+                }   
                 //Kiểm tra password
                 if (empty($_POST['password'])) {
                     $error['password'] = 'Vui lòng nhập password';
@@ -101,10 +102,12 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
                 //Upload hình ảnh nếu có
                 $filename = $_FILES['image']['name'];
                 $target_dir = "upload/";
+                //Thực hiện đẩy ảnh vào thư mục upload
                 $target_file = $target_dir . basename($_FILES['image']['name']);
                 if (!move_uploaded_file($_FILES['image']['tmp_name'], $target_file)) {
                     $error['image'] = 'Bạn chưa upload ảnh';
                 }
+                //Nếu mảng $error rỗng thì thực hiện insert dữ liệu lên database
                 if (empty($error)) {
                     insert_register($username, $password_confirm, $filename, $email, $phone);
                     echo "<script>alert('Đăng kí thành công');</script>";
@@ -113,13 +116,13 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
             }
             include 'view/login/register.php';
             break;
-
         case 'logout':
             if(isset($_SESSION['login'])){
                 unset($_SESSION['login']);
             }
             header('Location: index.php');
             break;
+        
     }
 } else {
     include 'view/home.php';
