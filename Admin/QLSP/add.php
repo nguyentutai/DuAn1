@@ -22,7 +22,7 @@
                         <p class="text-danger fs-6 mt-1 fw-bolder"><?= is_error('quantity_product') ?></p>
                     </div>
                 </div>
-
+                
                 <div class="content1 row">
                     <div class="col-md-4">
                         <label for="formGroupExampleInput" class="form-label fw-semibold fs-5">Danh

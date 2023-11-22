@@ -12,27 +12,26 @@
                 <thead class="text-center">
                     <tr>
                         <th class="fs-6">STT</th>
+                        <th class="fs-6">Ảnh khách hàng</th>
                         <th class="fs-6">Tên khách hàng</th>
-                        <th class="fs-6">Hình ảnh</th>
-                        <th class="fs-6">Mô tả</th>
-                        <th class="fs-6">View</th>
+                        <th class="fs-6">Email</th>
+                        <th class="fs-6">Phone</th>
                         <th colspan="2" class="fs-6">Chức năng</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Đồng hồ Citizen CT-EU6080-58D</td>
-                        <td><img class="rounded mx-auto d-block img-fluid image" src="../img/1721098998_dong_ho_nu_ct_eu6080_58djpg_1626777518.jpg" alt="">
-                        </td>
-                        <td>Đường kính mặt: 31.8 mm
-                            Chống nước: 5 ATM
-                            Chất liệu mặt kính: Kính khoáng (Mineral)
-                            Bộ máy: Quartz/Pin</td>
-                        <td>10</td>
-                        <td><a href="" class="btn btn-danger fw-bold ">Xóa</a></td>
-                        <td><a href="" class="btn btn-success fw-bold">Sửa</a></td>
-                    </tr>
+                    <?php $i=0; foreach ($load_all_account as $loadac) {
+                        extract($loadac); ?>
+                        <tr>
+                            <td><?= $i+=1 ?></td>
+                            <td><img class="mt-5 image_acc" src="../upload/<?= $image_account ?>" alt=""></td>
+                            <td><?= $user ?></td>
+                            <td><?= $email_account ?></td>
+                            <td><?= $phone_account ?></td>
+                            <td><a href="" class="btn btn-danger fw-bold ">Xóa</a></td>
+                            <td><a href="" class="btn btn-success fw-bold">Sửa</a></td>
+                        </tr>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>

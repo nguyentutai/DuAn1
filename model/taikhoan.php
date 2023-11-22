@@ -14,6 +14,11 @@
         $sql = "SELECT * FROM `account` WHERE `user`='$username' AND `pass`='$password'";
         return pdo_query_one($sql);
     }
+    //Hiển thị danh sách khách hàng
+    function load_all_account(){
+        $sql = "SELECT * FROM `account`";
+        return pdo_query($sql);
+    }
     //Hàm hiển thị lỗi cho người dùng
     function is_error($form_err){
         global $error;

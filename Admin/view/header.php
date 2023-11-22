@@ -25,6 +25,9 @@
             height: 150px;
             line-height: 150px;
         }
+        .image_acc{
+            width: 100px;
+        }
         ul {
             position: static;
         }
@@ -68,7 +71,7 @@
                                     Quản Lý Khách Hàng
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Danh Sách Khách Hàng</a></li>
+                                    <li><a class="dropdown-item" href="index.php?act=listkh">Danh Sách Khách Hàng</a></li>
                                     <li><a class="dropdown-item" href="#">Another action</a></li>
                                     <li><a class="dropdown-item" href="#">Something else here</a></li>
                                 </ul>

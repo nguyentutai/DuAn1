@@ -21,6 +21,11 @@ function load_category_childrent($id=0){
     }
     return pdo_query($sql);
 }
+//Xóa danh mục sản phẩm
+function delete_category($id){
+    $sql = "DELETE FROM `category` WHERE `id_category`='$id'";
+    pdo_execute($sql);
+}
 function load_category_update($id){
     $sql = "SELECT * FROM `category` WHERE `id_category` = '$id'";
     return pdo_query_one($sql);
