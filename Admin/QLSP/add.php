@@ -1,15 +1,12 @@
-<div class="col-md-10">
-    <div class="row bg-dark p-2 text-end">
-        <a href="" class="text-light text-none"><i class="fa-solid fa-right-from-bracket fs-5 me-5"></i></a>
-    </div>
-    <div class="row p-4">
+
+    <div class="row p-4 mgtop">
         <div class="row text-center">
             <h5 class="fs-3 fw-bold bg-success p-2 col-md-3 rounded-pill">QUẢN LÝ SẢN PHẨM</h5>
         </div>
         <div class="row rounded-2 bg-light p-3">
             <p class="fw-bold fs-4">Tạo sản phẩm mới</p>
             <form action="" method="post" enctype="multipart/form-data">
-                <div class="content row">
+                <div class="row">
                     <div class="mb-3 col-md-6">
                         <label for="formGroupExampleInput" class="form-label fw-semibold fs-5">Tên sản
                             phẩm</label>
@@ -49,7 +46,7 @@
                     <div class="col-md-6">
                         <label for="exampleFormControlTextarea1" class="form-label fw-semibold fs-5">Nhập mô
                             tả sản phẩm</label>
-                        <textarea class="form-control content" name="describe" id="exampleFormControlTextarea1" placeholder="Nhập mô tả sản phẩm" rows="7.5">
+                        <textarea class="form-control" name="describe" id="exampleFormControlTextarea1" placeholder="Nhập mô tả sản phẩm" rows="7.5">
                         
 
                         </textarea>
