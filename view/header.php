@@ -41,35 +41,39 @@
                         <?php
                         if (isset($_SESSION['login'])) {
                             extract($_SESSION['login']);
-                            if ($_SESSION['login']['role'] == '1') {
+                            if ($_SESSION['login']['role'] == '2') {
                         ?>
-                                <li><img class="account_image" src="./upload/<?= $image_account ?>" alt=""><a class="name_account" href=""><?= $user ?></a>
-                                <!-- Dao diện người dùng đã đăng nhập -->
-                            <?php
+                                <li><img class="account_image" src="./upload/<?= $image_account ?>" alt=""><a class="name_account" href="?act=logout"><?= $user ?></a>
+                                    <!-- Dao diện người dùng đã đăng nhập -->
+                                    <?php
+                                } else {
+                                    if ($_SESSION['login']['role'] == '1') {
+                                    ?>
+                                        <!-- Dao diện người quản trị đăng nhập -->
+                                <li class="function"><img class="account_image" src="./upload/<?= $image_account ?>" alt=""><a class="name_account" href=""><?= $user ?></a>
+                                    <div class="admini">
+                                        <ul>
+                                            <li><i class="fa-solid fa-screwdriver-wrench" style="margin:0 10px;"></i><a href="./Admin/index.php">Quản Trị</a></li>
+                                            <li><i class="fa-solid fa-right-from-bracket" style="margin:0 10px;"></i><a href="?act=logout">Đăng Xuất</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                        <?php
+                                    }
+                                }
                             } else {
-                            ?>
-                                <!-- Dao diện người quản trị đăng nhập -->
-                            <li class="function"><img class="account_image" src="./upload/<?= $image_account ?>" alt=""><a class="name_account" href=""><?= $user ?></a>
-                                <div class="admini">
-                                    <ul>
-                                        <li><i class="fa-solid fa-screwdriver-wrench" style="margin:0 10px;"></i><a href="./Admin/index.php">Quản Trị</a></li>
-                                        <li><i class="fa-solid fa-right-from-bracket" style="margin:0 10px;"></i><a href="?act=logout">Đăng Xuất</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <?php
-                            }
-                        } else { ?>
-                            <!-- Dao diện chưa đăng nhập -->
-                            <li class="account"><i class="fa-solid fa-user"></i><a href="?act=login">Tài khoản</a>
+                        ?>
+                        <li class="account"><i class="fa-solid fa-user"></i><a href="?act=login">Tài khoản</a>
                             <div class="login-regis">
-                                    <ul>
-                                        <li><i class="fa-solid fa-user-lock" style="margin:0 10px;"></i><a href="?act=login">Đăng Nhập</a></li>
-                                        <li><i class="fa-solid fa-user-plus" style="margin:0 10px;"></i><a href="?act=register">Đăng Kí</a></li>
-                                    </ul>
-                                </div>
+                                <ul>
+                                    <li><i class="fa-solid fa-user-lock" style="margin:0 10px;"></i><a href="?act=login">Đăng Nhập</a></li>
+                                    <li><i class="fa-solid fa-user-plus" style="margin:0 10px;"></i><a href="?act=register">Đăng Kí</a></li>
+                                </ul>
+                            </div>
                         </li>
-                        <?php } ?>
+                    <?php
+                            }
+                    ?>
 
                     </ul>
                 </div>
