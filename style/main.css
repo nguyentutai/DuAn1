@@ -130,7 +130,9 @@
     transition: transform .5s ease-in-out;
     position: absolute;
 }
-
+#search-repon{
+    margin-top: 20px;
+}
 .search-form-repon {
     display: flex;
     width: 70%;

@@ -43,7 +43,14 @@
                             extract($_SESSION['login']);
                             if ($_SESSION['login']['role'] == '2') {
                         ?>
-                                <li><img class="account_image" src="./upload/<?= $image_account ?>" alt=""><a class="name_account" href="?act=logout"><?= $user ?></a>
+                               <li class="function"><img class="account_image" src="./upload/<?= $image_account ?>" alt=""><a class="name_account" href=""><?= $user ?></a>
+                                    <div class="admini">
+                                        <ul>
+                                            <li><i class="fa-solid fa-screwdriver-wrench" style="margin:0 10px;"></i><a href="?act=inforaccount">Thông tin tài khoản</a></li>
+                                            <li><i class="fa-solid fa-right-from-bracket" style="margin:0 10px;"></i><a href="?act=logout">Đăng Xuất</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
                                     <!-- Dao diện người dùng đã đăng nhập -->
                                     <?php
                                 } else {
@@ -85,15 +92,6 @@
         <!-- Menu-repon -->
         <div id="load-menu">
             <div class="menu-repon">
-                <div class="branch-repon">
-                    <i class="fa-solid fa-location-dot"></i>
-                    <form action="">
-                        <select>
-                            <option value="0">Chọn chi nhánh</option>
-                            <option value="1">Hà Nội</option>
-                        </select>
-                    </form>
-                </div>
                 <div id="search-repon">
                     <form action="" class="search-form-repon">
                         <input placeholder="Tìm kiếm ở đây..." type="text">
