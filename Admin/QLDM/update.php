@@ -1,6 +1,6 @@
 
     <?php extract($load_one_category); ?>
-    <div class="row p-4">
+    <div class="row p-4 mgtop">
         <div class="row text-center">
             <h5 class="fs-3 fw-bold bg-warning p-2 col-md-3 rounded-pill">QUẢN LÝ DANH MỤC</h5>
         </div>

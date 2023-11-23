@@ -143,9 +143,33 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
             }else{
                 $search = '';
             }
-            $load_all_account = load_all_account($search);
+            $load_all_account = load_kh_account($search);
+            $load_nn_account = load_nn_account($search);
             include './QLKH/list.php';
             break;
+        case 'updatekh':
+            if(isset($_GET['id'])){
+                $id = $_GET['id'];
+                $idupdate = $_GET['idupdate'];
+                if($idupdate == 0){
+                    $idupdate = 2;
+                }else{
+                    if($idupdate == 2){
+                        $idupdate = 0;
+                    }
+                }
+                update_role_account($id, $idupdate);
+            }
+            header('Location: index.php?act=listkh');
+            break;
+        case 'deletekh':
+            if(isset($_GET['id'])){
+                $id = $_GET['id'];
+                delete_account($id);
+            }
+            header('Location: index.php?act=listkh');
+            break;
+        
     }
 }
 

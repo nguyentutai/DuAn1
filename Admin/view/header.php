@@ -20,7 +20,9 @@
             height: 190px;
             line-height: 190px;
         }
-
+        .content{
+            margin: 0 0 0 315px;
+        }
         .imagedm {
             width: 150px;
             height: 150px;
@@ -30,7 +32,9 @@
         .image_acc {
             width: 100px;
         }
-
+        .mgtop{
+            margin-top:35px;
+        }
         ul {
             position: static;
         }
@@ -40,7 +44,7 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-2 bg-dark header">
+            <div class="col-md-2 bg-dark header position-fixed">
                 <div class="text-center my-4">
                     <?php if (isset($_SESSION['login'])) {
                         extract($_SESSION['login']);
@@ -90,6 +94,16 @@
                                     <li><a class="dropdown-item" href="#">Something else here</a></li>
                                 </ul>
                             </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle btn btn-secondary bg-warning w-100 mt-3 text-dark fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Quản Lý Bình Luận
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Danh Sách Bình Luận</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </li>
                             <li>
                                 <a href="" class="btn btn-secondary bg-warning w-100 mt-3 text-dark fw-bold">Thống Kê</a>
                             </li>
@@ -97,7 +111,7 @@
                     </div>
                 </nav>
             </div>
-            <div class="col-md-10">
-                <div class="row bg-dark p-2 text-end">
-                    <a href="../index.php" class="text-light text-none"><i class="fa-solid fa-right-from-bracket fs-5 me-5"></i></a>
+            <div class="col-md-10 content">
+                <div class="bg-dark p-2 text-end position-fixed" style="margin-left:-15px;width:1610px;z-index:999;">
+                    <a href="../index.php" class="text-light text-none me-5"><i class="fa-solid fa-right-from-bracket fs-5 me-5"></i></a>
                 </div>

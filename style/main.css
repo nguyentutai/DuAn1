@@ -128,6 +128,7 @@
     display: none;
     transform: translateX(-100%);
     transition: transform .5s ease-in-out;
+    position: absolute;
 }
 
 .search-form-repon {
@@ -217,8 +218,9 @@
 } */
 #load-menu{
     margin-top: 76px;
-    position: absolute;
+    position: fixed;
     display: flex;
+    z-index: 999;
 }
 
 .silde{
