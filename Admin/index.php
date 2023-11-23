@@ -127,13 +127,13 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
                 }
 
                 if (empty($error)) {
-                    inser_product($filename, $describe, $quantity_product, $origin_price, $discount_product);
+                    inser_product($name_product,$filename, $describe, $quantity_product, $origin_price, $discount_product);
                 }
             }
             include './QLSP/add.php';
             break;
         case 'listsp':
-
+            $listsp = loadAll_product();
             include 'QLSP/list.php';
             break;
         case 'listkh':
