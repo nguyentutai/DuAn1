@@ -20,14 +20,17 @@
             height: 190px;
             line-height: 190px;
         }
-        .imagedm{
+
+        .imagedm {
             width: 150px;
             height: 150px;
             line-height: 150px;
         }
-        .image_acc{
+
+        .image_acc {
             width: 100px;
         }
+
         ul {
             position: static;
         }
@@ -39,15 +42,18 @@
         <div class="row">
             <div class="col-md-2 bg-dark header">
                 <div class="text-center my-4">
-                    <img src="../img/ảnh.jpg" class="img-fluid rounded-circle w-50 text-center" alt="">
-                    <p class="text-light mt-2">Chào mừng bạn chở lại</p>
+                    <?php if (isset($_SESSION['login'])) {
+                        extract($_SESSION['login']);
+                    ?>
+                        <img src="../upload/<?= $image_account ?>" class="img-fluid rounded-circle w-50 text-center" alt="">
+                    <?php } ?>
+                    <p class="text-light mt-2">Chào <?= $user ?> mừng bạn trở lại</p>
                 </div>
                 <nav class="navbar">
                     <div class="offcanvas-body">
                         <ul class="navbar-nav justify-content-end  pe-3">
-                        <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle btn btn-secondary bg-warning w-100 text-dark fw-bold"
-                                    href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle btn btn-secondary bg-warning w-100 text-dark fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Quản Lý Danh Mục
                                 </a>
                                 <ul class="dropdown-menu">
@@ -56,8 +62,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle btn btn-secondary bg-warning mt-3 w-100 text-dark fw-bold"
-                                    href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle btn btn-secondary bg-warning mt-3 w-100 text-dark fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Quản Lý Sản Phẩm
                                 </a>
                                 <ul class="dropdown-menu">
@@ -66,8 +71,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle btn btn-secondary bg-warning w-100 mt-3 text-dark fw-bold"
-                                    href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle btn btn-secondary bg-warning w-100 mt-3 text-dark fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Quản Lý Khách Hàng
                                 </a>
                                 <ul class="dropdown-menu">
@@ -77,8 +81,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle btn btn-secondary bg-warning w-100 mt-3 text-dark fw-bold"
-                                    href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle btn btn-secondary bg-warning w-100 mt-3 text-dark fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Quản Lý Đơn Hàng
                                 </a>
                                 <ul class="dropdown-menu">
@@ -91,7 +94,10 @@
                                 <a href="" class="btn btn-secondary bg-warning w-100 mt-3 text-dark fw-bold">Thống Kê</a>
                             </li>
                         </ul>
-
                     </div>
                 </nav>
             </div>
+            <div class="col-md-10">
+                <div class="row bg-dark p-2 text-end">
+                    <a href="../index.php" class="text-light text-none"><i class="fa-solid fa-right-from-bracket fs-5 me-5"></i></a>
+                </div>

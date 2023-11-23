@@ -1,14 +1,7 @@
-<div class="col-md-10">
-    <div class="row bg-dark p-2 text-end">
-        <a href="" class="text-light text-none"><i class="fa-solid fa-right-from-bracket fs-5 me-5"></i></a>
-    </div>
+
     <div class="row p-4">
         <div class="row text-center">
             <h5 class="fs-3 fw-bold bg-success p-2 col-md-3 rounded-pill">QUẢN LÝ DANH MỤC</h5>
-            <form action="" method="post" class="col-md-3">
-                <input type="text" placeholder="Nhập tên khách hàng cần tìm ..." name="search">
-                <button type="submit" name="btn-search"></button>
-            </form>
         </div>
         <div class="row rounded-2 bg-light p-3">
             <p class="fw-bold fs-4">Danh sách danh mục</p>
@@ -38,7 +31,7 @@
                                 <td><a href="?act=listdm&id=<?= $id_category ?>" class="btn btn-dark fw-bold ">Danh mục con</a></td>
                             <?php } ?>
                             <?php 
-                                if($parent_id != 0){
+                                if(($parent_id != 0)&&($id_category != $parent_id)){
                             ?>
                                 <td><a href="?act=deletedm&id=<?= $id_category ?>" class="btn btn-danger fw-bold ">Xóa</a></td>
                             <?php } ?>

@@ -1,5 +1,6 @@
 <?php
 ob_start();
+session_start();
 include 'view/header.php';
 include '../model/pdo.php';
 include '../model/danhmucsp.php';
@@ -137,7 +138,12 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
             include 'QLSP/list.php';
             break;
         case 'listkh':
-            $load_all_account = load_all_account();
+            if(isset($_POST['btn-search'])){
+                $search = $_POST['search'];
+            }else{
+                $search = '';
+            }
+            $load_all_account = load_all_account($search);
             include './QLKH/list.php';
             break;
     }

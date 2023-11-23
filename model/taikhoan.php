@@ -15,8 +15,12 @@
         return pdo_query_one($sql);
     }
     //Hiển thị danh sách khách hàng
-    function load_all_account(){
+    function load_all_account($search){
         $sql = "SELECT * FROM `account`";
+        if($search != ''){
+            $sql .= " WHERE user like '%" . $search . "%' OR email_account like '%".$search."%'";
+        }
+        
         return pdo_query($sql);
     }
     //Hàm hiển thị lỗi cho người dùng

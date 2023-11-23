@@ -1,10 +1,11 @@
-<div class="col-md-10">
-    <div class="row bg-dark p-2 text-end">
-        <a href="" class="text-light text-none"><i class="fa-solid fa-right-from-bracket fs-5 me-5"></i></a>
-    </div>
+
     <div class="row p-4">
-        <div class="row text-center">
-            <h5 class="fs-3 fw-bold bg-success p-2 col-md-3 rounded-pill">QUẢN LÝ SẢN PHẨM</h5>
+        <div class="row text-center d-flex justify-content-between">
+            <h5 class="fs-4 fw-bold bg-success p-2 col-md-3 rounded-pill">QUẢN LÝ SẢN PHẨM</h5>
+            <form action="index.php?act=listkh" method="post" class="col-md-3 d-flex h-75 position-relative">
+                <input type="text" placeholder="Nhập tên sản phẩm cần tìm ..." name="search" class="form-control rounded-end">
+                <button type="submit" name="btn-search" class="btn btn-primary fw-bold position-absolute end-0 h-100"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
         </div>
         <div class="row rounded-2 bg-light p-3">
             <p class="fw-bold fs-4">Danh sách sản phẩm</p>
