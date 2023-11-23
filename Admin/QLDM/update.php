@@ -1,9 +1,10 @@
-a<div class="col-md-10">
+
+
+
+<div class="col-md-10">
+
     <?php extract($load_one_category); ?>
-    <div class="row bg-dark p-2 text-end">
-        <a href="" class="text-light text-none"><i class="fa-solid fa-right-from-bracket fs-5 me-5"></i></a>
-    </div>
-    <div class="row p-4">
+    <div class="row p-4 mgtop">
         <div class="row text-center">
             <h5 class="fs-3 fw-bold bg-warning p-2 col-md-3 rounded-pill">QUẢN LÝ DANH MỤC</h5>
         </div>

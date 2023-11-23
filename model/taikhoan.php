@@ -15,9 +15,30 @@
         return pdo_query_one($sql);
     }
     //Hiển thị danh sách khách hàng
-    function load_all_account(){
-        $sql = "SELECT * FROM `account`";
+    function load_kh_account($search){
+        $sql = "SELECT * FROM `account` WHERE role <> '1' AND role = '0'";
+        if($search != ''){
+            $sql .= " AND (user LIKE '%" . $search . "%' OR email_account LIKE '%" . $search . "%')";
+        }
         return pdo_query($sql);
+    }
+    //Hiển thị danh sách nhân viên
+    function load_nn_account($search){
+        $sql = "SELECT * FROM `account` WHERE role <> '1' AND role = '2'";
+        if($search != ''){
+            $sql .= " AND (user LIKE '%" . $search . "%' OR email_account LIKE '%" . $search . "%')";
+        }
+        return pdo_query($sql);
+    }
+    //Update quyền
+    function update_role_account($id,$idupdate){
+        $sql = "UPDATE `account` SET `role`='$idupdate' WHERE id_account = $id";
+        pdo_execute($sql);
+    }
+    //Delete khách hàng
+    function delete_account($id){  
+        $sql = "DELETE FROM `account` WHERE id_account = $id";
+        pdo_execute($sql);
     }
     //Hàm hiển thị lỗi cho người dùng
     function is_error($form_err){
