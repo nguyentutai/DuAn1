@@ -1,4 +1,8 @@
 
+
+
+<div class="col-md-10">
+
     <?php extract($load_one_category); ?>
     <div class="row p-4 mgtop">
         <div class="row text-center">
