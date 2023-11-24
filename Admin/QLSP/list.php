@@ -33,8 +33,8 @@
                             <td><?= $describe_product?></td>             
                             <td><?= $veiw_product ?></td>
                              <td><?= $quantity_product ?></td>
-                                <td><a href="?act=deletedm&id=<?= $id_product ?>" class="btn btn-danger fw-bold ">Xóa</a></td>
-                            <td><a href="?act=suadm&id=<?= $id_product ?>" class="btn btn-success fw-bold">Sửa</a></td>
+                                <td><a href="?act=deletesp&id=<?= $id_product ?>" class="btn btn-danger fw-bold ">Xóa</a></td>
+                            <td><a href="?act=suasp&id=<?= $id_product ?>" class="btn btn-success fw-bold">Sửa</a></td>
                         </tr>
                     <?php } ?>
                 </tbody>

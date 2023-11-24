@@ -131,12 +131,76 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
                     inser_product($name_product,$filename, $describe, $quantity_product, $origin_price, $discount_product);
                 }
             }
+            $listdm=load_category();
             include './QLSP/add.php';
             break;
         case 'listsp':
             $listsp = loadAll_product();
+            $listdm=load_category();
             include 'QLSP/list.php';
             break;
+         case 'deletesp':
+                if (isset($_GET['id'])) {
+                    $id = $_GET['id'];
+                    $listsp = loadAll_product();
+                    if (!empty($loadAll_product)) {
+                        echo "Bạn không thể xóa";
+                    } else {
+                        delete_product($id);
+                        header('Location: index.php?act=listsp');
+                    }
+              }
+              break;
+
+                case 'suasp':
+                    if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                        $id = $_GET['id'];
+                    }
+                    if (isset($_POST['btn-submit'])) {
+                        $error = [];
+                        if (empty($_POST['name_product'])) {
+                            $error['name_product'] = 'Vui lòng nhập tên sản phẩm';
+                        } else {
+                            $name_product = $_POST['name_product'];
+                        }
+                        if (empty($_POST['quantity_product'])) {
+                            $error['quantity_product'] = 'Vui lòng điền số lượng';
+                        } else {
+                            $quantity_product = $_POST['quantity_product'];
+                        }
+                        if (empty($_POST['origin_price'])) {
+                            $error['origin_price'] = 'Vui lòng điền giá gốc';
+                        } else {
+                            $origin_price = $_POST['origin_price'];
+                        }
+                        if (empty($_POST['discount_product'])) {
+                            $error['discount_product'] = 'Vui lòng điền giá khuyến mãi';
+                        } else {
+                            $discount_product = $_POST['discount_product'];
+                        }
+                        if (empty($_POST['describe'])) {
+                            $error['describe'] = 'Vui lòng nhập mô tả';
+                        } else {
+                            $describe = $_POST['describe'];
+                        }
+                        $category_product = $_POST['category_product'];
+                        $filename = $_FILES['image']['name'];
+                        $target_dir = "../upload/";
+                        $target_file = $target_dir . basename($_FILES['image']['name']);
+                        if (!move_uploaded_file($_FILES['image']['tmp_name'], $target_file)) {
+                            $error['image'] = 'Bạn chưa upload ảnh';
+                        }        
+                        $parent_product = $_POST['parent-product'];
+                        if (empty($error)) {
+                            inser_product($name_product,$filename, $describe, $quantity_product, $origin_price, $discount_product);
+                        }
+                    }
+                    $loaddm = load_category();
+                    $listdm=load_category();
+                    $load_one_product = load_product_update($id);
+                    include './QLSP/update.php';
+                    break;
+
         case 'listkh':
             if(isset($_POST['btn-search'])){
                 $search = $_POST['search'];
