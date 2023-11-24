@@ -80,8 +80,6 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="index.php?act=listkh">Danh Sách Khách Hàng</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
@@ -89,9 +87,9 @@
                                     Quản Lý Đơn Hàng
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    <li><a class="dropdown-item" href="#">Danh Sách Đơn Hàng</a></li>
+                                    <li><a class="dropdown-item" href="#">Thêm Đơn Hàng</a></li>
+                                    <li><a class="dropdown-item" href="#">Thông Kê Đơn Hàng</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
@@ -100,12 +98,9 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="#">Danh Sách Bình Luận</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    <li><a class="dropdown-item" href="#">Bình Luận Đã Ẩn</a></li>
+                                    <li><a class="dropdown-item" href="#">Thống Kê Bình Luận</a></li>
                                 </ul>
-                            </li>
-                            <li>
-                                <a href="" class="btn btn-secondary bg-warning w-100 mt-3 text-dark fw-bold">Thống Kê</a>
                             </li>
                         </ul>
                     </div>
