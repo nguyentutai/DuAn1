@@ -99,16 +99,19 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
                 } else {
                     $name_product = $_POST['name_product'];
                 }
+
                 if (empty($_POST['quantity_product'])) {
                     $error['quantity_product'] = 'Vui lòng điền số lượng';
                 } else {
                     $quantity_product = $_POST['quantity_product'];
                 }
+
                 if (empty($_POST['origin_price'])) {
                     $error['origin_price'] = 'Vui lòng điền giá gốc';
                 } else {
                     $origin_price = $_POST['origin_price'];
                 }
+                
                 if (empty($_POST['discount_product'])) {
                     $error['discount_product'] = 'Vui lòng điền giá khuyến mãi';
                 } else {

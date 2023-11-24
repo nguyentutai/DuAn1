@@ -46,6 +46,15 @@
         padding: 12px;
         border-radius: 15px 15px 0 0;
     }
+    .product-detal-image{
+        width: 100vw;
+    }
+    .product-detal-content{
+        width: 100vw;
+    }
+    .product-detal-content{
+        margin: 0 auto;
+    }
 }
 @media (max-width: 767.98px){
     .navbar{
@@ -88,6 +97,7 @@
         padding: 2px;
         border-radius: 4px 0 0 4px;
     }
+
 }
 @media (max-width: 575.98px){
 
