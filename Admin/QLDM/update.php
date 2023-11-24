@@ -11,8 +11,9 @@
         <div class="row rounded-2 bg-light p-3">
             <p class="fw-bold fs-4">Update Danh Mục</p>
             <form action="" method="post" enctype="multipart/form-data">
-                <div class="content row">
+                <div class="row">
                     <div class="mb-3 col-md-6">
+                        <input type="hidden" name="id_category" value="<?= $id_category ?>">
                         <label for="formGroupExampleInput" class="form-label fw-semibold fs-5">Tên danh mục</label>
                         <input type="text" class="form-control" value="<?= $name_category ?>" name="name-category" id="formGroupExampleInput" placeholder="Nhập vào tên danh mục">
                         <p class="text-danger fs-6 mt-1 fw-bolder"><?= is_error('name-category') ?></p>
@@ -33,9 +34,9 @@
                                 <?php
                                 foreach ($loaddm as $dm) {
                                 ?>
-                                    <option value="<?= $dm['id_category'] ?>" <?= ($id_category == $dm['id_category'])?'selected':''; ?> ><?= $name_category ?></option>
-                                <?php 
-                                } 
+                                    <option value="<?= $dm['id_category'] ?>" <?= ($parent_id == $dm['id_category'])?'selected':''; ?> ><?= $dm['name_category'] ?></option>
+                                <?php   
+                                }
                                 ?>
                             </select>
                         </div>

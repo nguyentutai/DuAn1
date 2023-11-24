@@ -11,6 +11,11 @@ function insert_category($image_category, $name_category,$link_category, $parent
     $sql = "INSERT INTO `category`(`image_category`, `name_category`, `link_category`, `parent_id`) VALUES ('$image_category','$name_category','$link_category','$parent_id')";
     pdo_execute($sql);
 }
+
+function update_category($id_category,$image_category, $name_category, $link_category, $parent_id){
+    $sql = "UPDATE `category` SET `image_category`='$image_category',`name_category`='$name_category',`link_category`=' $link_category',`parent_id`='$parent_id' WHERE `id_category` = '$id_category'";
+    pdo_execute($sql);
+}
 //List danh mục sản phẩm
 function load_category_childrent($id=0){
     $sql = "SELECT * FROM `category`";
