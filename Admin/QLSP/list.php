@@ -17,23 +17,26 @@
                         <th class="fs-6">Hình ảnh</th>
                         <th class="fs-6">Mô tả</th>
                         <th class="fs-6">View</th>
+                        <th class="fs-6">Số lượng</th>
                         <th colspan="2" class="fs-6">Chức năng</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Đồng hồ Citizen CT-EU6080-58D</td>
-                        <td><img class="rounded mx-auto d-block img-fluid image" src="../img/1721098998_dong_ho_nu_ct_eu6080_58djpg_1626777518.jpg" alt="">
-                        </td>
-                        <td>Đường kính mặt: 31.8 mm
-                            Chống nước: 5 ATM
-                            Chất liệu mặt kính: Kính khoáng (Mineral)
-                            Bộ máy: Quartz/Pin</td>
-                        <td>10</td>
-                        <td><a href="" class="btn btn-danger fw-bold ">Xóa</a></td>
-                        <td><a href="" class="btn btn-success fw-bold">Sửa</a></td>
-                    </tr>
+                <?php $i = 0;
+                    foreach ($listsp as $loaddm) {
+                        extract($loaddm) ?>
+                        <tr>
+                            <td><?= $i+=1; ?></td>
+                            <td><?= $name_product ?></td>
+                            <td><img class="rounded mx-auto d-block img-fluid w-50 imagedm mt-3" src="../upload/<?= $image_product ?>" alt="">
+                            </td>
+                            <td><?= $describe_product?></td>             
+                            <td><?= $veiw_product ?></td>
+                             <td><?= $quantity_product ?></td>
+                                <td><a href="?act=deletesp&id=<?= $id_product ?>" class="btn btn-danger fw-bold ">Xóa</a></td>
+                            <td><a href="?act=suasp&id=<?= $id_product ?>" class="btn btn-success fw-bold">Sửa</a></td>
+                        </tr>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>
