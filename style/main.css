@@ -1102,3 +1102,54 @@ footer{
     font-size: 30px;
     cursor: pointer;
 }
+.form-kh{
+    line-height: 60px;
+}
+.form-kh-1{
+    line-height: 70px;  
+    text-align: center;
+}
+.form-kh-in{
+    width: 80%;
+    height: 50px;
+    border-radius: 10px;
+    padding-left: 30px;
+    font-size: 17px;
+}
+.form-kh-input{
+    text-align: center;
+}
+.form-kh-input-radio{
+    width: 80%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border: 1px solid #000;
+    line-height: 50px;
+    border-radius: 10px;
+    font-size: 17px;
+    margin:0 auto;
+}
+.form-kh-button{
+    text-align: center;
+    padding-top: 20px;
+}
+.form-kh-button h4{
+    font-size: 30px;
+    padding-top: 5px;
+}
+.form-kh-but{
+    width: 79%;
+    line-height: 30px;
+    border-radius: 10px;
+    background: linear-gradient(0deg, rgba(0,214,255,1) 0%, rgba(0,0,1,1) 0%, rgba(0,0,0,1) 67%, rgba(16,2,252,1) 100%);
+
+    color: aliceblue;
+}
+.form-kh-butt{
+    width: 79%;
+    line-height: 30px;
+    border-radius: 10px;
+    background: linear-gradient(0deg, rgba(0,214,255,1) 0%, rgba(0,0,255,1) 33%, rgba(0,0,0,1) 100%, rgba(16,2,252,1) 100%);
+    color: aliceblue;
+}
