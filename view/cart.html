@@ -106,91 +106,51 @@
       <div class="container-directional">
         <div class="directional container">
           <a href=""><i class="fa-solid fa-house"></i> Trang chủ /</a>
-          <a href="">Chi tiết sản phẩm</a>
+          <a href="">Giỏ hàng</a>
         </div>
       </div>
 
-      <!-- Stast chi tiết sản phẩm -->
-      <div class="product-detal container">
-        <div class="product-detal-body">
-          <div class="product-detal-image">
-            <div class="image-detal">
-              <img
-                src="../image/dong-ho-chinh-hang-phien-ban-gioi-han1-1896924675.jpg"
-                alt=""
-              />
+      <div class="tk-cart container-cart">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <p>Giỏ Hàng ( Có 1 sản phẩm )</p>
+      </div>
+
+      <div class="product-cart container-cart">
+        <div class="list-product-cart">
+          <div class="image-product-cart">
+            <img
+              src="../image/300991034_dong ho thuy sy phien ban gioi han (4).jpg"
+              alt=""
+            />
+          </div>
+          <div class="content-product-cart">
+            <div class="name-product-cart">
+              <h3>Đồng hồ Diamond D DM3638L5IG-R</h3>
             </div>
-            <div class="image-detal-chidrent">
-              <div class="image-chidrent">
-                <img src="../upload/dong ho 2.png" alt="" />
+            <div class="pri-quantity">
+              <div class="soluong">
+                <p>Số lượng sản phẩm</p>
               </div>
-              <div class="image-chidrent">
-                <img src="../upload/dong ho 2.png" alt="" />
-              </div>
-              <div class="image-chidrent">
-                <img src="../upload/dong ho 2.png" alt="" />
-              </div>
-              <div class="image-chidrent">
-                <img src="../upload/dong ho 2.png" alt="" />
+              <div class="quantity-product-cart">
+                <div class="ct-quantity">
+                  <button onclick="giamGiaVaSoLuong()">-</button>
+                  <p><span id="quantity">1</span></p>
+                  <button onclick="tangGiaVaSoLuong()">+</button>
+                </div>
+                <div class="price-product-cart">
+                  <p><span id="price">10000000</span>đ</p>
+                </div>
               </div>
             </div>
           </div>
-          <div class="product-detal-content">
-            <div class="product-detal-title">
-              <h3>Đồng hồ Aries Gold AG-G9005AS-S</h3>
-            </div>
-            <div class="product-detal-price">
-              <div class="product-detal-price-sell">
-                <h3>11.150.000đ</h3>
-              </div>
-              <div class="product-detal-price-tree">
-                <del>11.150.000đ</del>
-              </div>
-              <div class="percent">
-                <p>-10%</p>
-              </div>
-            </div>
-            <div class="product-detal-parameter">
-              <p>Xuất xứ: Nhật Bản</p>
-              <p>Đường kính mặt: 38mm</p>
-              <p>Chống nước: 10ATM</p>
-            </div>
-            <div class="product-detal-servis">
-              <div class="mpgh">
-                <div class="mpgh-image">
-                  <img src="../image/freeship.png" alt="" />
-                </div>
-              </div>
-              <div class="doitra">
-                <div class="doitra-image">
-                  <img src="../image/doitra.png" alt="" />
-                </div>
-              </div>
-              <div class="chihang">
-                <div class="chihang-image">
-                  <img src="../image/baohanh.png" alt="" />
-                </div>
-              </div>
-            </div>
-            <div class="shopping">
-              <a href="" class="tragop">
-                <div class="tragop-b">MUA TRẢ GÓP</div>
-              </a>
-              <a href="" class="cart">
-                <div class="giohang-b">GIỎ HÀNG</div>
-              </a>
-            </div>
-            <a href="" class="buynow">
-              <div class="muangay-b">MUA NGAY</div>
-            </a>
+          <div class="delete-cart">
+            <a href=""><i class="fa-solid fa-trash"></i></a>
           </div>
         </div>
       </div>
-    
-      <!-- End chi tiết sản phẩm -->
 
-      <!-- Stast bình luận và đánh giá -->
-      
+
+
       <footer>
         <div class="container-footer">
           <div class="service">
@@ -272,6 +232,22 @@
       </footer>
 
       <script src="../style/main.js"></script>
+      <script>
+        let giaGoc = parseFloat(document.getElementById("price").innerText);
+        let soLuong = parseInt(document.getElementById("quantity").innerText);
+        function tangGiaVaSoLuong() {
+          soLuong++;
+          let newPrice = giaGoc * soLuong;
+          document.getElementById("quantity").innerText = soLuong;
+          document.getElementById("price").innerText = newPrice.toFixed(0);
+        }
+        function giamGiaVaSoLuong() {
+          soLuong--;
+          let newPrice = giaGoc * soLuong;
+          document.getElementById("quantity").innerText = soLuong;
+          document.getElementById("price").innerText = newPrice.toFixed(0);
+        }
+      </script>
     </div>
   </body>
 </html>

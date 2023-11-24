@@ -22,7 +22,10 @@
     max-width: calc((1300/1688)*100%);
     margin: auto;
 }
-
+.container-cart {
+    max-width: calc((1000/1688)*100%);
+    margin: auto;
+}
 #header nav{
     display: flex;
     align-items: center;
@@ -1017,4 +1020,85 @@ footer{
     font-family: sans-serif;
     text-decoration: none;
     font-size: 26px;
+}
+
+
+/* Trang giỏ hàng */
+
+.list-product-cart{
+    display: flex;
+    justify-content: space-around;
+}
+
+.image-product-cart{
+    max-width: 250px;
+}
+.image-product-cart img{
+    width: 100%;
+    border-radius: 20px;
+}
+.tk-cart{
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.tk-cart p{
+    color: red;
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: 23px;
+}
+.tk-cart i{
+    font-size: 40px;
+    margin-right: 10px;
+    color: red;
+}
+.product-cart{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 30px;
+}
+.image-product-cart{
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    padding: 20px;
+    border-radius: 20px;
+}
+.name-product-cart{
+    margin: 20px 30px;
+    font-size: 22px;
+    font-family: sans-serif;
+}
+.quantity-product-cart{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.ct-quantity{
+    display: flex;
+}
+.pri-quantity{
+    margin-left: 50px;
+}
+.ct-quantity p{
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    font-size: 22px;
+    font-weight: bold;
+}
+.ct-quantity button{
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.price-product-cart{
+    font-size: 24px;
+    color: red;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+.delete-cart{
+    margin-top: 100px;
+    font-size: 30px;
+    cursor: pointer;
 }
