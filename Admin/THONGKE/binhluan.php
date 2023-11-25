@@ -30,13 +30,11 @@
                     <td><a href="index.php?act=anbl&id=<?= $id_comment ?>" class="btn btn-success fw-bold">Ẩn Bình Luận</a></td>
                 </tr>
                 <?php } ?>
-
             </tbody>
         </table>
     </div>
 </div>
 
-<a href="?act=addsp" class="btn btn-primary fw-bold">Thêm sản phẩm</a>
 <a href="?act=listtg&id=<?= $id_product ?>" class="btn btn-dark fw-bold">Bình Luận Đã Ẩn</a>
 </div>
 </div>

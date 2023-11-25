@@ -3,6 +3,16 @@ function inser_product($id_category, $name_product, $date_product, $filename, $d
 {
     $sql = "INSERT INTO `product`(`id_category`,`name_product`,`date_add`,`image_product`, `describe_product`, `quantity_product`, `cost_product`, `discount_product`) 
                                 VALUES ('$id_category','$name_product','$date_product','$filename','$describe','$quantity_product','$origin_price','$discount_product')";
+    pdo_execute($sql);  
+}
+
+function try_image(){
+    $sql = "SELECT * From product order by id_product DESC";
+    return pdo_query($sql);
+}
+
+function try_product_image($bienjday,$value){
+    $sql = "INSERT INTO `product_image`(`id_product`, `name_image`) VALUES ('$bienjday','$value')";
     pdo_execute($sql);
 }
 

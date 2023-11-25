@@ -71,10 +71,10 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
                 $filename = $_FILES['image']['name'];
                 $target_dir = "../upload/";
                 $target_file = $target_dir . basename($_FILES['image']['name']);
-                
-                if($_FILES['image']['name'] == ''){
+
+                if ($_FILES['image']['name'] == '') {
                     $filename = $load_one_category['image_category'];
-                }else{
+                } else {
                     $filename = $_FILES['image']['name'];
                     move_uploaded_file($_FILES['image']['tmp_name'], $target_file);
                 }
@@ -82,7 +82,7 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
                 $parent_category = $_POST['parent-category'];
 
                 if (empty($error)) {
-                    update_category($id_category,$filename, $name_category, $form_control, $parent_category);
+                    update_category($id_category, $filename, $name_category, $form_control, $parent_category);
                 }
             }
             $loaddm = load_category();
@@ -132,9 +132,11 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
                 } else {
                     $describe = $_POST['describe'];
                 }
+
                 $date_product = $_POST['date_product'];
                 $category_product = $_POST['id_category'];
                 $filename = $_FILES['image']['name'];
+                $filenames = $_FILES['images']['name'];
                 $target_dir = "../upload/";
                 $target_file = $target_dir . basename($_FILES['image']['name']);
 
@@ -144,6 +146,15 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
 
                 if (empty($error)) {
                     inser_product($category_product, $name_product, $date_product, $filename, $describe, $quantity_product, $origin_price, $discount_product);
+                }
+
+                //Lấy hết dữ liệu ở bảng product
+                $bien = try_image();
+                $id_pro = $bien[0]['id_product'];
+                foreach ($filenames as $key => $value) {
+                    $target_files = $target_dir . $value;
+                    move_uploaded_file($_FILES['images']['tmp_name'][$key], $target_files);
+                    try_product_image($id_pro, $value);
                 }
             }
             $listdm = load_category();
@@ -202,20 +213,20 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
                 $date_product = $_POST['date_product'];
 
                 $category_product = $_POST['parent-product'];
-                
+
                 $target_dir = "../upload/";
                 $target_file = $target_dir . basename($_FILES['image']['name']);
 
-                if($_FILES['image']['name'] == ''){
+                if ($_FILES['image']['name'] == '') {
                     $filename = $load_one_product['image_product'];
-                }else{
+                } else {
                     $filename = $_FILES['image']['name'];
                     move_uploaded_file($_FILES['image']['tmp_name'], $target_file);
                 }
 
                 $parent_product = $_POST['parent-product'];
                 if (empty($error)) {
-                    update_product($id_product,$category_product,$name_product, $date_product, $filename, $describe, $quantity_product, $origin_price, $discount_product);
+                    update_product($id_product, $category_product, $name_product, $date_product, $filename, $describe, $quantity_product, $origin_price, $discount_product);
                 }
             }
             $loaddm = load_category();
@@ -228,7 +239,7 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
             break;
 
         case 'listspdm':
-            if(isset($_GET['id'])){
+            if (isset($_GET['id'])) {
                 $id_product = $_GET['id'];
             }
             $list_product_category = list_product_category($id_product);
@@ -282,7 +293,7 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
                 $id = $_GET['id'];
             }
             an_comment_product($id);
-            header('Location: index.php?act=listblsp');
+            header('Location: index.php?act=listbl');
             break;
         case 'listtg':
             if (isset($_GET['id'])) {
@@ -296,12 +307,12 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
             include './QLBL/listBlAll.php';
             break;
         case 'kpbl':
-            if(isset($_GET['id'])) {
+            if (isset($_GET['id'])) {
                 $id = $_GET['id'];
             }
             $kp_comment_product = kp_comment_product($id);
             header('Location: index.php?act=dsblan');
-            break;     
+            break;
     }
 }
 
