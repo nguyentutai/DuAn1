@@ -6,6 +6,8 @@ include '../model/pdo.php';
 include '../model/danhmucsp.php';
 include '../model/taikhoan.php';
 include '../model/sanpham.php';
+include '../model/thongke.php';
+include '../model/binhluan.php';
 
 if (isset($_GET['act']) && ($_GET['act'] != '')) {
     $act = $_GET['act'];
@@ -78,6 +80,7 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
                 }
 
                 $parent_category = $_POST['parent-category'];
+
                 if (empty($error)) {
                     update_category($id_category,$filename, $name_category, $form_control, $parent_category);
                 }
@@ -163,7 +166,6 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
                 }
             }
             break;
-
         case 'suasp':
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
@@ -220,7 +222,18 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
             $listdm = load_category();
             include './QLSP/update.php';
             break;
+        case 'tkspdm':
+            $list_thongke = thongke_category_product();
+            include 'THONGKE/sanpham.php';
+            break;
 
+        case 'listspdm':
+            if(isset($_GET['id'])){
+                $id_product = $_GET['id'];
+            }
+            $list_product_category = list_product_category($id_product);
+            include './QLDM/listproduct.php';
+            break;
         case 'listkh':
             if (isset($_POST['btn-search'])) {
                 $search = $_POST['search'];
@@ -253,6 +266,42 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
             }
             header('Location: index.php?act=listkh');
             break;
+        case 'listbl':
+            $listbl = thongke_comment_product();
+            include './QLBL/listBlSp.php';
+            break;
+        case 'listblsp':
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+            }
+            $list_comment_product = list_comment_product($id);
+            include './THONGKE/binhluan.php';
+            break;
+        case 'anbl':
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+            }
+            an_comment_product($id);
+            header('Location: index.php?act=listblsp');
+            break;
+        case 'listtg':
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+            }
+            $listtg_comment_product = listtg_comment_product($id);
+            include './QLBL/thunggiac.php';
+            break;
+        case 'dsblan':
+            $listblan_comment_product = listblan_comment_product();
+            include './QLBL/listBlAll.php';
+            break;
+        case 'kpbl':
+            if(isset($_GET['id'])) {
+                $id = $_GET['id'];
+            }
+            $kp_comment_product = kp_comment_product($id);
+            header('Location: index.php?act=dsblan');
+            break;     
     }
 }
 

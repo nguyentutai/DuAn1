@@ -63,6 +63,7 @@
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="index.php?act=adddm">Thêm Danh Mục</a></li>
                                     <li><a class="dropdown-item" href="index.php?act=listdm">Danh Sách Danh Mục</a></li>
+                                    <li><a class="dropdown-item" href="index.php?act=tkspdm">Thống Kê Danh Mục</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
@@ -72,6 +73,7 @@
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="index.php?act=addsp">Thêm Sản Phẩm</a></li>
                                     <li><a class="dropdown-item" href="index.php?act=listsp">Danh Sách Sản Phẩm</a></li>
+                                    <li><a class="dropdown-item" href="index.php?act=listtgsp">Thùng Giác</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
@@ -97,9 +99,8 @@
                                     Quản Lý Bình Luận
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Danh Sách Bình Luận</a></li>
-                                    <li><a class="dropdown-item" href="#">Bình Luận Đã Ẩn</a></li>
-                                    <li><a class="dropdown-item" href="#">Thống Kê Bình Luận</a></li>
+                                    <li><a class="dropdown-item" href="index.php?act=listbl">Danh Sách Bình Luận</a></li>
+                                    <li><a class="dropdown-item" href="index.php?act=dsblan">Bình Luận Đã Ẩn</a></li>
                                 </ul>
                             </li>
                         </ul>

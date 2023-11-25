@@ -29,6 +29,7 @@
                     <label for="formGroupExampleInput" class="form-label fw-semibold fs-5">Danh
                         mục</label>
                     <select class="form-select" name="id_category" aria-label="Default select example">
+                        <option value="0">-- Danh mục sản phẩm --</option>
                         <?php
                         foreach ($listdm as $categogy) {
                             extract($categogy);
@@ -52,13 +53,11 @@
                 <div class="col-md-6">
                     <label for="exampleFormControlTextarea1" class="form-label fw-semibold fs-5">Nhập mô
                         tả sản phẩm</label>
-                    <textarea class="form-control" name="describe" id="exampleFormControlTextarea1" placeholder="Nhập mô tả sản phẩm" rows="7.5">
-
-
+                    <textarea textarea class="form-control" name="describe" id="exampleFormControlTextarea1" placeholder="Nhập mô tả sản phẩm" rows="7.5">
                         </textarea>
                     <p class="text-danger fs-6 mt-1 fw-bolder"><?= is_error('describe') ?></p>
                 </div>
-                <div class="col-md-3">
+                <!-- <div class="col-md-3">
                     <label for="imagename" class="form-label fw-semibold fs-5">Thêm ảnh sản
                         phẩm</label><br>
                     <label for="" class="form-label fw-semibold fs-6 fw-bold">Ảnh 1</label>
@@ -73,7 +72,7 @@
                     <label for="" class="form-label fw-semibold fs-6 fw-bold">Ảnh 4</label>
                     <label for="image1" class="btn-secondary bg-dark text-light py-2 px-4 rounded-pill my-2 ms-2"><i class="fa-solid fa-cloud-arrow-up "></i></label><br>
                     <input type="file" class="form-control-file d-none" id="image1">
-                </div>
+                </div> -->
                 <div class="col-md-3 ">
                     <label for="" class="form-label fw-semibold fs-5 mt-1">Ảnh chính</label>
                     <label for="imagemain" class="w-100 text-center bg-dark text-light image rounded-4"><i class="fa-solid fa-cloud-arrow-up fs-1"></i></label>

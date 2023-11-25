@@ -16,28 +16,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $i = 0;
-                    foreach ($load_all_category_children as $loaddm) {
-                        extract($loaddm) ?>
-                        <tr>
-                            <td><?= $i+=1; ?></td>
-                            <td><?= $name_category ?></td>
-                            <td><img class="rounded mx-auto d-block img-fluid w-50 imagedm mt-3" src="../upload/<?= $image_category ?>" alt="">
-                            </td>
-                            <td><?= $link_category ?></td>
-                            <?php 
-                                if($parent_id == 0){
-                            ?>
-                                <td><a href="?act=listdm&id=<?= $id_category ?>" class="btn btn-dark fw-bold ">Danh mục con</a></td>
-                            <?php } ?>
-                            <?php 
-                                if(($parent_id != 0)&&($id_category != $parent_id)){
-                            ?>
-                                <td><a href="?act=deletedm&id=<?= $id_category ?>" class="btn btn-danger fw-bold ">Xóa</a></td>
-                            <?php } ?>
-                            <td><a href="?act=suadm&id=<?= $id_category ?>" class="btn btn-success fw-bold">Sửa</a></td>
-                        </tr>
-                    <?php } ?>
+                    
                 </tbody>
             </table>
         </div>
