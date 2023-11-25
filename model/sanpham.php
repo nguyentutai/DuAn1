@@ -24,6 +24,10 @@ function loadAll_product()
     $listsp = pdo_query($sql);
     return $listsp;
 }
+function  list_product_category($id_product){
+    $sql = "SELECT * FROM `product` WHERE `id_category` = '$id_product'";
+    return pdo_query($sql);
+}
 function delete_product($id)
 {
     $sql = "DELETE FROM `product` WHERE `id_product`='$id'";

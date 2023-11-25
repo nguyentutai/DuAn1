@@ -5,6 +5,11 @@ function load_category()
     $sql = "SELECT * FROM `category`";
     return pdo_query($sql);
 }
+function load_category_home()
+{
+    $sql = "SELECT * FROM `category` WHERE parent_id != 0";
+    return pdo_query($sql);
+}
 //Add danh mục
 function insert_category($image_category, $name_category,$link_category, $parent_id)
 {

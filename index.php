@@ -3,7 +3,9 @@ session_start();
 ob_start();
 include 'view/header.php';
 include 'model/taikhoan.php';
+include 'model/danhmucsp.php';
 include 'model/pdo.php';
+$loaddm = load_category_home();
 if (isset($_GET['act']) && ($_GET['act'] != '')) {
     $act = $_GET['act'];
     switch ($act) {
