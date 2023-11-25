@@ -1,18 +1,14 @@
 
-    <div class="row p-4 mgtop">
-        <div class="row text-center d-flex justify-content-between">
-            <h5 class="fs-4 fw-bold bg-success p-2 col-md-3 rounded-pill">QUẢN LÝ SẢN PHẨM</h5>
-            <form action="index.php?act=listkh" method="post" class="col-md-3 d-flex h-75 position-relative">
-                <input type="text" placeholder="Nhập tên sản phẩm cần tìm ..." name="search" class="form-control rounded-end">
-                <button type="submit" name="btn-search" class="btn btn-primary fw-bold position-absolute end-0 h-100"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </form>
+<div class="row p-4 mgtop">
+        <div class="row text-center">
+            <h5 class="fs-3 fw-bold bg-success p-2 col-md-3 rounded-pill">QUẢN LÝ DANH MỤC</h5>
         </div>
         <div class="row rounded-2 bg-light p-3">
-            <p class="fw-bold fs-4">Danh sách sản phẩm</p>
+            <p class="fw-bold fs-4">Danh sách danh mục</p>
             <table class="text-center">
                 <thead class="text-center">
                     <tr>
-                        <th class="fs-6">STT</th>
+                    <th class="fs-6">STT</th>
                         <th class="fs-6">Tên sản phẩm</th>
                         <th class="fs-6">Hình ảnh</th>
                         <th class="fs-6">Mô tả</th>
@@ -22,9 +18,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                <?php $i = 0;
-                    foreach ($listsp as $loaddm) {
-                        extract($loaddm) ?>
+                    <?php $i = 0;
+                    foreach ($list_product_category as $loadsp) {
+                        extract($loadsp) ?>
                         <tr>
                             <td><?= $i+=1; ?></td>
                             <td><?= $name_product ?></td>
@@ -41,8 +37,5 @@
             </table>
         </div>
     </div>
-
-    <a href="?act=addsp" class="btn btn-primary fw-bold">Thêm sản phẩm</a>
-    <a href="?act=listtgsp" class="btn btn-dark fw-bold">Thùng rác</a>
-</div>
-</div>
+    <a href="?act=adddm" class="btn btn-primary fw-bold">Thêm danh mục</a>
+    <a href="" class="btn btn-dark fw-bold">Thùng rác</a>

@@ -55,6 +55,22 @@
     .product-detal-content{
         margin: 0 auto;
     }
+    .list-category-header{
+        width: 200px;
+    }
+    .list-category-header i{
+        font-size: 20px;
+    }
+    .chuchay{
+        font-size: 15px;
+    }
+    .list-category-header h3{
+        font-size: 14px;
+    }
+    .menu-category ul li a{
+        padding: 7px 15px;
+        font-size: 15px;
+    }
 }
 @media (max-width: 767.98px){
     .navbar{
