@@ -10,6 +10,10 @@ function load_category_home()
     $sql = "SELECT * FROM `category` WHERE parent_id != 0";
     return pdo_query($sql);
 }
+function load_category_parent(){
+    $sql = "SELECT * FROM `category` WHERE parent_id = 0";
+    return pdo_query($sql);
+}
 //Add danh mục
 function insert_category($image_category, $name_category,$link_category, $parent_id)
 {
@@ -22,7 +26,7 @@ function update_category($id_category,$image_category, $name_category, $link_cat
     pdo_execute($sql);
 }
 //List danh mục sản phẩm
-function load_category_childrent($id=0){
+function load_category_childrent($id){
     $sql = "SELECT * FROM `category`";
     if($id != ''){
         $sql.=" WHERE `parent_id` = '$id'";

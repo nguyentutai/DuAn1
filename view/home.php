@@ -218,7 +218,7 @@
             </div>
         </div>
         <div class="see-more">
-            <div class="title-more"><a href="">Xem thêm</a></div>
+            <div class="title-more"><a href="index.php?act=allproduct">Xem thêm</a></div>
         </div>
         <div class="next-product">
             <i class="fa-solid fa-angle-right"></i>
