@@ -40,6 +40,15 @@
         $sql = "DELETE FROM `account` WHERE id_account = $id";
         pdo_execute($sql);
     }
+    //Đổi mật khẩu
+    function doimk_taikhoan($idtk, $passconfim){
+        $sql = "UPDATE `account` SET `pass`='$passconfim' WHERE id= '$idtk'";
+        pdo_execute($sql);
+    }
+    function update_account($id,$name_ac,$filename,$email_ac,$phone_ac){
+        $sql = "UPDATE `account` SET `user`='$name_ac',`image_account`='$filename',`email_account`='$email_ac',`phone_account`='$phone_ac' WHERE id_account = '$id'";
+        pdo_execute($sql);
+    }
     //Hàm hiển thị lỗi cho người dùng
     function is_error($form_err){
         global $error;

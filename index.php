@@ -4,6 +4,7 @@ ob_start();
 include 'view/header.php';
 include 'model/taikhoan.php';
 include 'model/danhmucsp.php';
+include 'model/sanpham.php';
 include 'model/pdo.php';
 $loaddm = load_category_home();
 if (isset($_GET['act']) && ($_GET['act'] != '')) {
@@ -57,7 +58,7 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
                     } else {
                         $username = $_POST['username'];
                     }
-                }   
+                }
                 //Kiểm tra password
                 if (empty($_POST['password'])) {
                     $error['password'] = 'Vui lòng nhập password';
@@ -119,14 +120,11 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
             include 'view/login/register.php';
             break;
         case 'logout':
-            if(isset($_SESSION['login'])){
+            if (isset($_SESSION['login'])) {
                 unset($_SESSION['login']);
             }
             header('Location: index.php');
             break;
-            case "sanphamct":
-                include 'view/chitietsp.php';
-                break;
         
     }
 } else {

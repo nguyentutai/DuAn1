@@ -42,12 +42,12 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
             include './QLDM/add.php';
             break;
         case 'listdm':
-            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                $id = $_GET['id'];
-            } else {
-                $id = 0;
-            }
-            $load_all_category_children = load_category_childrent($id);
+            // if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+            //     $id = $_GET['id'];
+            // } else {
+            //     $id = 0;
+            // }
+            $load_all_category_children = load_category();
             include './QLDM/list.php';
             break;
         case 'suadm':
@@ -94,7 +94,9 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
                 $id = $_GET['id'];
                 $load_product_category = load_product_category($id);
                 if (!empty($load_product_category)) {
-                    echo "Bạn không thể xóa";
+                    echo "<script>alert('Bạn không thể xóa khi danh mục còn sản phẩm')</script>";
+                    $load_all_category_children = load_category();
+                    include './QLDM/list.php';
                 } else {
                     delete_category($id);
                     header('Location: index.php?act=listdm');
@@ -161,20 +163,43 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
             include './QLSP/add.php';
             break;
         case 'listsp':
-            $listsp = loadAll_product();
+            if(isset($_POST['btns-search'])){
+                $search = $_POST['search'];
+            }else{
+                $search = '';
+            }
+            $listsp = loadAll_product($search);
             $listdm = load_category();
             include 'QLSP/list.php';
+            break;
+        case 'deletemsp':
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                deletem_product($id);
+                header('Location: index.php?act=listsp');
+            }
+            break;
+        case 'khoiphucsp':
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                kp_product($id);
+                header('Location: index.php?act=listsp');
+            }
+            break;
+        case 'thunggiac':
+            if(isset($_POST['search'])) {
+                $search = $_POST['search'];
+            }else{
+                $search = '';
+            }
+            $listtg = loadtg_product($search);
+            include 'QLSP/thunggiac.php';
             break;
         case 'deletesp':
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
-                $listsp = loadAll_product();
-                if (!empty($loadAll_product)) {
-                    echo "Bạn không thể xóa";
-                } else {
-                    delete_product($id);
-                    header('Location: index.php?act=listsp');
-                }
+                delete_product($id);
+                header('Location: index.php?act=listsp');
             }
             break;
         case 'suasp':
@@ -234,7 +259,12 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
             include './QLSP/update.php';
             break;
         case 'tkspdm':
-            $list_thongke = thongke_category_product();
+            if(isset($_POST['btn-search'])){
+                $search = $_POST['search'];
+            }else{
+                $search = '';
+            }
+            $list_thongke = thongke_category_product($search);
             include 'THONGKE/sanpham.php';
             break;
 

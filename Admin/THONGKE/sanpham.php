@@ -1,8 +1,8 @@
 <div class="row p-4 mgtop">
     <div class="row text-center d-flex justify-content-between">
         <h5 class="fs-4 fw-bold bg-success p-2 col-md-3 rounded-pill">QUẢN LÝ SẢN PHẨM</h5>
-        <form action="index.php?act=listkh" method="post" class="col-md-3 d-flex h-75 position-relative">
-            <input type="text" placeholder="Nhập tên sản phẩm cần tìm ..." name="search" class="form-control rounded-end">
+        <form action="index.php?act=tkspdm" method="post" class="col-md-3 d-flex h-75 position-relative">
+            <input type="text" placeholder="Nhập tên danh mục cần tìm ..." name="search" class="form-control rounded-end">
             <button type="submit" name="btn-search" class="btn btn-primary fw-bold position-absolute end-0 h-100"><i class="fa-solid fa-magnifying-glass"></i></button>
         </form>
     </div>
@@ -20,8 +20,8 @@
             <tbody>
                 <?php $i=0; foreach($list_thongke as $listtk){
                     extract($listtk);
-                    ?>
-                <tr>
+                ?>
+                <tr class="mt-4">
                     <td class="fs-6"><?= $i+=1; ?></td>
                     <td class="fs-6"><?= $name_category ?></td>
                     <td class="fs-6"><?= $soluongsp ?></td>

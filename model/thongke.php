@@ -1,8 +1,13 @@
 <?php 
     //Thống kê sản phẩm theo danh mục
-    function thongke_category_product(){
-        $sql = "Select dm.id_category, dm.name_category, count(*) as soluongsp FROM category dm JOIN product sp ON dm.id_category=sp.id_category 
-        GROUP BY dm.id_category, dm.name_category ORDER BY soluongsp DESC";
+    function thongke_category_product($search){
+        $sql = "Select dm.id_category, dm.name_category, count(*) as soluongsp FROM category dm JOIN product sp ON dm.id_category=sp.id_category WHERE status_product = 0";
+
+        if($search != ""){
+            $sql .= " AND name_category LIKE '%" . $search . "%' GROUP BY dm.id_category, dm.name_category ORDER BY soluongsp DESC";
+        }else{
+            $sql .= " GROUP BY dm.id_category, dm.name_category ORDER BY soluongsp DESC";
+        }
         return pdo_query($sql);
     }
     //Thống kê bình luận theo sản phẩm
