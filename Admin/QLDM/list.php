@@ -16,7 +16,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                    
+                <?php $i = 0;
+                    foreach ($load_all_category_children as $loadsp) {
+                        extract($loadsp) ?>
+                        <tr>
+                            <td><?= $i+=1; ?></td>
+                            <?php if($parent_id == 0) {?>
+                                <td><?= $name_category ?> (Danh mục cha)</td>
+                            <?php } else { ?> 
+                                <td><?= $name_category ?></td>
+                            <?php } ?>
+                            <td><img class="rounded mx-auto d-block img-fluid w-50 imagedm mt-3" src="../upload/<?= $image_category ?>" alt="">
+                            </td>          
+                            <td><?= $link_category ?></td>
+                            <td><a href="?act=deletedm&id=<?= $id_category ?>" class="btn btn-danger fw-bold ">Xóa</a></td>
+                            <td><a href="?act=suadm&id=<?= $id_category ?>" class="btn btn-success fw-bold">Sửa</a></td>
+                        </tr>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>
