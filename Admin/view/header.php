@@ -73,7 +73,7 @@
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="index.php?act=addsp">Thêm Sản Phẩm</a></li>
                                     <li><a class="dropdown-item" href="index.php?act=listsp">Danh Sách Sản Phẩm</a></li>
-                                    <li><a class="dropdown-item" href="index.php?act=listtgsp">Thùng Giác</a></li>
+                                    <li><a class="dropdown-item" href="index.php?act=thunggiac">Thùng Giác</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
