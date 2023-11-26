@@ -25,7 +25,7 @@ function update_product($id_product,$id_category, $name_product, $date_product,$
 //Load sản phẩm theo danh mục
 function load_product_category($id)
 {
-    $sql = "SELECT * FROM `product` WHERE `id_product` = '$id'";
+    $sql = "SELECT * FROM `product` WHERE `id_category` = '$id'";
     return pdo_query($sql);
 }
 function loadAll_product()

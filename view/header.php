@@ -42,12 +42,12 @@
                         <?php
                         if (isset($_SESSION['login'])) {
                             extract($_SESSION['login']);
-                            if ($_SESSION['login']['role'] == '2') {
+                            if ($_SESSION['login']['role'] == '0') {
                         ?>
                                <li class="function"><img class="account_image" src="./upload/<?= $image_account ?>" alt=""><a class="name_account" href=""><?= $user ?></a>
                                     <div class="admini">
                                         <ul>
-                                            <li><i class="fa-solid fa-screwdriver-wrench" style="margin:0 10px;"></i><a href="?act=inforaccount">Thông tin tài khoản</a></li>
+                                            <li><i class="fa-solid fa-screwdriver-wrench" style="margin:0 10px;"></i><a href="?act=thongtintk">Thông tin tài khoản</a></li>
                                             <li><i class="fa-solid fa-right-from-bracket" style="margin:0 10px;"></i><a href="?act=logout">Đăng Xuất</a></li>
                                         </ul>
                                     </div>
