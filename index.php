@@ -124,6 +124,9 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
             }
             header('Location: index.php');
             break;
+            case "sanphamct":
+                include 'view/chitietsp.php';
+                break;
         
     }
 } else {

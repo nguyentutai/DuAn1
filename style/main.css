@@ -1207,3 +1207,33 @@ footer{
     color: white;
     transition: .5s ease-in-out;
 }
+.comment-container{
+    border: 1px solid #000;
+    width: 30%;
+    font-size: 20px;
+    line-height: 40px;
+    margin: 0 auto;
+   border-radius: 8px;
+   margin-inline-start: 17%;
+}
+.comment-radio{
+   border-bottom: 1px solid #000;
+   padding-left: 20px;
+}
+.comment-radio input{
+    margin-right: 8px;
+}
+.comment-content{
+    margin-inline-start: 17%;
+    padding-bottom: 15px;
+    
+}
+.comment-content h3{
+    border: 1px solid rgb(0, 0, 0);
+    width: 10%;
+    line-height: 60px;
+    background-color: #000;
+    color: aliceblue;
+    text-align: center;
+    border-radius: 5px 10px;
+}
