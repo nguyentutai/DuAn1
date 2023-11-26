@@ -21,9 +21,9 @@
                     <a href="./index.php"><img src="image/logo.png" alt=""></a>
                 </div>
                 <div id="search">
-                    <form action="" class="search-form">
-                        <input placeholder="Tìm kiếm ở đây..." type="text">
-                        <button id="icon-search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <form action="?act=allproduct" class="search-form" method="post">
+                        <input placeholder="Tìm kiếm ở đây..." type="text" name="search">
+                        <button style="cursor: pointer;" id="icon-search" type='submit' name="btn-submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                     </form>
                 </div>
                 <div class="branch">

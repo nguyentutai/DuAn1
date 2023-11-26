@@ -129,6 +129,21 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
             include 'view/thongtintk.php';
             break;
         case 'allproduct':
+            if (isset($_POST['btn-submit'])) {
+                $search = $_POST['search'];
+            } else {
+                $search = '';
+            }
+
+            $iteam_per_page = !empty($_GET['per_page'])?$_GET['per_page']:10;
+            $current_page = !empty($_GET['page'])?$_GET['page']:1;
+
+            $count = count_product();
+            $totalRecos = $count[0]['soSp'];
+
+            $toltalpage = ceil($totalRecos / $iteam_per_page);
+
+            $loadsp = loadAll_product($search, $iteam_per_page, $current_page);
             $load_product_parent = load_category_parent();
             $load_category_home = load_category_home();
             include 'view/allproduct.php';
@@ -198,7 +213,7 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
             include "view/thongtintk.php";
             break;
         case "chitietsp":
-            if(isset($_GET['id'])){
+            if (isset($_GET['id'])) {
                 $id = $_GET['id'];
             }
             $inser_view = inser_product_view($id);
