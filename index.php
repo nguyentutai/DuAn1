@@ -125,6 +125,7 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
             }
             header('Location: index.php');
             break;
+
         case 'thongtintk':
             include 'view/thongtintk.php';
             break;
@@ -221,6 +222,8 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
             $load_ct_product = load_product_ct($id);
             include "view/chitietsp.php";
             break;
+        
+
     }
 } else {
     include 'view/home.php';
