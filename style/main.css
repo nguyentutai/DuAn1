@@ -695,10 +695,12 @@ footer{
     border-radius: 10px;
 }
 .list-product-image{
+    max-height: 256px;
     max-width: 350px;
 }
 .list-product-image img{
     border-radius: 10px 10px 0 0;
+    height: 256px;
     width: 100%;
 }
 .list-product-price{
