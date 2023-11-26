@@ -32,7 +32,7 @@
                     <input type="hidden" value='<?= $id_account ?>' name='idtk'>
                     <div class="name_user">
                         <label for="">Tên tài khoản</label><br>
-                        <input type="text" value="<?= $user ?>"><br>
+                        <input type="text" value="<?= $user ?>" disabled><br>
                     </div>
                     <div class="pass_cu">
                         <label for="">Mật khẩu cũ</label><br>
@@ -124,7 +124,6 @@
                 </div>
             </form>
         </div>
-
     </div>
 </div>
 <script>
