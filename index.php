@@ -4,6 +4,7 @@ ob_start();
 include 'view/header.php';
 include 'model/taikhoan.php';
 include 'model/danhmucsp.php';
+include 'model/sanpham.php';
 include 'model/pdo.php';
 $loaddm = load_category_home();
 if (isset($_GET['act']) && ($_GET['act'] != '')) {
@@ -195,6 +196,15 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
                 }
             }
             include "view/thongtintk.php";
+            break;
+        case "chitietsp":
+            if(isset($_GET['id'])){
+                $id = $_GET['id'];
+            }
+            $inser_view = inser_product_view($id);
+            $image_ct_image = load_pro_image($id);
+            $load_ct_product = load_product_ct($id);
+            include "view/chitietsp.php";
             break;
     }
 } else {

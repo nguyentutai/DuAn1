@@ -2,9 +2,9 @@
     <div class="row p-4 mgtop">
         <div class="row text-center d-flex justify-content-between">
             <h5 class="fs-4 fw-bold bg-success p-2 col-md-3 rounded-pill">QUẢN LÝ SẢN PHẨM</h5>
-            <form action="index.php?act=listkh" method="post" class="col-md-3 d-flex h-75 position-relative">
+            <form action="index.php?act=listsp" method="post" class="col-md-3 d-flex h-75 position-relative">
                 <input type="text" placeholder="Nhập tên sản phẩm cần tìm ..." name="search" class="form-control rounded-end">
-                <button type="submit" name="btn-search" class="btn btn-primary fw-bold position-absolute end-0 h-100"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button type="submit" name="btns-search" class="btn btn-primary fw-bold position-absolute end-0 h-100"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
         </div>
         <div class="row rounded-2 bg-light p-3">
@@ -33,7 +33,7 @@
                             <td><?= $describe_product?></td>             
                             <td><?= $veiw_product ?></td>
                              <td><?= $quantity_product ?></td>
-                                <td><a href="?act=deletesp&id=<?= $id_product ?>" class="btn btn-danger fw-bold ">Xóa</a></td>
+                                <td><a href="?act=deletemsp&id=<?= $id_product ?>" class="btn btn-danger fw-bold ">Xóa</a></td>
                             <td><a href="?act=suasp&id=<?= $id_product ?>" class="btn btn-success fw-bold">Sửa</a></td>
                         </tr>
                     <?php } ?>
@@ -43,6 +43,6 @@
     </div>
 
     <a href="?act=addsp" class="btn btn-primary fw-bold">Thêm sản phẩm</a>
-    <a href="?act=listtgsp" class="btn btn-dark fw-bold">Thùng rác</a>
+    <a href="?act=thunggiac" class="btn btn-dark fw-bold">Thùng rác</a>
 </div>
 </div>

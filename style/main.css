@@ -437,13 +437,20 @@
     font-size: 23px;
 }
 .product-man{
+    text-decoration: none;
+    color: black;
+    width: 16%;
     margin: 20px 28px;
     background-color: white;
     border-radius: 7px;
     position: relative;
 }
+.product-man-image{
+    max-width: 300px;
+}
 .product-man-image img{
     border-radius: 7px 7px 0 0;
+    width: 100%;
 }
 .heart-man{
     position: absolute;
@@ -904,6 +911,7 @@ footer{
 }
 .image-chidrent img{
     width: 100%;
+    border-radius: 30px;
 }
 .image-detal img{
     width: 100%;
