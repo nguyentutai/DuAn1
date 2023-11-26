@@ -98,7 +98,6 @@ function load_product_mans($load)
     return pdo_query($sql);
 }
 
-
 function load_product_wife()
 {
     $sql = "SELECT * 

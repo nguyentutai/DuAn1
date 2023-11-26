@@ -222,7 +222,7 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
             $load_ct_product = load_product_ct($id);
             include "view/chitietsp.php";
             break;
-        
+        case "viewcart":
 
     }
 } else {
