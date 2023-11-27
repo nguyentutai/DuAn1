@@ -8,7 +8,9 @@ include '../model/taikhoan.php';
 include '../model/sanpham.php';
 include '../model/thongke.php';
 include '../model/binhluan.php';
-
+include '../model/donhang.php';
+$list_thongke = thongke_category_products();
+$list_bl = thongke_comment_product();
 if (isset($_GET['act']) && ($_GET['act'] != '')) {
     $act = $_GET['act'];
     switch ($act) {
@@ -42,11 +44,6 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
             include './QLDM/add.php';
             break;
         case 'listdm':
-            // if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-            //     $id = $_GET['id'];
-            // } else {
-            //     $id = 0;
-            // }
             $load_all_category_children = load_category();
             include './QLDM/list.php';
             break;
@@ -267,7 +264,6 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
             $list_thongke = thongke_category_product($search);
             include 'THONGKE/sanpham.php';
             break;
-
         case 'listspdm':
             if (isset($_GET['id'])) {
                 $id_product = $_GET['id'];
@@ -343,7 +339,20 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
             $kp_comment_product = kp_comment_product($id);
             header('Location: index.php?act=dsblan');
             break;
+        case 'listdh':
+            $listdh = list_order();
+            include './QLDH/list.php';
+            break;
+        case 'listspcart':
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+            }
+            $load_pro_order = load_product_order($id);
+            include './QLDH/listProOder.php';
+            break;
     }
+}else{
+    include 'view/home.php';
 }
 
 include 'view/footer.php';
