@@ -70,4 +70,7 @@
             </a>
         </div>
     </div>
+    <div class="comment">
+            <iframe src="view/binhluan/binhluanform.php?id=<?$id?>" frameborder="0"></iframe>
+</div>
 </div>
