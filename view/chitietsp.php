@@ -76,5 +76,9 @@
                 <div class="muangay-b">MUA NGAY</div>
             </a>
         </div>
+    </div>
+    <div class="comment">
+            <iframe src="view/binhluan/binhluanform.php?id=<?$id?>" frameborder="0"></iframe>
+</div>
     </form>
 </div>
