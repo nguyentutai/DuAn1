@@ -30,10 +30,9 @@ function load_product_category($id)
     $sql = "SELECT * FROM `product` WHERE `id_category` = '$id'";
     return pdo_query($sql);
 }
-function loadAll_product($search,$iteam_per_page,$current_page)
+function loadAll_product($search)
 {
-    $sql = "SELECT *, (100 - CEILING((discount_product)/(cost_product)*100)) as phantram,CONCAT(FORMAT(discount_product, 0), ' đ') as price, CONCAT(FORMAT(cost_product, 0), ' đ') as discount from product  WHERE status_product = 0
-    ORDER BY `id_product` ASC LIMIT $iteam_per_page OFFSET $current_page";
+    $sql = "SELECT *, (100 - CEILING((discount_product)/(cost_product)*100)) as phantram,CONCAT(FORMAT(discount_product, 0), ' đ') as price, CONCAT(FORMAT(cost_product, 0), ' đ') as discount from product  WHERE status_product = 0";
     if ($search != "") {
         $sql .= " AND name_product LIKE '%" . $search . "%'";
     }

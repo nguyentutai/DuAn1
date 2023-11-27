@@ -11,6 +11,8 @@
     <script src="../style/bootstrap/js/popper.min.js"></script>
     <script src="../style/bootstrap/js/jsbootstrap.min.js"></script>
     <script src="../style/bootstrap/js/code.jquery.com_jquery-3.7.0.min.js"></script>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
         .header {
             height: 100vh;
@@ -89,7 +91,7 @@
                                     Quản Lý Đơn Hàng
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Danh Sách Đơn Hàng</a></li>
+                                    <li><a class="dropdown-item" href="index.php?act=listdh">Danh Sách Đơn Hàng</a></li>
                                     <li><a class="dropdown-item" href="#">Thêm Đơn Hàng</a></li>
                                     <li><a class="dropdown-item" href="#">Thông Kê Đơn Hàng</a></li>
                                 </ul>

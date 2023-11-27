@@ -37,7 +37,7 @@
 <div class="list-product-all container">
     <div class="list-product-max">
         <?php foreach ($loadsp as $listsp) { extract($listsp); ?>
-            <a href="" class="list-product">
+            <a href="?act=chitietsp&id=<?= $id_product ?>" class="list-product">
                 <div class="list-product-image">
                     <img src="./upload/<?= $image_product ?>" alt="">
                 </div>
@@ -62,8 +62,5 @@
                 </div>
             </a>
         <?php } ?>
-        <?php 
-            include 'page.php';
-        ?>
     </div>
 </div>

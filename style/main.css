@@ -36,7 +36,6 @@
     display: flex;
     align-items: center;
     font-size: 24px;
-    /* margin-left: -50px; */
 }
 .branch form select{
     width: 138px;
@@ -926,6 +925,12 @@ footer{
 .product-detal-title{
     margin-top: 10px;
 }
+.soluong{
+    margin-top: 15px;
+    padding: 5px;
+    font-size: 18px;
+    font-weight: bold;
+}
 .product-detal-title h3{
     font-size: 25px;
     font-weight: bold;
@@ -1035,8 +1040,10 @@ footer{
 /* Trang giỏ hàng */
 
 .list-product-cart{
+    border-radius: 20px;
+    margin-top: 40px;
     display: flex;
-    justify-content: space-around;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
 }
 
 .image-product-cart{
@@ -1082,8 +1089,38 @@ footer{
     justify-content: space-between;
     margin-top: 20px;
 }
+.content-product-cart{
+    width: 69%;
+}
+.list-all-dh{
+    display: flex;
+    justify-content: space-between;
+}
+.deleteall{
+    padding: 5px 10px;
+    margin-right: 10px;
+    margin-top: 20px;
+}
+.deleteall a button{
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: red;
+    color: white;
+}
+.deleteall a button:hover{
+    background-color: #f9f500;
+    color: black;
+    transition: .5s ease-in-out;
+}
 .ct-quantity{
     display: flex;
+}
+.tongdonhang{
+    color: red;
+    font-weight: bold;
+    padding: 10px 10px;
+    margin-top: 20px;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
 }
 .pri-quantity{
     margin-left: 50px;
@@ -1110,13 +1147,15 @@ footer{
     margin-top: 100px;
     font-size: 30px;
     cursor: pointer;
+    margin-left: 40px;
 }
 .form-kh{
-    line-height: 60px;
+    margin-top: 20px;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
 }
-.form-kh-1{
-    line-height: 70px;  
-    text-align: center;
+.form-kh h2{
+    margin: 10px 20px 0px 10px;
 }
 .form-kh-in{
     width: 80%;
@@ -1127,6 +1166,7 @@ footer{
 }
 .form-kh-input{
     text-align: center;
+    margin-top: 10px;
 }
 .form-kh-input-radio{
     width: 80%;
@@ -1142,12 +1182,14 @@ footer{
 .form-kh-button{
     text-align: center;
     padding-top: 20px;
+    cursor: pointer;
 }
 .form-kh-button h4{
     font-size: 30px;
     padding-top: 5px;
 }
 .form-kh-but{
+    cursor: pointer;
     width: 79%;
     line-height: 30px;
     border-radius: 10px;

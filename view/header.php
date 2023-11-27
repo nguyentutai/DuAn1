@@ -38,7 +38,7 @@
                 <div id="menu">
                     <ul>
                         <li><i class="fa-solid fa-heart"></i><a href="">Yêu thích</a></li>
-                        <li><i class="fa-solid fa-cart-shopping"></i><a href="">Giỏ hàng</a></li>
+                        <li><i class="fa-solid fa-cart-shopping"></i><a href="?act=addtocart">Giỏ hàng</a></li>
                         <?php
                         if (isset($_SESSION['login'])) {
                             extract($_SESSION['login']);
