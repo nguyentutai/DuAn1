@@ -1,4 +1,13 @@
 <?php 
+
+    function insert_comment($content_comment,$id_product,$id_account){
+        $date_comment=date("d/m/Y");
+            $sql = "
+                INSERT INTO `comment`(`content_comment`, `id_product`, `id_account`) 
+                VALUES ('$content_comment','$id_product','$id_account');
+            ";
+            pdo_execute($sql);
+    }
     function list_comment_product($id){
         $sql = "SELECT comment.id_comment, comment.content_comment,comment.status_comment, account.user,product.id_product, comment.date_comment FROM `comment` 
         JOIN account ON comment.id_account = account.id_account
@@ -31,3 +40,4 @@
         return pdo_query($sql);
     }
 ?>
+
