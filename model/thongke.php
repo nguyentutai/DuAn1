@@ -10,6 +10,11 @@
         }
         return pdo_query($sql);
     }
+
+    function thongke_category_products(){
+        $sql = "Select dm.id_category, dm.name_category, count(*) as soluongsp FROM category dm JOIN product sp ON dm.id_category=sp.id_category WHERE status_product = 0 AND parent_id != 0 GROUP BY dm.id_category, dm.name_category ORDER BY soluongsp DESC";
+        return pdo_query($sql);
+    }
     //Thống kê bình luận theo sản phẩm
     function thongke_comment_product(){
         $sql = "select *, count(comment.id_comment) as soBinhLuan from product 

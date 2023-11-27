@@ -1,10 +1,14 @@
 <?php
 session_start();
+if (!isset($_SESSION['addToCard'])) {
+    $_SESSION['addToCard'] = [];
+}
 ob_start();
 include 'view/header.php';
 include 'model/taikhoan.php';
 include 'model/danhmucsp.php';
 include 'model/sanpham.php';
+include 'model/donhang.php';
 include 'model/pdo.php';
 $loaddm = load_category_home();
 if (isset($_GET['act']) && ($_GET['act'] != '')) {
@@ -120,8 +124,9 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
             include 'view/login/register.php';
             break;
         case 'logout':
-            if (isset($_SESSION['login'])) {
+            if (isset($_SESSION['login']) && isset($_SESSION['addToCard'])) {
                 unset($_SESSION['login']);
+                unset($_SESSION['addToCard']);
             }
             header('Location: index.php');
             break;
@@ -136,15 +141,15 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
                 $search = '';
             }
 
-            $iteam_per_page = !empty($_GET['per_page'])?$_GET['per_page']:10;
-            $current_page = !empty($_GET['page'])?$_GET['page']:1;
+            $iteam_per_page = !empty($_GET['per_page']) ? $_GET['per_page'] : 10;
+            $current_page = !empty($_GET['page']) ? $_GET['page'] : 1;
 
             $count = count_product();
             $totalRecos = $count[0]['soSp'];
 
             $toltalpage = ceil($totalRecos / $iteam_per_page);
 
-            $loadsp = loadAll_product($search, $iteam_per_page, $current_page);
+            $loadsp = loadAll_product($search);
             $load_product_parent = load_category_parent();
             $load_category_home = load_category_home();
             include 'view/allproduct.php';
@@ -207,8 +212,6 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
                 if (empty($error)) {
                     doimk_taikhoan($idtk, $passconfim);
                     echo "<script>alert('Đổi mật khẩu thành công. Vui lòng đăng nhập lại');</script>";
-                    // unset($_SESSION['login']);
-                    // header('Location: index.php');
                 }
             }
             include "view/thongtintk.php";
@@ -222,8 +225,85 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
             $load_ct_product = load_product_ct($id);
             include "view/chitietsp.php";
             break;
-        case "viewcart":
+        case "addtocart":
+            if (isset($_POST["btn-submit"])) {
+                $id = $_POST["id_product"];
+                $image_product = $_POST["image_product"];
+                $name_product = $_POST["name_product"];
+                $discount = $_POST["discount"];
+                $price = (int)str_replace([' ', ',', 'đ'], '', $_POST["price"]);
+                $quantity_product = $_POST['soluong'];
+                $thanhtien = $price * $quantity_product;
+                $checksp = false;
+                foreach ($_SESSION['addToCard'] as $key => $item) {
+                    if ($item[0] == $id) {
+                        $checksp = true;
+                        $_SESSION['addToCard'][$key][5] += $quantity_product;
+                        $_SESSION['addToCard'][$key][6] += $thanhtien;
+                        break;
+                    }
+                }
 
+                if (!$checksp) { // Nếu sản phẩm chưa tồn tại
+                    $addCart = [$id, $image_product, $name_product, $discount, $price, $quantity_product, $thanhtien];
+                    array_push($_SESSION['addToCard'], $addCart);
+                }
+            }
+            include "view/cart.php";
+            break;
+        case "deletecard":
+            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                array_splice($_SESSION['addToCard'], $_GET['id'], 1);
+            }
+            header('location: index.php?act=addtocart');
+            break;
+        case "deleteallcard":
+            unset($_SESSION["addToCard"]);
+            header('location: index.php');
+            break;
+        case 'addorder':
+            if (isset($_POST['btn-submit'])) {
+                $error = [];
+                //Lấy dữ liệu tạo đơn hàng
+                if (empty($_POST['username'])) {
+                    $error['username'] = 'Vui lòng nhập thông tin user';
+                } else {
+                    $username = $_POST['username'];
+                }
+                if (empty($_POST['phone'])) {
+                    $error['phone'] = 'Vui lòng nhập thông tin phone';
+                } else {
+                    $phone = $_POST['phone'];
+                }
+                if (empty($_POST['email'])) {
+                    $error['email'] = 'Vui lòng nhập thông tin email';
+                } else {
+                    $email = $_POST['email'];
+                }
+                if (empty($_POST['address'])) {
+                    $error['address'] = 'Vui lòng nhập thông tin địa chỉ';
+                } else {
+                    $address = $_POST['address'];
+                }
+                if (isset($_SESSION['login'])) {
+                    $id_account = $_SESSION['login']['id_account'];
+                }else{
+                    $error['script'] = '<script>alert("Vui lòng đăng nhập để đặt hàng");</script>';
+                }
+                $sumdh = $_POST['sumdh'];
+                $code_order = "#" . rand(0, 9999);
+                
+                if (empty($error)) {
+                    add_order($id_account, $email, $username, $phone, $address, $sumdh, $code_order);
+                    $id_order = load_id_order();
+                    $id_norder = $id_order[0]['id_order'];
+                    foreach($_SESSION['addToCard'] as $key) {
+                        add_order_dh($id_norder,$key[0],$key[5],$key[6]);
+                    }
+                }
+            }
+            include "view/cart.php";
+            break;
     }
 } else {
     include 'view/home.php';
