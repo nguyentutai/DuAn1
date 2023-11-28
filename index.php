@@ -11,6 +11,7 @@ include 'model/sanpham.php';
 include 'model/donhang.php';
 include 'model/pdo.php';
 $loaddm = load_category_home();
+$load_pro_buy = load_product_buyrun();
 if (isset($_GET['act']) && ($_GET['act'] != '')) {
     $act = $_GET['act'];
     switch ($act) {
@@ -140,16 +141,27 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
             } else {
                 $search = '';
             }
+            if(isset($_GET['id'])){
+                // $filter_price = $_POST['filter_price'];
+                $filter_price = $_GET['id'];
+            }else{
+                $filter_price = "";
+            }
+            if(isset($_GET['iddm'])){
+                $iddm = $_GET['iddm'];
+            }else{
+                $iddm = '';
+            }
 
-            $iteam_per_page = !empty($_GET['per_page']) ? $_GET['per_page'] : 10;
-            $current_page = !empty($_GET['page']) ? $_GET['page'] : 1;
+            if(isset($_GET['max'])){
+                $max = $_GET['max'];
+                $min = $_GET['min'];
+            }else{
+                $max = '';
+                $min = '';
+            }
 
-            $count = count_product();
-            $totalRecos = $count[0]['soSp'];
-
-            $toltalpage = ceil($totalRecos / $iteam_per_page);
-
-            $loadsp = loadAll_product($search);
+            $loadsp = loadAll_product($search,$iddm,$filter_price,$min,$max);
             $load_product_parent = load_category_parent();
             $load_category_home = load_category_home();
             include 'view/allproduct.php';
@@ -234,8 +246,11 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
                 $price = (int)str_replace([' ', ',', 'đ'], '', $_POST["price"]);
                 $quantity_product = $_POST['soluong'];
                 $thanhtien = $price * $quantity_product;
+
+                //Tạo biến kiểm tra
                 $checksp = false;
                 foreach ($_SESSION['addToCard'] as $key => $item) {
+                    //Kiểm tra sản ohaamr đã có chưa
                     if ($item[0] == $id) {
                         $checksp = true;
                         $_SESSION['addToCard'][$key][5] += $quantity_product;
@@ -248,6 +263,7 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
                     $addCart = [$id, $image_product, $name_product, $discount, $price, $quantity_product, $thanhtien];
                     array_push($_SESSION['addToCard'], $addCart);
                 }
+                header('Location: ?act=addtocart');
             }
             include "view/cart.php";
             break;

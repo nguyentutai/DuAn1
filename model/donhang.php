@@ -31,4 +31,9 @@
         return pdo_query($sql);
     }
 
+    // Load accout order
+    function list_account_order($id){
+        $sql = "SELECT * FROM `order` WHERE id_order = '$id'";
+        return pdo_query($sql);
+    }
 ?>

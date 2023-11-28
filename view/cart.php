@@ -7,18 +7,18 @@
 
 <div class="tk-cart container-cart">
     <i class="fa-solid fa-cart-shopping"></i>
-    <p>Giỏ Hàng</p>
+    <p>Giỏ Hàng ( <?= count($_SESSION['addToCard']) ?> Sản phẩm ) </p>
 </div>
 
 <div class="product-cart container-cart">
 
     <?php if (isset($_SESSION['addToCard'])) {
         $tongdonhang = 0;
-        $i = 1;
+        $i = 0;
         foreach ($_SESSION['addToCard'] as $cart) {
             $tongdonhang += $cart[6];
-            $i+=1;
-    ?>
+            $i++;
+        ?>
             <div class="list-product-cart">
                 <div class="image-product-cart">
                     <img src="./upload/<?= $cart[1]; ?>" alt="" />

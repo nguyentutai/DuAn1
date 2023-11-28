@@ -1,7 +1,7 @@
 <div class="container-directional">
     <div class="directional container">
         <a href=""><i class="fa-solid fa-house"></i> Trang chủ /</a>
-        <a href="">Đồng hồ</a>
+        <a href="?act=allproduct">Đồng hồ</a>
     </div>
 </div>
 <div class="container-all container">
@@ -20,23 +20,38 @@
                 extract($loaddm);
             ?>
                 <div class="categry-children-image">
-                    <a href="<?= $link_category ?>"><img src="./upload/<?= $image_category ?>" alt=""></a>
+                    <a href="?act=allproduct&iddm=<?= $id_category ?>"><img src="./upload/<?= $image_category ?>" alt=""></a>
                 </div>
             <?php } ?>
         </div>
     </div>
     <div class="filter-price">
-        <form action="" method="post">
-            <select name="" id="">
-                <option value="desc">Giá tăng dần</option>
-                <option value="asc">Giá giảm dần</option>
-            </select>
-        </form>
+        <div class="price_k">
+            <a href="?act=allproduct&id=DESC">Giá giảm dần</a>
+        </div>
+        <div class="price_k">
+            <a href="?act=allproduct&id=ASC">Giá tăng dần</a>
+        </div>
+    </div>
+    <div class="khoang_price">
+        <div class="price_k">
+            <a href="?act=allproduct&min=0&max=2000000">Dưới 2 triệu</a>
+        </div>
+        <div class="price_k">
+            <a href="?act=allproduct&min=2000000&max=4000000">Từ 2 - 4 triệu</a>
+        </div>
+        <div class="price_k">
+            <a href="?act=allproduct&min=4000000&max=15000000">Từ 4 - 15 triệu</a>
+        </div>
+        <div class="price_k">
+            <a href="?act=allproduct&min=15000000&max=300000000">Trên 15 triệu</a>
+        </div>
     </div>
 </div>
 <div class="list-product-all container">
     <div class="list-product-max">
-        <?php foreach ($loadsp as $listsp) { extract($listsp); ?>
+        <?php foreach ($loadsp as $listsp) {
+            extract($listsp); ?>
             <a href="?act=chitietsp&id=<?= $id_product ?>" class="list-product">
                 <div class="list-product-image">
                     <img src="./upload/<?= $image_product ?>" alt="">

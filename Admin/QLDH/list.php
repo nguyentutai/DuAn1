@@ -32,7 +32,7 @@
                         <td><?= $email ?></td>
                         <td><?= $address_recipient ?></td>
                         <td><?= number_format($total_unit_price, 0, ',', '.') . ' đ' ?></td>
-                        <td><a href="?act=listspcart&id=<?= $id_order ?>">Xem chi tiết</a></td>
+                        <td><a class="btn btn-danger fw-bold" href="?act=listspcart&id=<?= $id_order ?>">Xem chi tiết</a></td>
                     </tr>
                 <?php } ?>
             </tbody>
