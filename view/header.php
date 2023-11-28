@@ -38,7 +38,15 @@
                 <div id="menu">
                     <ul>
                         <li><i class="fa-solid fa-heart"></i><a href="">Yêu thích</a></li>
-                        <li><i class="fa-solid fa-cart-shopping"></i><a href="?act=addtocart">Giỏ hàng</a></li>
+                        <li class="cart_num"><i class="fa-solid fa-cart-shopping"></i><a href="?act=addtocart">Giỏ hàng</a>
+                            <span class="num_cart"><?php 
+                                if(isset($_SESSION['addToCard'])){
+                                    echo count($_SESSION['addToCard']);
+                                }else{
+                                    echo '0';
+                                }
+                            ?></span>
+                        </li>
                         <?php
                         if (isset($_SESSION['login'])) {
                             extract($_SESSION['login']);

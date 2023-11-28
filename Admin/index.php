@@ -11,6 +11,7 @@ include '../model/binhluan.php';
 include '../model/donhang.php';
 $list_thongke = thongke_category_products();
 $list_bl = thongke_comment_product();
+$list_order = thongke_order_user();
 if (isset($_GET['act']) && ($_GET['act'] != '')) {
     $act = $_GET['act'];
     switch ($act) {
@@ -165,7 +166,7 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
             }else{
                 $search = '';
             }
-            $listsp = loadAll_product($search);
+            $listsps = loadAll_productAdmin($search);
             $listdm = load_category();
             include 'QLSP/list.php';
             break;
@@ -347,6 +348,7 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
             }
+            $load_account_order = list_account_order($id);
             $load_pro_order = load_product_order($id);
             include './QLDH/listProOder.php';
             break;

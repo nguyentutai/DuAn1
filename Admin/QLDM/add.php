@@ -1,49 +1,38 @@
-
-    <div class="row p-4 mgtop" >
-        <div class="row text-center">
-            <h5 class="fs-3 fw-bold bg-warning p-2 col-md-3 rounded-pill">QUẢN LÝ DANH MỤC</h5>
-        </div>
-        <div class="row rounded-2 bg-light p-3">
-            <p class="fw-bold fs-4">Tạo danh mục mới</p>
-            <form action="" method="post" enctype="multipart/form-data">
-                <div class="row">
-                    <div class="mb-3 col-md-6">
-                        <label for="formGroupExampleInput" class="form-label fw-semibold fs-5">Tên danh mục</label>
-                        <input type="text" class="form-control" name="name-category" id="formGroupExampleInput" placeholder="Nhập vào tên danh mục">
-                        <p class="text-danger fs-6 mt-1 fw-bolder"><?= is_error('name-category') ?></p>
-                    </div>
-                    <div class="mb-3 col-md-6">
-                        <label for="" class="form-label fw-semibold fs-5">Thêm đường dẫn tĩnh</label>
-                        <input type="text" name="link" class="form-control" id="" placeholder="Link ...">
-                        <p class="text-danger fs-6 mt-1 fw-bolder"><?= is_error('link') ?></p>
-                    </div>
+<div class="row p-4 mgtop">
+    <div class="row text-center">
+        <h5 class="fs-3 fw-bold bg-warning p-2 col-md-3 rounded-pill">QUẢN LÝ DANH MỤC</h5>
+    </div>
+    <div class="row rounded-2 bg-light p-3">
+        <p class="fw-bold fs-4">Tạo danh mục mới</p>
+        <form action="" method="post" enctype="multipart/form-data">
+            <div class="row">
+                <div class="mb-3 col-md-6">
+                    <label for="formGroupExampleInput" class="form-label fw-semibold fs-5">Tên danh mục</label>
+                    <input type="text" class="form-control" name="name-category" id="formGroupExampleInput" placeholder="Nhập vào tên danh mục">
+                    <p class="text-danger fs-6 mt-1 fw-bolder"><?= is_error('name-category') ?></p>
                 </div>
+                <div class="mb-3 col-md-6">
+                    <label for="" class="form-label fw-semibold fs-5">Thêm đường dẫn tĩnh</label>
+                    <input type="text" name="link" class="form-control" id="" placeholder="Link ...">
+                    <p class="text-danger fs-6 mt-1 fw-bolder"><?= is_error('link') ?></p>
+                </div>
+            </div>
 
-                <div class="content1 row">
-                    <div class="col-md-6">
-                        <label for="formGroupExampleInput" class="form-label fw-semibold fs-5">Danh
-                            mục cha</label>
-                        <select class="form-select" name="parent-category" aria-label="Default select example">
-                            <option selected value="0">--- Danh mục sản phẩm ---</option>
-                            <?php
-                            foreach ($loaddm as $dm) {
-                                extract($dm);
-                            ?>
-                                <option value="<?= $id_category ?>"><?= $name_category ?></option>
-                            <?php 
-                            } 
-                            ?>
-                        </select>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="formGroupExampleInput" class="form-label fw-semibold fs-5">Example
-                            label</label>
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Open this select menu</option>
-
-                            
-                        </select>
-                    </div>
+            <div class="content1 row">
+                <div class="col-md-6">
+                    <label for="formGroupExampleInput" class="form-label fw-semibold fs-5">Danh
+                        mục cha</label>
+                    <select class="form-select" name="parent-category" aria-label="Default select example">
+                        <option selected value="0">--- Danh mục sản phẩm ---</option>
+                        <?php
+                        foreach ($loaddm as $dm) {
+                            extract($dm);
+                        ?>
+                            <option value="<?= $id_category ?>"><?= $name_category ?></option>
+                        <?php
+                        }
+                        ?>
+                    </select>
                 </div>
                 <div class="row mt-4">
                     <div class="col-md-2">
@@ -53,16 +42,18 @@
                         <p class="text-danger fs-6 mt-1 fw-bolder"><?= is_error('image') ?></p>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-2">
-                        <button class="btn btn-warning fw-bold mt-4" name="btn-submit" type="submit">Thêm Danh Mục</button>
-                    </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2">
+                    <button class="btn btn-warning fw-bold mt-4" name="btn-submit" type="submit">Thêm Danh Mục</button>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
-    <a href="?act=listdm" class="btn btn-warning fw-bold">Danh sách danh mục</a>
-    <a href="" class="btn btn-dark fw-bold">Thùng Rác</a>
+</div>
+<a href="?act=listdm" class="btn btn-warning fw-bold">Danh sách danh mục</a>
+<a href="" class="btn btn-dark fw-bold">Thùng Rác</a>
 </div>
 </div>
 </div>

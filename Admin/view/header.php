@@ -51,7 +51,7 @@
                     <?php if (isset($_SESSION['login'])) {
                         extract($_SESSION['login']);
                     ?>
-                        <img src="../upload/<?= $image_account ?>" class="img-fluid rounded-circle w-50 text-center" alt="">
+                        <a href="./index.php"><img src="../upload/<?= $image_account ?>" class="img-fluid rounded-circle w-50 text-center" alt=""></a>
                     <?php } ?>
                     <p class="text-light mt-2">Chào <?= $user ?> mừng bạn trở lại</p>
                 </div>

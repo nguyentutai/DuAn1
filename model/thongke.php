@@ -22,4 +22,9 @@
         group by product.id_product order by product.id_product desc";
         return pdo_query($sql);
     }
+    //Thống kê đơn hàng theo user
+    function thongke_order_user(){
+        $sql = "SELECT *,COUNT(id_order) as soLuong FROM `order` INNER JOIN account ON `order`.id_account = account.id_account GROUP BY `order`.id_account";
+        return pdo_query($sql);
+    }
 ?>

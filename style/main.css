@@ -71,6 +71,7 @@
     border-radius: 5px 0 0 5px;
     font-style: italic;
 }
+
 .search-form button {
     width: 15%;
     height: 34px;
@@ -141,6 +142,24 @@
     width: 70%;
     margin: 0 auto;
     /* height: 65vh; */
+}
+.filter-price{
+    display: flex;
+    margin-top: 10px;
+}
+.khoang_price{
+    display: flex;
+    margin: 25px 5px 20px 0;
+}
+.price_k{
+
+}
+.price_k a{
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    padding: 10px 20px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
 .search-form-repon input {
     width: 85%;
@@ -325,18 +344,27 @@
     overflow: hidden;
     scroll-behavior: smooth;
 }
+
 .product-sell{
     position: relative;
     border-radius: 20px;
     margin: 0 25px;
+    text-decoration: none;
+    color: black;
+    max-width: 100%;
+    width: 300px;
 }
+
 .product-sell-image img{
     border-radius: 10px 10px 0 0;
+    height: 200px;
+    width: 100%;
 }
 .product-sell-bot{
-    margin-top: -4px;
+    margin-top: -5px;
     background-color: white;
     border-radius: 0 0 10px 10px;
+    width: 100%;
 }
 .heart{
     position: absolute;
@@ -453,9 +481,9 @@
 }
 .heart-man{
     position: absolute;
-    top: 4%;
-    right: 6%;
-    color: white;    
+    top: 85%;
+    right: 10%;
+    color: rgb(255, 0, 0);    
     opacity: 0.9;
 }
 .heart-man i{
@@ -1006,6 +1034,7 @@ footer{
 }
 .cart{
     width: 48%;
+    cursor: pointer;
 }
 
 .tragop,.cart {
@@ -1022,6 +1051,7 @@ footer{
 }
 
 .buynow{
+    cursor: pointer;
     display: block;
     width: 100%;
     padding: 20px 0;
@@ -1512,5 +1542,21 @@ footer{
 .changepassword .forms{
     text-align: center;
     margin-top: 10px;
+}
+.cart_num{
+    position: relative;
+}
+.num_cart{
+    position: absolute;
+    width: 17px;
+    height: 17px;
+    text-align: center;
+    line-height: 17px;
+    background-color: white;
+    top: 28%;
+    left: 15%;
+    border-radius: 50%;
+    color: red;
+    font-weight: bold;
 }
 

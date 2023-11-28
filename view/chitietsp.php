@@ -1,3 +1,4 @@
+
 <div class="container-directional">
     <div class="directional container">
         <a href=""><i class="fa-solid fa-house"></i> Trang chủ /</a>
@@ -30,12 +31,12 @@
             </div>
             <div class="product-detal-price">
                 <div class="product-detal-price-sell">
-                    <h3><?= $discount ?></h3>
-                    <input type="hidden" name="discount" value="<?= $discount ?>">
+                    <h3><?= $price ?></h3>
+                    <input type="hidden" name="discount" value="<?= $price ?>">
                 </div>
                 <div class="product-detal-price-tree">
-                    <del><?= $price ?></del>
-                    <input type="hidden" name="price" value="<?= $price ?>">
+                    <del><?= $discount ?></del>
+                    <input type="hidden" name="price" value="<?= $discount ?>">
                 </div>
                 <div class="percent">
                     <p>-<?= $phantram ?>%</p>
@@ -78,7 +79,7 @@
         </div>
     </div>
     <div class="comment">
-            <iframe src="view/binhluan/binhluanform.php?id=<?$id?>" frameborder="0"></iframe>
+            <iframe src="view/binhluan/binhluanform.php?id=<?= $id ?>" frameborder="0"></iframe>
 </div>
     </form>
 </div>
