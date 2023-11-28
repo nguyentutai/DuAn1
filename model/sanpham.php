@@ -30,16 +30,35 @@ function load_product_category($id)
     $sql = "SELECT * FROM `product` WHERE `id_category` = '$id'";
     return pdo_query($sql);
 }
-function loadAll_product($search)
-{
+function loadAll_productAdmin($search){
     $sql = "SELECT *, (100 - CEILING((discount_product)/(cost_product)*100)) as phantram,CONCAT(FORMAT(discount_product, 0), ' đ') as price, CONCAT(FORMAT(cost_product, 0), ' đ') as discount from product  WHERE status_product = 0";
     if ($search != "") {
         $sql .= " AND name_product LIKE '%" . $search . "%'";
     }
     return pdo_query($sql);
 }
+function loadAll_product($search, $iddm, $filter_price, $min, $max)
+{
+    $sql = "SELECT *, (100 - CEILING((discount_product)/(cost_product)*100)) as phantram,CONCAT(FORMAT(discount_product, 0), ' đ') as price, CONCAT(FORMAT(cost_product, 0), ' đ') as discount from product  WHERE status_product = 0";
+    if ($search != "") {
+        $sql .= " AND name_product LIKE '%" . $search . "%'";
+    }
+    //Lọc sản phẩm theo danh mục
+    if ($iddm != '') {
+        $sql .= " AND id_category = '$iddm'";
+    }
+    //Sắp xếp sản phẩm theo giá
+    if ($filter_price != '') {
+        $sql .= " ORDER BY discount_product $filter_price";
+    }
+    if (($min != "") && ($max != '')) {
+        $sql .= " AND discount_product BETWEEN $min AND $max";
+    }
+    return pdo_query($sql);
+}
 
-function count_product(){
+function count_product()
+{
     $sql = "SELECT COUNT(*) as soSp FROM `product`";
     return pdo_query($sql);
 }
@@ -96,7 +115,7 @@ function load_product_mans($load)
     WHERE `id_category` = '$load'";
     return pdo_query($sql);
 }
-
+//Load sản phẩm danh mục đồng hồ nữ
 function load_product_wife()
 {
     $sql = "SELECT * 
@@ -111,15 +130,31 @@ function load_product_wifes($load)
     WHERE `id_category` = '$load'";
     return pdo_query($sql);
 }
-function load_pro_image($id){
+
+//Load ảnh phụ của sản phẩm
+function load_pro_image($id)
+{
     $sql = "SELECT * FROM `product_image` WHERE id_product = '$id'";
     return pdo_query($sql);
 }
-function load_product_ct($id){
-    $sql = "SELECT *, (100 - CEILING((discount_product)/(cost_product)*100)) as phantram,CONCAT(FORMAT(discount_product, 0), ' đ') as price, CONCAT(FORMAT(cost_product, 0), ' đ') as discount FROM `product` WHERE id_product = '$id'";
+
+//Load chi tiết sản phẩm
+function load_product_ct($id)
+{
+    $sql = "SELECT *, (100 - CEILING((discount_product)/(cost_product)*100)) as phantram,CONCAT(FORMAT(discount_product, 0), ' đ') as price, 
+    CONCAT(FORMAT(cost_product, 0), ' đ') as discount FROM `product` WHERE id_product = '$id'";
     return pdo_query_one($sql);
 }
-function inser_product_view($id){
+
+//Update lượt xem sản phẩm
+function inser_product_view($id)
+{
     $sql = "UPDATE `product` SET `veiw_product`= veiw_product+1 WHERE id_product = '$id'";
     pdo_execute($sql);
+}
+
+//Load sản phẩm bán chạy
+function load_product_buyrun(){
+    $sql = "SELECT * FROM `detail_dh` JOIN product ON detail_dh.id_product = product.id_product LIMIT 5";
+    return pdo_query($sql);
 }

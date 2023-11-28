@@ -10,7 +10,7 @@
                     <?php foreach ($loaddm as $row) {
                         extract($row);
                     ?>
-                        <li><a href="<?= $link_category ?>"><?= $name_category ?></a></li>
+                        <li><a href="?act=allproduct&iddm=<?= $id_category ?>"><?= $name_category ?></a></li>
                     <?php } ?>
 
                 </ul>
@@ -60,7 +60,7 @@
             extract($row);
         ?>
             <div class="categry-image">
-                <a href="<?= $link_category ?>"><img src="upload/<?= $image_category ?>" alt=""></a>
+                <a href="?act=allproduct&iddm=<?= $id_category ?>"><img src="upload/<?= $image_category ?>" alt=""></a>
             </div>
         <?php } ?>
     </div>
@@ -72,150 +72,24 @@
         </div>
         <div class="list-product-sell">
             <!-- List 10 sản phẩm bán chạy -->
-            <div class="product-sell">
-                <div class="product-sell-image">
-                    <img src="image/dong-ho-chinh-hang-phien-ban-gioi-han1-1896924675.jpg" alt="">
-                </div>
-                <div class="product-sell-bot">
-                    <div class="product-sell-content">
-                        <h3>Aries Gold AG-G9005AS-S</h3>
+            <?php foreach ($load_pro_buy as $list) { ?>
+                <div href="?act=chitietsp&id=<?= $list['id_product'] ?>" class="product-sell">
+                    <div class="product-sell-image">
+                        <img src="./upload/<?= $list['image_product'] ?>" alt="">
                     </div>
-                    <div class="product-sell-price">
-                        <p>10.150.000đ</p>
-                    </div>
-                    <div class="heart">
-                        <i class="fa-solid fa-heart"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="product-sell">
-                <div class="product-sell-image">
-                    <img src="image/dong-ho-chinh-hang-phien-ban-gioi-han1-1896924675.jpg" alt="">
-                </div>
-                <div class="product-sell-bot">
-                    <div class="product-sell-content">
-                        <h3>Aries Gold AG-G9005AS-S</h3>
-                    </div>
-                    <div class="product-sell-price">
-                        <p>10.150.000đ</p>
-                    </div>
-                    <div class="heart">
-                        <i class="fa-solid fa-heart"></i>
+                    <div class="product-sell-bot">
+                        <div class="product-sell-content">
+                            <h3><?= $list['name_product']  ?></h3>
+                        </div>
+                        <div class="product-sell-price">
+                            <p><?= number_format($list['discount_product'], 0, ',', '.') . ' đ' ?></p>
+                        </div>
+                        <div class="heart">
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="product-sell">
-                <div class="product-sell-image">
-                    <img src="image/dong-ho-chinh-hang-phien-ban-gioi-han1-1896924675.jpg" alt="">
-                </div>
-                <div class="product-sell-bot">
-                    <div class="product-sell-content">
-                        <h3>Aries Gold AG-G9005AS-S</h3>
-                    </div>
-                    <div class="product-sell-price">
-                        <p>10.150.000đ</p>
-                    </div>
-                    <div class="heart">
-                        <i class="fa-solid fa-heart"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="product-sell">
-                <div class="product-sell-image">
-                    <img src="image/dong-ho-chinh-hang-phien-ban-gioi-han1-1896924675.jpg" alt="">
-                </div>
-                <div class="product-sell-bot">
-                    <div class="product-sell-content">
-                        <h3>Aries Gold AG-G9005AS-S</h3>
-                    </div>
-                    <div class="product-sell-price">
-                        <p>10.150.000đ</p>
-                    </div>
-                    <div class="heart">
-                        <i class="fa-solid fa-heart"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="product-sell">
-                <div class="product-sell-image">
-                    <img src="image/dong-ho-chinh-hang-phien-ban-gioi-han1-1896924675.jpg" alt="">
-                </div>
-                <div class="product-sell-bot">
-                    <div class="product-sell-content">
-                        <h3>Aries Gold AG-G9005AS-S</h3>
-                    </div>
-                    <div class="product-sell-price">
-                        <p>10.150.000đ</p>
-                    </div>
-                    <div class="heart">
-                        <i class="fa-solid fa-heart"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="product-sell">
-                <div class="product-sell-image">
-                    <img src="image/dong-ho-chinh-hang-phien-ban-gioi-han1-1896924675.jpg" alt="">
-                </div>
-                <div class="product-sell-bot">
-                    <div class="product-sell-content">
-                        <h3>Aries Gold AG-G9005AS-S</h3>
-                    </div>
-                    <div class="product-sell-price">
-                        <p>10.150.000đ</p>
-                    </div>
-                    <div class="heart">
-                        <i class="fa-solid fa-heart"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="product-sell">
-                <div class="product-sell-image">
-                    <img src="image/dong-ho-chinh-hang-phien-ban-gioi-han1-1896924675.jpg" alt="">
-                </div>
-                <div class="product-sell-bot">
-                    <div class="product-sell-content">
-                        <h3>Aries Gold AG-G9005AS-S</h3>
-                    </div>
-                    <div class="product-sell-price">
-                        <p>10.150.000đ</p>
-                    </div>
-                    <div class="heart">
-                        <i class="fa-solid fa-heart"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="product-sell">
-                <div class="product-sell-image">
-                    <img src="image/dong-ho-chinh-hang-phien-ban-gioi-han1-1896924675.jpg" alt="">
-                </div>
-                <div class="product-sell-bot">
-                    <div class="product-sell-content">
-                        <h3>Aries Gold AG-G9005AS-S</h3>
-                    </div>
-                    <div class="product-sell-price">
-                        <p>10.150.000đ</p>
-                    </div>
-                    <div class="heart">
-                        <i class="fa-solid fa-heart"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="product-sell">
-                <div class="product-sell-image">
-                    <img src="image/dong-ho-chinh-hang-phien-ban-gioi-han1-1896924675.jpg" alt="">
-                </div>
-                <div class="product-sell-bot">
-                    <div class="product-sell-content">
-                        <h3>Aries Gold AG-G9005AS-S</h3>
-                    </div>
-                    <div class="product-sell-price">
-                        <p>10.150.000đ</p>
-                    </div>
-                    <div class="heart">
-                        <i class="fa-solid fa-heart"></i>
-                    </div>
-                </div>
-            </div>
+            <?php } ?>
         </div>
         <div class="see-more">
             <div class="title-more"><a href="index.php?act=allproduct">Xem thêm</a></div>
@@ -243,25 +117,25 @@
         $firstTenElements = array_slice($mergedArray, 0, 10);
         foreach ($firstTenElements as $keyt) {
         ?>
-        <a href="index.php?act=chitietsp&id=<?= $keyt['id_product'] ?>" class="product-man">
-            <div class="product-man-image">
-                <img src="./upload/<?= $keyt['image_product'] ?>" alt="">
-            </div>
-            <div class="product-man-bot">
-                <div class="product-man-content">
-                    <h3><?= $keyt['name_product'] ?></h3>
+            <a href="index.php?act=chitietsp&id=<?= $keyt['id_product'] ?>" class="product-man">
+                <div class="product-man-image">
+                    <img src="./upload/<?= $keyt['image_product'] ?>" alt="">
                 </div>
-                <div class="product-man-dis">
-                    <p><del><?= $keyt['price'] ?></del></p>
+                <div class="product-man-bot">
+                    <div class="product-man-content">
+                        <h3><?= $keyt['name_product'] ?></h3>
+                    </div>
+                    <div class="product-man-dis">
+                        <p><del><?= $keyt['discount'] ?></del></p>
+                    </div>
+                    <div class="product-man-price">
+                        <p><?= $keyt['price'] ?></p>
+                    </div>
+                    <div class="heart-man percent">
+                        <p>-<?= $keyt['phantram'] ?>%</p>
+                    </div>
                 </div>
-                <div class="product-man-price">
-                    <p><?= $keyt['discount'] ?></p>
-                </div>
-                <div class="heart-man">
-                    <i class="fa-solid fa-heart"></i>
-                </div>
-            </div>
-        </a>
+            </a>
         <?php
         }
         ?>
@@ -289,29 +163,29 @@
         $firstTenElements = array_slice($mergedArray, 0, 10);
         foreach ($firstTenElements as $keyt) {
         ?>
-        <a href="index.php?act=chitietsp&id=<?= $keyt['id_product'] ?>" class="product-man">
-            <div class="product-man-image">
-                <img src="./upload/<?= $keyt['image_product'] ?>" alt="">
-            </div>
-            <div class="product-man-bot">
-                <div class="product-man-content">
-                    <h3><?= $keyt['name_product'] ?></h3>
+            <a href="index.php?act=chitietsp&id=<?= $keyt['id_product'] ?>" class="product-man">
+                <div class="product-man-image">
+                    <img src="./upload/<?= $keyt['image_product'] ?>" alt="">
                 </div>
-                <div class="product-man-dis">
-                    <p><del><?= $keyt['price'] ?></del></p>
+                <div class="product-man-bot">
+                    <div class="product-man-content">
+                        <h3><?= $keyt['name_product'] ?></h3>
+                    </div>
+                    <div class="product-man-dis">
+                        <p><del><?= $keyt['discount'] ?></del></p>
+                    </div>
+                    <div class="product-man-price">
+                        <p><?= $keyt['price'] ?></p>
+                    </div>
+                    <div class="heart-man">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
                 </div>
-                <div class="product-man-price">
-                    <p><?= $keyt['discount'] ?></p>
-                </div>
-                <div class="heart-man">
-                    <i class="fa-solid fa-heart"></i>
-                </div>
-            </div>
-        </a>
+            </a>
         <?php
         }
         ?>
     </div>
-    </div>
+</div>
 </div>
 </div>

@@ -1,8 +1,12 @@
 <?php 
 
     function insert_comment($content_comment,$id_product,$id_account,$date_comment){
+
             $sql = "
                 INSERT INTO `comment`(`content_comment`,`id_product`, `id_account`, `date_comment`) 
+        $date_comment=date("d/m/Y");
+            $sql = "
+                INSERT INTO `comment`(`content_comment`, `id_product`, `id_account`,`date_comment`) 
                 VALUES ('$content_comment','$id_product','$id_account','$date_comment');
             ";
             pdo_execute($sql);

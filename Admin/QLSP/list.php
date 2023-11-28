@@ -14,7 +14,7 @@
                     <tr>
                         <th class="fs-6">STT</th>
                         <th class="fs-6">Tên sản phẩm</th>
-                        <th class="fs-6">Hình ảnh</th>
+                        <th class="fs-6 w-25">Hình ảnh</th>
                         <th class="fs-6">Mô tả</th>
                         <th class="fs-6">View</th>
                         <th class="fs-6">Số lượng</th>
@@ -23,7 +23,7 @@
                 </thead>
                 <tbody>
                 <?php $i = 0;
-                    foreach ($listsp as $loaddm) {
+                    foreach ($listsps as $loaddm) {
                         extract($loaddm) ?>
                         <tr>
                             <td><?= $i+=1; ?></td>
