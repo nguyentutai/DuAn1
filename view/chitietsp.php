@@ -77,8 +77,16 @@
             </a>
         </div>
     </div>
-    <div class="comment">
-            <iframe src="view/binhluan/binhluanform.php?id=<?$id?>" frameborder="0"></iframe>
+    
 </div>
-    </form>
+<div class="product-detal-comment">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                    $("#comment").load("view/binhluan/binhluanform.php", {id_account: <?=$id?>});
+            });
+        </script>
+        <div class="row" id="comment">
+            
+        </div>
 </div>

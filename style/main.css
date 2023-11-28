@@ -1513,4 +1513,30 @@ footer{
     text-align: center;
     margin-top: 10px;
 }
+.product-detal-comment{
+    margin-inline-start: 17%;
+    padding-top: 30px;
+    color: #797831;
+    height: 250px;
+    font-weight: bold;
+}
+.product-detal-comment .box-comment{
+    width: 10%;
+    height: 40px;
+    margin-top: 20px;
+    border-radius: 20px;
+    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(4,88,43,1) 100%, rgba(113,23,26,1) 100%, rgba(0,212,255,1) 100%);
+    float: right;
+    margin-inline-end: 30%;
+    color: #fff;
+    font-weight: bold;
+   
+}
+.product-detal-comment .box-comment-1{
+    width: 70%;
+    height: 130px;
+    border-radius: 10px;
+    padding-left: 20px; 
+    box-shadow: 0px 10px 5px 5px #999999;
+}
 
