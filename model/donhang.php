@@ -1,15 +1,16 @@
 <?php 
+    //Thêm sản phẩm vào đơn hàng
     function add_order($id_account,$email,$username,$phone,$address,$sumdh,$code_order){
         $sql = "INSERT INTO `order`(`id_account`, `email`, `name_recipient`, `phone_recipient`, `address_recipient`, `sum_money`, `code_orders`) 
         VALUES ('$id_account','$email','$username','$phone','$address','$sumdh','$code_order')";
         pdo_execute($sql);
     }
-    //Lẫy id oder vừa up
+    //Lẫy id đơn hàng vừa up
     function load_id_order(){
         $sql = "SELECT id_order FROM `order` ORDER BY id_order DESC";
         return pdo_query($sql);
     }
-    //Đẩy lên order_dh
+    //Thêm vào bảng chi tiết đơn hàng
     function add_order_dh($id_norder,$id_pro,$sl,$dg){
         $sql = "INSERT INTO `detail_dh`(`id_order`, `id_product`, `quanlity_detail`, `unit_price`) 
         VALUES ('$id_norder','$id_pro','$sl','$dg')";
@@ -35,5 +36,11 @@
     function list_account_order($id){
         $sql = "SELECT * FROM `order` WHERE id_order = '$id'";
         return pdo_query($sql);
+    }
+
+    //Cập nhật trạng thái của đơn hàng
+    function update_status_order($id_order,$status){
+        $sql = "UPDATE `order` SET `id_status`='$status' WHERE id_order = '$id_order'";
+        pdo_execute($sql);
     }
 ?>

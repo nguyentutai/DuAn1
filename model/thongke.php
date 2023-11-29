@@ -27,4 +27,10 @@
         $sql = "SELECT *,COUNT(id_order) as soLuong FROM `order` INNER JOIN account ON `order`.id_account = account.id_account GROUP BY `order`.id_account";
         return pdo_query($sql);
     }
+    //Thống kê lượt xem sản phẩm theo danh mục
+    function thongke_view_product_category(){
+        $sql = "SELECT SUM(product.veiw_product) AS luotxem,category.id_category,category.name_category FROM `product` JOIN category ON product.id_category = category.id_category WHERE category.parent_id != 0
+        GROUP By category.id_category";
+        return pdo_query($sql);
+    }
 ?>

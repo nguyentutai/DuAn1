@@ -1,10 +1,10 @@
 <div class="row p-4 mgtop">
     <div class="row text-center d-flex justify-content-between">
-        <h5 class="fs-4 fw-bold bg-success p-2 col-md-3 rounded-pill">QUẢN LÝ ĐƠN HÀNG</h5>
-        <form action="index.php?act=listsp" method="post" class="col-md-3 d-flex h-75 position-relative">
+        <h5 class="fs-4 fw-bold bg-success p-2 col-md-3 rounded-3">QUẢN LÝ ĐƠN HÀNG</h5>
+        <!-- <form action="index.php?act=listsp" method="post" class="col-md-3 d-flex h-75 position-relative">
             <input type="text" placeholder="Nhập tên sản phẩm cần tìm ..." name="search" class="form-control rounded-end">
             <button type="submit" name="btns-search" class="btn btn-primary fw-bold position-absolute end-0 h-100"><i class="fa-solid fa-magnifying-glass"></i></button>
-        </form>
+        </form> -->
     </div>
     <div class="row">
         <div class="col-md-8 rounded-3 bg-body-secondary p-3">
@@ -32,7 +32,7 @@
                             <td><img class="rounded mx-auto d-block img-fluid w-75 imagedm mt-3" src="../upload/<?= $image_product ?>" alt="">
                             </td>
                             <td class="text-danger fw-bold"><?= number_format($discount_product, 0, ',', '.') . ' đ' ?></td>
-                            <td><?= $quanlity_detail ?></td>
+                            <td class="fw-bold"><?= $quanlity_detail ?></td>
                             <td class="text-danger fw-bold"><?= number_format($quanlity_detail * $discount_product, 0, ',', '.') . ' đ' ?></td>
                         </tr>
                     <?php } 
@@ -74,7 +74,7 @@
                     <span class="text-danger fw-bold d-flex align-items-center"><i class="fa-solid fa-money-check-dollar me-2 fs-4"></i>Phương thức thanh toán: </span>
                 </div>
                 <form class="mt-3" action="">
-                    <select class="form-control">
+                    <select disabled class="form-control">
                         <option value="">Thanh toán bằng tiền mặt</option>
                         <option value="">Thanh toán online</option>
                     </select>
@@ -84,15 +84,15 @@
             <div class="col-md-8 rounded-3 bg-body-secondary mt-3 p-3">
                 <div class="d-flex">
                     <p class="text-danger fw-bold d-flex align-items-center fs-5">Trạng Thái Đơn Hàng: </p>
-                    <span class="bg-dark h-50 ms-3 fw-bold text-light px-2 py-1 rounded-3">Đang giao hàng</span>
+                    <span class="bg-warning h-50 ms-3 fw-bold text-dark px-2 py-1 rounded-3">Đang giao hàng</span>
                 </div>
                 <div class="mt-3">
-                    <form action="" class="d-flex">
-                        <select name="" class="form-control w-25" id="">
-                            <option value="">Đang xử lý</option>
-                            <option value="">Đang giao hàng</option>
-                            <option value="">Đang xử lý</option>
-                            <option value="">Đang xử lý</option>
+                    <form action="index.php?act=upStaOrder&id=" class="d-flex" method="POST">
+                        <select name="status_order" class="form-control w-25">
+                            <option value="0">Đang xử lý</option>
+                            <option value="1">Đang giao hàng</option>
+                            <option value="2">Đã giao</option>
+                            <option value="3">Chờ cập nhật</option>
                         </select>
                         <button class="btn btn-danger fw-bold ms-4" type="submit" name="btn-sunmit">CẬP NHẬT ĐƠN HÀNG</button>
                     </form>
