@@ -41,18 +41,18 @@
 
             function drawChart() {
                 const data = google.visualization.arrayToDataTable([
-                    ['Tên sản phẩm', 'Số lượng bình luận'],
+                    ['Tên Danh Mục', 'Lượt Xem Danh Mục'],
                     <?php
                     // print_r($list_bl);
-                    foreach ($list_bl as $thongk) {
+                    foreach ($list_view_category as $thongk) {
                         extract($thongk);
-                        echo "['$name_product', $soBinhLuan],";
+                        echo "['$name_category', $luotxem],";
                     }
                     ?>
                 ]);
                 // Set Options
                 const options = {
-                    title: 'BIỂU ĐỒ THỐNG KÊ BÌNH LUẬN THEO SẢN PHẨM',
+                    title: 'BIỂU ĐỒ THỐNG KÊ LƯỢT XEM THEO DANH MỤC',
                     is3D: true,
                     colors: ['#ff0000', '#00ff00', '#0000ff']
                 };

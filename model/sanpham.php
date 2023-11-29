@@ -1,23 +1,24 @@
 <?php
+//Thêm sản phẩm 
 function inser_product($id_category, $name_product, $date_product, $filename, $describe, $quantity_product, $origin_price, $discount_product)
 {
     $sql = "INSERT INTO `product`(`id_category`,`name_product`,`date_add`,`image_product`, `describe_product`, `quantity_product`, `cost_product`, `discount_product`) 
                                 VALUES ('$id_category','$name_product','$date_product','$filename','$describe','$quantity_product','$origin_price','$discount_product')";
     pdo_execute($sql);
 }
-
+//Lấy lại id sản phẩm vừa thêm
 function try_image()
 {
     $sql = "SELECT * From product order by id_product DESC";
     return pdo_query($sql);
 }
-
+//Thêm ảnh phụ của sản phẩm
 function try_product_image($bienjday, $value)
 {
     $sql = "INSERT INTO `product_image`(`id_product`, `name_image`) VALUES ('$bienjday','$value')";
     pdo_execute($sql);
 }
-
+//Sửa sản phẩm
 function update_product($id_product, $id_category, $name_product, $date_product, $image_product, $describe, $quantity_product, $origin_price, $discount_product)
 {
     $sql = "UPDATE `product` SET `id_category`='$id_category',`name_product`='$name_product',`date_add`='$date_product',`image_product`='$image_product',`describe_product`='$describe',`quantity_product`='$quantity_product',`cost_product`='$origin_price',`discount_product`='$discount_product' WHERE `id_product` = '$id_product'";
@@ -30,6 +31,7 @@ function load_product_category($id)
     $sql = "SELECT * FROM `product` WHERE `id_category` = '$id'";
     return pdo_query($sql);
 }
+//Load sản phẩm trong trang admin
 function loadAll_productAdmin($search){
     $sql = "SELECT *, (100 - CEILING((discount_product)/(cost_product)*100)) as phantram,CONCAT(FORMAT(discount_product, 0), ' đ') as price, CONCAT(FORMAT(cost_product, 0), ' đ') as discount from product  WHERE status_product = 0";
     if ($search != "") {
@@ -51,6 +53,7 @@ function loadAll_product($search, $iddm, $filter_price, $min, $max)
     if ($filter_price != '') {
         $sql .= " ORDER BY discount_product $filter_price";
     }
+    //Lọc sản phẩm theo khoảng giá
     if (($min != "") && ($max != '')) {
         $sql .= " AND discount_product BETWEEN $min AND $max";
     }
@@ -70,11 +73,14 @@ function loadtg_product($search)
     }
     return pdo_query($sql);
 }
+// List sản phẩm theo danh mục
 function  list_product_category($id_product)
 {
     $sql = "SELECT * FROM `product` WHERE `id_category` = '$id_product'";
     return pdo_query($sql);
 }
+
+//Xóa sản phẩm
 function delete_product($id)
 {
     $sql = "DELETE FROM `product` WHERE `id_product`='$id'";
