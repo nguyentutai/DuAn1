@@ -1,5 +1,5 @@
 <div class="container-1">
-    <div class="container-login container">
+    <div class="container-login container" style="margin-top:110px;">
         <div class="login">
             <h2>Đăng Ký</h2>
             <form action="" method="POST" enctype="multipart/form-data">
@@ -15,7 +15,7 @@
                 </div>
                 <div class="showpass">
                     <input id="showpass" type="checkbox">
-                    <label for="">ShowPass</label>
+                    <label for="">Hiển thị mật khẩu</label>
                 </div>
                 <div class="confim-pass pass">
                     <p>ConfirmPass :</p>
@@ -42,7 +42,6 @@
                     </div>
                     <div class="showimage">
                         <img src="" alt="" id="img">
-                        <label style="color: red;font-size:15px;margin-top:30px;"><?= is_error('image') ?></label>
                     </div>
                 </div>
                 <div class="btn-login">
