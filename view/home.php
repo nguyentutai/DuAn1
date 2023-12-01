@@ -68,12 +68,13 @@
 <div class="container-3 container">
     <div class="fa-product-sell">
         <div class="title-product-sell">
+            <img src="./image/flash.png" alt="">
             <h3>SẢN PHẨM BÁN CHẠY</h3>
         </div>
         <div class="list-product-sell">
             <!-- List 10 sản phẩm bán chạy -->
             <?php foreach ($load_pro_buy as $list) { ?>
-                <div href="?act=chitietsp&id=<?= $list['id_product'] ?>" class="product-sell">
+                <a href="?act=chitietsp&id=<?= $list['id_product'] ?>" class="product-sell">
                     <div class="product-sell-image">
                         <img src="./upload/<?= $list['image_product'] ?>" alt="">
                     </div>
@@ -88,7 +89,7 @@
                             <i class="fa-solid fa-heart"></i>
                         </div>
                     </div>
-                </div>
+                </a>
             <?php } ?>
         </div>
         <div class="see-more">
@@ -100,6 +101,38 @@
         <div class="pre-product">
             <i class="fa-solid fa-angle-left"></i>
         </div>
+    </div>
+</div>
+<div class="top-view-pro container">
+    <div class="title-category-man">
+        <h3>Top 5 sản phẩm có lượt xem nhiều nhất</h3>
+    </div>
+    <div class="box-category-man">
+        <?php
+        foreach ($load_pro_view as $keyt) {
+        ?>
+            <a href="index.php?act=chitietsp&id=<?= $keyt['id_product'] ?>" class="product-man">
+                <div class="product-man-image">
+                    <img src="./upload/<?= $keyt['image_product'] ?>" alt="">
+                </div>
+                <div class="product-man-bot">
+                    <div class="product-man-content">
+                        <h3><?= $keyt['name_product'] ?></h3>
+                    </div>
+                    <div class="product-man-dis">
+                        <p><del><?= $keyt['discount'] ?></del></p>
+                    </div>
+                    <div class="product-man-price">
+                        <p><?= $keyt['price'] ?></p>
+                    </div>
+                    <div class="heart-man percent">
+                        <p>-<?= $keyt['phantram'] ?>%</p>
+                    </div>
+                </div>
+            </a>
+        <?php
+        }
+        ?>
     </div>
 </div>
 <div class="container-4 container">
@@ -177,8 +210,8 @@
                     <div class="product-man-price">
                         <p><?= $keyt['price'] ?></p>
                     </div>
-                    <div class="heart-man">
-                        <i class="fa-solid fa-heart"></i>
+                    <div class="heart-man percent">
+                        <p>-<?= $keyt['phantram'] ?>%</p>
                     </div>
                 </div>
             </a>

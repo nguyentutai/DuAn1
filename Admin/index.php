@@ -1,6 +1,11 @@
 <?php
 ob_start();
 session_start();
+if (isset($_SESSION["login"]) && $_SESSION["login"]['role'] == '1'){
+    echo'';
+}else{
+    header('location: ../index.php');
+}
 include 'view/header.php';
 include '../model/pdo.php';
 include '../model/danhmucsp.php';
@@ -9,6 +14,9 @@ include '../model/sanpham.php';
 include '../model/thongke.php';
 include '../model/binhluan.php';
 include '../model/donhang.php';
+$xacnhan = thongke_order_xn();
+$doanhthu = doanhthu();
+$thongke_oder_tc = thongke_order_tc();
 $list_thongke = thongke_category_products();
 $list_bl = thongke_comment_product();
 $list_order = thongke_order_user();
@@ -16,6 +24,70 @@ $list_view_category = thongke_view_product_category();
 if (isset($_GET['act']) && ($_GET['act'] != '')) {
     $act = $_GET['act'];
     switch ($act) {
+        case 'taikhoan':
+            if (isset($_POST['btn-submit'])) {
+                $id_account = $_POST['id_account'];
+                $phone_account = $_POST['phone_account'];
+                $name_account = $_POST['name_account'];
+                $email_account = $_POST['email_account'];
+                $filename = $_FILES['image']['name'];
+                $target_dir = "../upload/";
+                $target_file = $target_dir . basename($_FILES['image']['name']);
+
+                if (isset($_SESSION['login'])) {
+                    if ($_FILES['image']['name'] == '') {
+                        $filename = $_SESSION['login']['image_account'];
+                    } else {
+                        $filename = $_FILES['image']['name'];
+                        move_uploaded_file($_FILES['image']['tmp_name'], $target_file);
+                    }
+                }
+                update_account($id_account, $name_account, $filename, $email_account, $phone_account);
+                echo "<script>alert('Cập nhật tài khoản thành công');</script>";
+            }
+            include 'TAIKHOAN/taikhoan.php';
+            break;
+        case 'doimktk':
+            if (isset($_POST['btn-submit'])) {
+                $error = [];
+                $idtk = $_POST['id_account'];
+                if (isset($_SESSION['login'])) {
+
+
+                    if (empty($_POST['pass_cu'])) {
+                        $error['pass_cu'] = "Vui lòng nhập mật khẩu cũ";
+                    } else {
+                        if ($_SESSION['login']['pass'] != md5($_POST['pass_cu'])) {
+                            $error['pass_cu'] = "Mật khẩu của bạn không chính xác";
+                        } else {
+                            $pass_cu = $_POST['pass_cu'];
+                        }
+                    }
+                    if (empty($_POST['pass_moi'])) {
+                        $error['pass_moi'] = "Vui lòng nhập password mới";
+                    } else {
+                        if ($_POST['pass_moi'] == $_POST['pass_cu']) {
+                            $error['pass_moi'] = "Mật khẩu bạn trùng với mật khấu cũ";
+                        }
+                    }
+                    if (empty($_POST['xacnhan_pass'])) {
+                        $error['xacnhan_pass'] = "Vui lòng xác nhận mật khẩu";
+                    } else {
+                        if ($_POST['pass_moi'] != $_POST['xacnhan_pass']) {
+                            $error['xacnhan_pass'] = "Mật khẩu bạn nhập không khớp";
+                        } else {
+                            $xacnhan_pass = md5($_POST['xacnhan_pass']);
+                        }
+                    }
+                }
+                if (empty($error)) {
+                    doimk_taikhoan($idtk, $xacnhan_pass);
+                    echo "<script>alert('Đổi mật khẩu thành công. Vui lòng đăng nhập lại');</script>";
+                    // header("Location: index.php");
+                }
+            }
+            include 'TAIKHOAN/doimk.php';
+            break;
         case 'adddm':
             if (isset($_POST['btn-submit'])) {
                 $error = [];
@@ -162,9 +234,9 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
             include './QLSP/add.php';
             break;
         case 'listsp':
-            if(isset($_POST['btns-search'])){
+            if (isset($_POST['btns-search'])) {
                 $search = $_POST['search'];
-            }else{
+            } else {
                 $search = '';
             }
             $listsps = loadAll_productAdmin($search);
@@ -186,9 +258,9 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
             }
             break;
         case 'thunggiac':
-            if(isset($_POST['search'])) {
+            if (isset($_POST['search'])) {
                 $search = $_POST['search'];
-            }else{
+            } else {
                 $search = '';
             }
             $listtg = loadtg_product($search);
@@ -258,13 +330,22 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
             include './QLSP/update.php';
             break;
         case 'tkspdm':
-            if(isset($_POST['btn-search'])){
+            if (isset($_POST['btn-search'])) {
                 $search = $_POST['search'];
-            }else{
+            } else {
                 $search = '';
             }
             $list_thongke = thongke_category_product($search);
             include 'THONGKE/sanpham.php';
+            break;
+        case 'doanhthu':
+            if (isset($_POST['btn-search'])) {
+                $search = $_POST['search'];
+            } else {
+                $search = '';
+            }
+            $list_thongke = thongke_order_date($search);
+            include 'THONGKE/doanhthuDate.php';
             break;
         case 'listspdm':
             if (isset($_GET['id'])) {
@@ -349,18 +430,21 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
             }
+            $list_status = list_status_order();
             $load_account_order = list_account_order($id);
             $load_pro_order = load_product_order($id);
             include './QLDH/listProOder.php';
             break;
         case 'upStaOrder':
-            if(isset($_GET['id'])) {
+            if (isset($_GET['id'])) {
                 $id = $_GET['id'];
                 $name_status = $_POST['status_order'];
             }
+            update_status_order($id, $name_status);
+            header("Location: ?act=listspcart&id=$id");
             break;
     }
-}else{
+} else {
     include 'view/home.php';
 }
 

@@ -10,7 +10,7 @@
             <?php foreach ($load_product_parent as $loaddm) {
                 extract($loaddm);
             ?>
-                <li><a href="index.php?act=loaddmall<?= $id_category ?>"><?= $name_category ?></a></li>
+                <li><a href="?act=allproduct"><?= $name_category ?></a></li>
             <?php } ?>
         </ul>
     </div>
@@ -49,8 +49,11 @@
     </div>
 </div>
 <div class="list-product-all container">
+    <?php if(!empty($list_30_pro)) {?>
     <div class="list-product-max">
-        <?php foreach ($loadsp as $listsp) {
+        <?php 
+        $list_30_pro = array_splice($loadsp,0,30);
+        foreach ($list_30_pro as $listsp) {
             extract($listsp); ?>
             <a href="?act=chitietsp&id=<?= $id_product ?>" class="list-product">
                 <div class="list-product-image">
@@ -78,4 +81,7 @@
             </a>
         <?php } ?>
     </div>
+    <?php } else {?>
+        Không có sản phẩm
+    <?php } ?>
 </div>

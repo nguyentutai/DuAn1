@@ -1,7 +1,7 @@
 <div class="container-directional">
     <div class="directional container">
         <a href=""><i class="fa-solid fa-house"></i> Trang chủ /</a>
-        <a href="">Tài Khoản</a>
+        <a href="">Thông Tin Tài Khoản</a>
     </div>
 </div>
 
@@ -56,114 +56,74 @@
             </div>
         </div>
         <div id="Tab2" class="tabcontent">
-            <h3>Không có đơn hàng nào</h3>
+            <div class="list_order">
+                <?php if (!empty($load_order_account)) { ?>
+
+                    <table class="table-list">
+                        <thead>
+                            <tr>
+                                <th>Mã Đơn Hàng</th>
+                                <th>Tên Người Nhận</th>
+                                <th>Ngày đặt</th>
+                                <th>Trạng Thái Đơn Hàng</th>
+                                <th>Tổng Tiền Thanh Toán</th>
+                                <th colspan="2">Chức Năng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            foreach ($load_order_account as $order_account) {
+                                extract($order_account);
+                            ?>
+                                <tr>
+                                    <td><?= $code_orders ?></td>
+                                    <td><?= $name_recipient ?></td>
+                                    <td><?= $date_order ?></td>
+                                    <?php
+                                    switch ($id_status) {
+                                        case '1':
+                                            echo '<td style="font-weight:bold;">Chờ xác nhận</td>';
+                                            break;
+                                        case '2':
+                                            echo '<td style="font-weight:bold;">Chờ lấy hàng</td>';
+                                            break;
+                                        case '3':
+                                            echo '<td style="font-weight:bold;">Đã giao</td>';
+                                            break;
+                                        case '4':
+                                            echo '<td style="font-weight:bold;">Đã hủy</td>';
+                                            break;
+                                        case '5':
+                                            echo '<td style="font-weight:bold;">Trả hàng</td>';
+                                            break;
+                                    }
+
+                                    ?>
+                                    <td><?= number_format($sum_money, 0, ',', '.') . ' đ' ?></td>
+                                    <?php if ($id_status == 5) { ?>
+                                        <td></td>
+                                    <?php } else { ?>
+                                        <td><a href="?act=deleteOrder&id=<?= $id_order ?>">Hủy đơn hàng</a></td>
+                                    <?php } ?>
+
+                                    <td><a href="?act=chitietOrder&id=<?= $id_order ?>">Xem chi tiết</a></td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                <?php } else { ?>
+                    <div class="no-order">
+                        <h3>Không có đơn hàng nào</h3>
+                        <div class="no-image">
+                            <img src="./image/kocoj.png" alt="">
+                        </div>
+                        <button class="hom"><a href="index.php">Về Trang Chủ</a></button>
+                    </div>
+                <?php } ?>
+            </div>
         </div>
         <div id="Tab3" class="tabcontent">
 
         </div>
     </div>
-    <?php if (isset($_SESSION['login'])) extract($_SESSION['login']) ?>
-    <div class="account">
-        <div class="image_account">
-            <img src="./upload/<?= $image_account ?>" alt="" />
-        </div>
-        <div class="name_accounts">
-            <h3><?= $user ?></h3>
-        </div>
-        <div class="email-account">
-            <i class="fa-solid fa-envelope"></i>
-            <p><?= $email_account ?></p>
-        </div>
-        <div class="phone-account">
-            <i class="fa-solid fa-square-phone"></i>
-            <p><?= $phone_account ?></p>
-        </div>
-        <div class="cntt">
-            <button id="openPopup">Cập Nhật Thông Tin</button>
-        </div>
-    </div>
-</div>
-
-<div class="popup" id="popup">
-    <div class="popup-content">
-        <span class="close" id="closePopup"><i class="fa-solid fa-circle-xmark"></i></span>
-        <div class="capnhattt">
-            <div class="capnhat-title">
-                <h3>Cập Nhật Thông Tin</h3>
-            </div>
-            <form action="index.php?act=capnhattt" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="id_ac" value="<?= $id_account ?>">
-                <div class="list1">
-                    <div class="tt1">
-                        <label for="">Tên tài khoản</label><br>
-                        <input type="text" name="name_ac" value="<?= $user ?>"><br>
-                    </div>
-                    <div class="tt2">
-                        <label for="">Email</label><br>
-                        <input type="email" name="email_ac" value="<?= $email_account ?>"><br>
-                    </div>
-                </div>
-
-                <div class="list2">
-                    <div class="tt3">
-                        <label for="">Phone</label><br>
-                        <input type="number" name="phone_ac" value="<?= $phone_account ?>"><br>
-                    </div>
-                    <div class="image_acc">
-                        <label for="">Ảnh</label><br>
-                        <label class="images_ac" for="image"><i class="fa-solid fa-cloud-arrow-up"></i></label>
-                        <input type="file" name="image" id="image" style="display:none;">
-                    </div>
-                    <div class="image_acc">
-                        <label for="">Ảnh cũ</label><br>
-                        <img src="./upload/<?= $image_account ?>" alt="">
-                    </div>
-                </div>
-                <div class="list3">
-                    <button type="submit" class="btsmit" name="btn-submit">Cập Nhật</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<script>
-    document.getElementById('openPopup').addEventListener('click', function() {
-        document.getElementById('popup').style.display = 'flex';
-    });
-
-    document.getElementById('closePopup').addEventListener('click', function() {
-        document.getElementById('popup').style.display = 'none';
-    });
-
-    // Đóng popup khi click bên ngoài phần popup
-    window.addEventListener('click', function(event) {
-        var popup = document.getElementById('popup');
-        if (event.target === popup) {
-            popup.style.display = 'none';
-        }
-    });
-
-    function openTab(event, tabName) {
-        let i, tabcontent, tablinks;
-
-        // Hide all tab content
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
-
-        // Remove the 'active' class from all tab links
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].classList.remove("active");
-        }
-
-        // Show the specific tab content
-        document.getElementById(tabName).style.display = "block";
-
-        // Add the 'active' class to the button that opened the tab
-        event.currentTarget.classList.add("active");
-    }
-    // Set the default tab to be opened
-    document.getElementById("defaultOpen").click();
-</script>
+    <?php include 'load_account.php'; ?>

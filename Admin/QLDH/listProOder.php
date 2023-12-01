@@ -1,11 +1,8 @@
 <div class="row p-4 mgtop">
     <div class="row text-center d-flex justify-content-between">
         <h5 class="fs-4 fw-bold bg-success p-2 col-md-3 rounded-3">QUẢN LÝ ĐƠN HÀNG</h5>
-        <!-- <form action="index.php?act=listsp" method="post" class="col-md-3 d-flex h-75 position-relative">
-            <input type="text" placeholder="Nhập tên sản phẩm cần tìm ..." name="search" class="form-control rounded-end">
-            <button type="submit" name="btns-search" class="btn btn-primary fw-bold position-absolute end-0 h-100"><i class="fa-solid fa-magnifying-glass"></i></button>
-        </form> -->
     </div>
+
     <div class="row">
         <div class="col-md-8 rounded-3 bg-body-secondary p-3">
             <table class="text-center w-100">
@@ -35,16 +32,17 @@
                             <td class="fw-bold"><?= $quanlity_detail ?></td>
                             <td class="text-danger fw-bold"><?= number_format($quanlity_detail * $discount_product, 0, ',', '.') . ' đ' ?></td>
                         </tr>
-                    <?php } 
+                    <?php }
                     ?>
                 </tbody>
             </table>
         </div>
-        <?php foreach ($load_account_order as $loadac) {
+        <?php
+        foreach ($load_account_order as $loadac) {
             extract($loadac) ?>
             <div class="col-md-3 rounded-3 bg-body-secondary ms-5 p-3">
                 <div class="bg-dark text-center text-light fs-6 fw-bold p-2">
-                    THÔNG TIN NGƯỜI MUA
+                    THÔNG TIN NGƯỜI NHẬN
                 </div>
                 <div class="bg-light m-3 border border-secondary rounded-4">
                     <div class="d-flex px-2 pt-3 ms-2 fst-italic">
@@ -84,17 +82,53 @@
             <div class="col-md-8 rounded-3 bg-body-secondary mt-3 p-3">
                 <div class="d-flex">
                     <p class="text-danger fw-bold d-flex align-items-center fs-5">Trạng Thái Đơn Hàng: </p>
-                    <span class="bg-warning h-50 ms-3 fw-bold text-dark px-2 py-1 rounded-3">Đang giao hàng</span>
+                    
+                    <?php
+                        switch ($load_account_order[0]['id_status']) {
+                            case '1':
+                                echo '<span class="bg-warning h-50 ms-3 fw-bold text-light px-2 py-1 rounded-3">Chờ xác nhận</span>';
+                                break;
+                            case '2':
+                                echo '<span class="bg-secondary h-50 ms-3 fw-bold text-light px-2 py-1 rounded-3">Chờ giao hàng</span>';
+                                break;
+                            case '3':
+                                echo '<span class="bg-danger h-50 ms-3 fw-bold text-light px-2 py-1 rounded-3">Chờ lấy hàng</span>';
+                                break;
+                            case '4':
+                                echo '<span class="bg-black h-50 ms-3 fw-bold text-light px-2 py-1 rounded-3">Đã hủy</span>';
+                                break;
+                            case '5':
+                                echo '<span class="bg-warning-subtle h-50 ms-3 fw-bold text-light px-2 py-1 rounded-3">Đã giao</span>';
+                                break;
+                        }
+                    ?>
                 </div>
                 <div class="mt-3">
-                    <form action="index.php?act=upStaOrder&id=" class="d-flex" method="POST">
-                        <select name="status_order" class="form-control w-25">
-                            <option value="0">Đang xử lý</option>
-                            <option value="1">Đang giao hàng</option>
-                            <option value="2">Đã giao</option>
-                            <option value="3">Chờ cập nhật</option>
+                    <?php
+                    // Giả sử bạn có giá trị đã chọn từ một nguồn dữ liệu nào đó
+                    $selectedValue = $load_account_order[0]['id_status']; // Đặt giá trị đã chọn ở đây
+                    // Danh sách giá trị cho trường select
+                    $options = array(
+                        "1" => "Chờ xác nhận",
+                        "2" => "Chờ lấy hàng",
+                        "3" => "Đã giao",
+                        "4" => "Đã hủy",
+                        "5" => "Trả hàng"
+                    );
+                    ?>
+                    <form action="index.php?act=upStaOrder&id=<?= $_GET['id'] ?>" class="d-flex" method="POST">
+                        <select class="form-select h-75" id="floatingSelect" name="status_order">
+                            <!-- <option value="0">---Cập nhật trạng thái---</option> -->
+                            <?php
+                            // Duyệt qua mảng giá trị và tạo các tùy chọn
+                            foreach ($options as $value => $label) {
+                                // Nếu giá trị hiện tại trùng với giá trị đã chọn, thêm thuộc tính "selected"
+                                $isSelected = ($value == $selectedValue) ? 'selected="selected"' : '';
+                                echo "<option value=\"$value\" $isSelected>$label</option>";
+                            }
+                            ?>
                         </select>
-                        <button class="btn btn-danger fw-bold ms-4" type="submit" name="btn-sunmit">CẬP NHẬT ĐƠN HÀNG</button>
+                        <button class="btn btn-danger w-25 fw-bold ms-4" type="submit" name="btn-sunmit">CẬP NHẬT</button>
                     </form>
                 </div>
             </div>

@@ -3,15 +3,20 @@ session_start();
 if (!isset($_SESSION['addToCard'])) {
     $_SESSION['addToCard'] = [];
 }
+if (!isset($_SESSION['buynow'])) {
+    $_SESSION['buynow'] = [];
+}
 ob_start();
 include 'view/header.php';
 include 'model/taikhoan.php';
 include 'model/danhmucsp.php';
+include 'model/binhluan.php';
 include 'model/sanpham.php';
 include 'model/donhang.php';
 include 'model/pdo.php';
 $loaddm = load_category_home();
 $load_pro_buy = load_product_buyrun();
+$load_pro_view = load_pro_view();
 if (isset($_GET['act']) && ($_GET['act'] != '')) {
     $act = $_GET['act'];
     switch ($act) {
@@ -57,9 +62,9 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
                     $error['username'] = 'Vui lòng nhập thông tin tài khoản';
                 } else {
                     //Thực hiện kiểm tra xem username nhập vào có tồn tại trên database hay không
-                    $check_user = check_register($_POST['username']);
+                    $check_user = check_register($_POST['username'], $_POST['email']);
                     if (is_array($check_user)) {
-                        $error['username'] = 'Tên tài khoản đã tồn tại';
+                        $error['username'] = '<script>alert("Tên tài khoản hoặc email đã tồn tại");</script>';
                     } else {
                         $username = $_POST['username'];
                     }
@@ -112,9 +117,8 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
                 $target_dir = "upload/";
                 //Thực hiện đẩy ảnh vào thư mục upload
                 $target_file = $target_dir . basename($_FILES['image']['name']);
-                if (!move_uploaded_file($_FILES['image']['tmp_name'], $target_file)) {
-                    $error['image'] = 'Bạn chưa upload ảnh';
-                }
+                move_uploaded_file($_FILES['image']['tmp_name'], $target_file);
+                // $error['image'] = 'Bạn chưa upload ảnh';
                 //Nếu mảng $error rỗng thì thực hiện insert dữ liệu lên database
                 if (empty($error)) {
                     insert_register($username, $password_confirm, $filename, $email, $phone);
@@ -133,6 +137,10 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
             break;
 
         case 'thongtintk':
+            if (isset($_SESSION['login'])) {
+                $id_account = $_SESSION['login']['id_account'];
+            }
+            $load_order_account = load_order_account($id_account);
             include 'view/thongtintk.php';
             break;
         case 'allproduct':
@@ -141,27 +149,27 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
             } else {
                 $search = '';
             }
-            if(isset($_GET['id'])){
+            if (isset($_GET['id'])) {
                 // $filter_price = $_POST['filter_price'];
                 $filter_price = $_GET['id'];
-            }else{
+            } else {
                 $filter_price = "";
             }
-            if(isset($_GET['iddm'])){
+            if (isset($_GET['iddm'])) {
                 $iddm = $_GET['iddm'];
-            }else{
+            } else {
                 $iddm = '';
             }
 
-            if(isset($_GET['max'])){
+            if (isset($_GET['max'])) {
                 $max = $_GET['max'];
                 $min = $_GET['min'];
-            }else{
+            } else {
                 $max = '';
                 $min = '';
             }
 
-            $loadsp = loadAll_product($search,$iddm,$filter_price,$min,$max);
+            $loadsp = loadAll_product($search, $iddm, $filter_price, $min, $max);
             $load_product_parent = load_category_parent();
             $load_category_home = load_category_home();
             include 'view/allproduct.php';
@@ -223,53 +231,59 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
                 }
                 if (empty($error)) {
                     doimk_taikhoan($idtk, $passconfim);
-                    echo "<script>alert('Đổi mật khẩu thành công. Vui lòng đăng nhập lại');</script>";
+                    echo "<script>
+                    alert('Đổi mật khẩu thành công');
+                    window.location.href = 'index.php';
+                </script>";
                 }
             }
+            if (isset($_SESSION['login'])) {
+                $id_account = $_SESSION['login']['id_account'];
+            }
+            $load_order_account = load_order_account($id_account);
             include "view/thongtintk.php";
             break;
         case "chitietsp":
+            if (isset($_POST['gui-bl'])) {
+                $error = [];
+                $id = $_POST['id_pro'];
+                if (empty($_POST['binhluan'])) {
+                    $error['binhluan'] = "Vui lòng nhập nội dung bình luận";
+                } else {
+                    $binhluan = $_POST['binhluan'];
+                }
+                if (!isset($_SESSION['login'])) {
+                    $error['binhluan'] = "<script>alert('Vui lòng đăng nhập để bình luận');</script>";
+                } else {
+                    $id_account = $_SESSION["login"]["id_account"];
+                }
+                if (empty($error)) {
+                    insert_comment($binhluan, $id, $id_account);
+                }
+            }
+            
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
             }
+            $load_ct_product = load_product_ct($id);
+            $iddm = $load_ct_product['id_category'];
+            $load_pro_cl = load_pro_cl($id, $iddm);
+            $load_comment_pro = list_comment_product($id);
+            $list_evalua = list_evalue($id);
+            $thongke_dg = thongke_evalue($id);
             $inser_view = inser_product_view($id);
             $image_ct_image = load_pro_image($id);
-            $load_ct_product = load_product_ct($id);
+
             include "view/chitietsp.php";
             break;
         case "addtocart":
-            if (isset($_POST["btn-submit"])) {
-                $id = $_POST["id_product"];
-                $image_product = $_POST["image_product"];
-                $name_product = $_POST["name_product"];
-                $discount = $_POST["discount"];
-                $price = (int)str_replace([' ', ',', 'đ'], '', $_POST["price"]);
-                $quantity_product = $_POST['soluong'];
-                $thanhtien = $price * $quantity_product;
-
-                //Tạo biến kiểm tra
-                $checksp = false;
-                foreach ($_SESSION['addToCard'] as $key => $item) {
-                    //Kiểm tra sản ohaamr đã có chưa
-                    if ($item[0] == $id) {
-                        $checksp = true;
-                        $_SESSION['addToCard'][$key][5] += $quantity_product;
-                        $_SESSION['addToCard'][$key][6] += $thanhtien;
-                        break;
-                    }
-                }
-
-                if (!$checksp) { // Nếu sản phẩm chưa tồn tại
-                    $addCart = [$id, $image_product, $name_product, $discount, $price, $quantity_product, $thanhtien];
-                    array_push($_SESSION['addToCard'], $addCart);
-                }
-                header('Location: ?act=addtocart');
-            }
             include "view/cart.php";
             break;
         case "deletecard":
-            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+            if (isset($_GET['id'])) {
                 array_splice($_SESSION['addToCard'], $_GET['id'], 1);
+            } else {
+                $_SESSION['addToCard'] = [];
             }
             header('location: index.php?act=addtocart');
             break;
@@ -303,22 +317,127 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
                 }
                 if (isset($_SESSION['login'])) {
                     $id_account = $_SESSION['login']['id_account'];
-                }else{
+                } else {
                     $error['script'] = '<script>alert("Vui lòng đăng nhập để đặt hàng");</script>';
                 }
                 $sumdh = $_POST['sumdh'];
                 $code_order = "#" . rand(0, 9999);
-                
                 if (empty($error)) {
+                    //Thêm dữ liệu lên db Order
                     add_order($id_account, $email, $username, $phone, $address, $sumdh, $code_order);
-                    $id_order = load_id_order();
-                    $id_norder = $id_order[0]['id_order'];
-                    foreach($_SESSION['addToCard'] as $key) {
-                        add_order_dh($id_norder,$key[0],$key[5],$key[6]);
+                    //Lấy lại cái id_order vừa thêm
+                    $get_id_order = load_id_order();
+                    $id_order = $get_id_order[0]['id_order'];
+                    //Thêm lên bảng detail dh
+                    foreach ($_SESSION['addToCard'] as $key) {
+                        add_order_dh($id_order, $key[0], $key[5], $key[6]);
                     }
+                    echo "<script>
+                        alert('Bạn đã đặt hàng thành công');
+                        window.location.href = 'index.php?act=order';
+                    </script>";
                 }
             }
             include "view/cart.php";
+            break;
+        case "buynow":
+            include "view/buynow.php";
+            break;
+        case "addbuynow":
+            if (isset($_POST['btn-submit'])) {
+                $error = [];
+                //Lấy dữ liệu tạo đơn hàng
+                if (isset($_SESSION['login'])) {
+                    $id_account = $_SESSION['login']['id_account'];
+                } else {
+                    $error['script'] = '<script>alert("Vui lòng đăng nhập để đặt hàng");</script>';
+                }
+                if (empty($_POST['username'])) {
+                    $error['username'] = 'Vui lòng nhập thông tin user';
+                } else {
+                    $username = $_POST['username'];
+                }
+                if (empty($_POST['phone'])) {
+                    $error['phone'] = 'Vui lòng nhập thông tin phone';
+                } else {
+                    $phone = $_POST['phone'];
+                }
+                if (empty($_POST['email'])) {
+                    $error['email'] = 'Vui lòng nhập thông tin email';
+                } else {
+                    $email = $_POST['email'];
+                }
+                if (empty($_POST['address'])) {
+                    $error['address'] = 'Vui lòng nhập thông tin địa chỉ';
+                } else {
+                    $address = $_POST['address'];
+                }
+                
+                $sumbuynow = $_POST['sumbuynow'];
+                $code_order = "#" . rand(0, 9999);
+                if (empty($error)) {
+                    //Thêm dữ liệu lên db Order
+                    add_order($id_account, $email, $username, $phone, $address, $sumbuynow, $code_order);
+                    //Lấy lại cái id_order vừa thêm
+                    $id_order = load_id_order();
+                    $id_norder = $id_order[0]['id_order'];
+                    //Thêm lên bảng detail dh
+                    if (isset($_SESSION['buynow'])) {
+                        add_order_dh($id_norder, $_SESSION['buynow'][0], $_SESSION['buynow'][5], $_SESSION['buynow'][6]);
+                    }
+                    echo "<script>
+                        alert('Bạn đã đặt hàng thành công');
+                        window.location.href = 'index.php?act=thongtintk';
+                    </script>";
+                }
+            }
+            include "view/buynow.php";
+            break;
+        case "chitietOrder":
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+            }
+            $load_product_order = load_product_order($id);
+            include "view/chitietdonhang.php";
+            break;
+        case "evaluate":
+            if (isset($_GET["id"])) {
+                $id = $_GET["id"];
+            }
+            $load_pro = load_product_ct($id);
+            if (isset($_POST['btn-submit'])) {
+                $id = $_POST['id_pro'];
+                $content_eva = $_POST['nd-evalue'];
+                $rating = $_POST['rating'];
+                if (isset($_SESSION['login'])) {
+                    $id_account = $_SESSION['login']['id_account'];
+                }
+                $date = date('m-d-Y');
+                $check_elalua = check_evalue($id, $id_account);
+                if (empty($check_elalua)) {
+                    evalue_pro($id, $content_eva, $rating, $id_account, $date);
+                    echo "<script>alert('Đánh giá sản phẩm thành công');</script>";
+                } else {
+                    echo "<script>alert('Bạn đã đánh giá sản phẩm rồi');</script>";
+                }
+            }
+            include "view/evaluate.php";
+            break;
+        case "deletebl":
+            if (isset($_GET["id"]) && isset($_GET['id_sp'])) {
+                $id = $_GET["id"];
+                $id_pro = $_GET['id_sp'];
+            }
+            delete_comment($id);
+            header("Location: index.php?act=chitietsp&id=$id_pro");
+            break;
+        case "deleteOrder":
+            if (isset($_GET["id"])) {
+                $id = $_GET["id"];
+            }
+            deleteOrder($id);
+            deleteDetailOrder($id);
+            header("Location: index.php?act=thongtintk");
             break;
     }
 } else {

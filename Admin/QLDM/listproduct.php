@@ -24,7 +24,7 @@
                         <tr>
                             <td><?= $i+=1; ?></td>
                             <td><?= $name_product ?></td>
-                            <td><img class="rounded mx-auto d-block img-fluid w-50 imagedm mt-3" src="../upload/<?= $image_product ?>" alt="">
+                            <td><img class="rounded mx-auto d-block img-fluid w-100 imagedm mt-3" src="../upload/<?= $image_product ?>" alt="">
                             </td>
                             <td><?= $describe_product?></td>             
                             <td><?= $veiw_product ?></td>

@@ -92,8 +92,7 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="index.php?act=listdh">Danh Sách Đơn Hàng</a></li>
-                                    <li><a class="dropdown-item" href="#">Thêm Đơn Hàng</a></li>
-                                    <li><a class="dropdown-item" href="#">Thông Kê Đơn Hàng</a></li>
+                                    <li><a class="dropdown-item" href="index.php?act=doanhthu">Thông Kê Đơn Hàng</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
@@ -103,6 +102,15 @@
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="index.php?act=listbl">Danh Sách Bình Luận</a></li>
                                     <li><a class="dropdown-item" href="index.php?act=dsblan">Bình Luận Đã Ẩn</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle btn btn-secondary bg-warning w-100 mt-3 text-dark fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Tài Khoản
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="index.php?act=taikhoan">Cập nhật tài khoản</a></li>
+                                    <li><a class="dropdown-item" href="index.php?act=doimktk">Đổi mật khẩu</a></li>
                                 </ul>
                             </li>
                         </ul>
