@@ -49,7 +49,7 @@
     </div>
 </div>
 <div class="list-product-all container">
-    <?php if(!empty($list_30_pro)) {?>
+    <?php if(!empty($loadsp)) {?>
     <div class="list-product-max">
         <?php 
         $list_30_pro = array_splice($loadsp,0,30);

@@ -168,7 +168,6 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
                 $max = '';
                 $min = '';
             }
-
             $loadsp = loadAll_product($search, $iddm, $filter_price, $min, $max);
             $load_product_parent = load_category_parent();
             $load_category_home = load_category_home();
