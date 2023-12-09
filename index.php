@@ -6,6 +6,9 @@ if (!isset($_SESSION['addToCard'])) {
 if (!isset($_SESSION['buynow'])) {
     $_SESSION['buynow'] = [];
 }
+if (!isset($_SESSION['buyOnline'])) {
+    $_SESSION['buyOnline'] = [];
+}
 ob_start();
 include 'view/header.php';
 include 'model/taikhoan.php';
@@ -17,6 +20,24 @@ include 'model/pdo.php';
 $loaddm = load_category_home();
 $load_pro_buy = load_product_buyrun();
 $load_pro_view = load_pro_view();
+
+if (isset($_GET['message']) && strpos($_GET['message'], 'Successful') !== false) {
+    if (isset($_SESSION['login'])) {
+        $id_account = $_SESSION['login']['id_account'];
+    }
+    $code_order = "#" . rand(0, 9999);
+    add_order($id_account, $_SESSION['buyOnline'][2], $_SESSION['buyOnline'][0], $_SESSION['buyOnline'][1], $_SESSION['buyOnline'][3], $_SESSION['buyOnline'][4], $code_order);
+    $get_id_order = load_id_order();
+    $id_order = $get_id_order[0]['id_order'];
+    foreach ($_SESSION['addToCard'] as $key) {
+        add_order_dh($id_order, $key[0], $key[5], $key[6]);
+    }
+    unset($_SESSION['buyOnline']);
+    include "view/buyOnline.php";
+    // header('Location: index.php');
+}
+
+
 if (isset($_GET['act']) && ($_GET['act'] != '')) {
     $act = $_GET['act'];
     switch ($act) {
@@ -132,10 +153,30 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
             if (isset($_SESSION['login']) && isset($_SESSION['addToCard'])) {
                 unset($_SESSION['login']);
                 unset($_SESSION['addToCard']);
+                unset($_SESSION['buyOnline']);
             }
             header('Location: index.php');
             break;
-
+        case 'quenmatkhau':
+            $email = $_POST['info_email'];
+            $searchName = searchName($email);
+            if (isset($_POST['restorePass'])) {
+                if ($searchName == true) {
+                    $searchName = searchName($email);
+                    $tokenEmail = password_hash($email, PASSWORD_DEFAULT);
+                    changePassEmail($email, $tokenEmail);
+                } else {
+                    echo '<div style="width:100%; text-align:center; padding-top:75px">
+                                <img src="assets/img/404.svg" width="50%" alt="">
+                            </div>';
+                    break;
+                }
+            }
+            include 'view/quenmatkhau.php';
+            break;
+        case 'restorePass':
+            include 'view/restorePass.php';
+            break;
         case 'thongtintk':
             if (isset($_SESSION['login'])) {
                 $id_account = $_SESSION['login']['id_account'];
@@ -149,12 +190,14 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
             } else {
                 $search = '';
             }
+
             if (isset($_GET['id'])) {
                 // $filter_price = $_POST['filter_price'];
                 $filter_price = $_GET['id'];
             } else {
                 $filter_price = "";
             }
+
             if (isset($_GET['iddm'])) {
                 $iddm = $_GET['iddm'];
             } else {
@@ -179,7 +222,6 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
                 $name_ac = $_POST['name_ac'];
                 $email_ac = $_POST['email_ac'];
                 $phone_ac = $_POST['phone_ac'];
-
                 $filename = $_FILES['image']['name'];
                 $target_dir = "upload/";
                 $target_file = $target_dir . basename($_FILES['image']['name']);
@@ -189,6 +231,18 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
                 } else {
                     $filename = $_FILES['image']['name'];
                     move_uploaded_file($_FILES['image']['tmp_name'], $target_file);
+                }
+                $newAccount = [
+                    $id,
+                    $name_ac,
+                    $filename,
+                    $email_ac,
+                    $phone_ac,
+                ];
+                if (isset($_SESSION['login'])) {
+                    for ($i = 0; $i < count($_SESSION['login']); $i++) {
+                        $_SESSION['login'][$i] = $newAccount[$i];
+                    }
                 }
                 update_account($id, $name_ac, $filename, $email_ac, $phone_ac);
                 echo "<script>alert('Cập nhật thông tin tài khoản thành công');</script>";
@@ -260,7 +314,6 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
                     insert_comment($binhluan, $id, $id_account);
                 }
             }
-            
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
             }
@@ -272,7 +325,6 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
             $thongke_dg = thongke_evalue($id);
             $inser_view = inser_product_view($id);
             $image_ct_image = load_pro_image($id);
-
             include "view/chitietsp.php";
             break;
         case "addtocart":
@@ -317,7 +369,16 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
                 if (isset($_SESSION['login'])) {
                     $id_account = $_SESSION['login']['id_account'];
                 } else {
-                    $error['script'] = '<script>alert("Vui lòng đăng nhập để đặt hàng");</script>';
+                    $error['script'] = "<script>
+                        alert('Vui lòng đăng nhập để đặt hàng');
+                        window.location.href = 'index.php?act=login';
+                    </script>";
+                }
+                if (!isset($_SESSION["addToCard"]) || empty($_SESSION["addToCard"])) {
+                    $error['script'] = "<script>
+                        alert('Bạn không thể đặt hàng khi chưa có sản phẩm trong giỏ hàng !');
+                        window.location.href = 'index.php';
+                    </script>";
                 }
                 $sumdh = $_POST['sumdh'];
                 $code_order = "#" . rand(0, 9999);
@@ -331,9 +392,10 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
                     foreach ($_SESSION['addToCard'] as $key) {
                         add_order_dh($id_order, $key[0], $key[5], $key[6]);
                     }
+                    unset($_SESSION['addToCard']);
                     echo "<script>
                         alert('Bạn đã đặt hàng thành công');
-                        window.location.href = 'index.php?act=order';
+                        window.location.href = 'index.php';
                     </script>";
                 }
             }
@@ -371,7 +433,7 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
                 } else {
                     $address = $_POST['address'];
                 }
-                
+
                 $sumbuynow = $_POST['sumbuynow'];
                 $code_order = "#" . rand(0, 9999);
                 if (empty($error)) {
