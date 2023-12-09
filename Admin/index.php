@@ -1,9 +1,12 @@
 <?php
 ob_start();
 session_start();
-if (isset($_SESSION["login"]) && $_SESSION["login"]['role'] == '1') {
-    echo '';
-} else {
+
+if (isset($_SESSION["login"]) && $_SESSION["login"]['role'] == '1'){
+    echo'';
+}else{
+
+
     header('location: ../index.php');
 }
 include 'view/header.php';
@@ -16,7 +19,10 @@ include '../model/binhluan.php';
 include '../model/donhang.php';
 $xacnhan = thongke_order_xn();
 $doanhthu = doanhthu();
+
+
 $list_thongkes = thongke_order_date();
+
 $thongke_oder_tc = thongke_order_tc();
 $list_thongke = thongke_category_products();
 $list_bl = thongke_comment_product();
@@ -347,7 +353,16 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
             include 'THONGKE/sanpham.php';
             break;
         case 'doanhthu':
-            $list_thongkes = thongke_order_date();
+
+            if (isset($_POST['btn-search'])) {
+                $search = $_POST['search'];
+            } else {
+                $search = '';
+            }
+            $list_thongke = thongke_order_date($search);
+
+          
+
             include 'THONGKE/doanhthuDate.php';
             break;
         case 'listspdm':

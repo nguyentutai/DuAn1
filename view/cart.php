@@ -44,6 +44,7 @@
                     <a href="index.php?act=deletecard&id=<?= $i ?>"><i class="fa-solid fa-trash"></i></a>
                 </div>
             </div>
+
         <?php
             $i += 1;
         } ?>

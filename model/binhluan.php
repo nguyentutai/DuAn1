@@ -8,8 +8,12 @@
     }
     //Load comment theo sản phẩm
     function list_comment_product($id){
+
+ 
+
         $sql = "SELECT comment.id_comment, comment.content_comment,account.id_account,comment.status_comment,account.image_account, 
         account.user,product.id_product, comment.date_comment FROM `comment` 
+
         JOIN account ON comment.id_account = account.id_account
         JOIN product ON comment.id_product = product.id_product
         WHERE product.id_product = '$id' AND comment.status_comment = '0'";
