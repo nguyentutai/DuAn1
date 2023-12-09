@@ -24,7 +24,7 @@ if (isset($_POST["btn-submit"])) {
     }
     echo "<script>
             alert('Thêm giỏ hàng thành công');
-            window.location.href = 'index.php?act=addtocart';
+            window.location.href = 'index.php';
         </script>";
 }
 if (isset($_POST['btn-buynows'])) {

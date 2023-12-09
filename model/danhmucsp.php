@@ -7,7 +7,7 @@ function load_category()
 }
 function load_category_home()
 {
-    $sql = "SELECT * FROM `category` WHERE parent_id != 0";
+    $sql = "SELECT * FROM `category` WHERE parent_id != 0 order by id_category DESC";
     return pdo_query($sql);
 }
 function load_category_parent(){
@@ -43,4 +43,9 @@ function delete_category($id){
 function load_category_update($id){
     $sql = "SELECT * FROM `category` WHERE `id_category` = '$id'";
     return pdo_query_one($sql);
+}
+//Check danh mục
+function check_category($name){
+    $sql = "SELECT * FROM `category` WHERE name_category = '$name';";
+    return pdo_query($sql);
 }

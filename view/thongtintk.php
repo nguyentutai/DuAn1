@@ -18,11 +18,6 @@
                     <a class="tablinks" onclick="openTab(event, 'Tab2')">
                         Đơn hàng của bạn</a>
                 </li>
-                <li>
-                    <a class="tablinks" onclick="openTab(event, 'Tab3')">
-                        Lịch sử đặt hàng
-                    </a>
-                </li>
             </ul>
         </div>
 

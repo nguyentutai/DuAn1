@@ -36,15 +36,15 @@
     <form action="index.php?act=addbuynow" class="form-kh-1" method="post">
         <input type="hidden" name="id_product" value="<?= $_SESSION['buynow'][0] ?>">
         <div class="form-kh-input">
-            <input type="text" name="username" class="form-kh-in" placeholder="Họ và tên"><br>
+            <input type="text" name="username" value="<?php if(isset($_SESSION['login'])){ echo $_SESSION['login']['user']; } ?>" class="form-kh-in" placeholder="Họ và tên"><br>
         </div>
         <label style="color: red;font-size:15px;margin-top:5px;margin-left:120px;font-weight:bold;"><?= is_error('username') ?></label>
         <div class="form-kh-input">
-            <input type="number" name="phone" class="form-kh-in" placeholder="Số điện thoại"><br>
+            <input type="number" name="phone" value="<?php if(isset($_SESSION['login'])){ echo $_SESSION['login']['phone_account']; } ?>" class="form-kh-in" placeholder="Số điện thoại"><br>
 
         </div><label style="color: red;font-size:15px;margin-top:5px;margin-left:120px;font-weight:bold;"><?= is_error('phone') ?></label>
         <div class="form-kh-input">
-            <input type="text" name="email" class="form-kh-in" placeholder="Email"><br>
+            <input type="text" name="email" value="<?php if(isset($_SESSION['login'])){ echo $_SESSION['login']['email_account']; } ?>" class="form-kh-in" placeholder="Email"><br>
 
         </div><label style="color: red;font-size:15px;margin-top:5px;margin-left:120px;font-weight:bold;"><?= is_error('email') ?></label>
         <div class="form-kh-input">

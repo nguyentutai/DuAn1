@@ -19,7 +19,7 @@
             </div>
             <div class="btn-login">
                 <button type="submit" name="btn-login">Đăng Nhập</button>
-                <p>Quên mật khẩu <a href="?act=recore">Lấy lại mật khẩu</a></p>
+                <p>Quên mật khẩu <a href="?act=quenmatkhau">Lấy lại mật khẩu</a></p>
                 <p>Bạn chưa có tài khoản <a href="?act=register">Đăng kí</a></p>
             </div>
         </form>
