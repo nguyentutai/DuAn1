@@ -49,6 +49,7 @@
     </div>
 </div>
 <div class="list-product-all container">
+    <?php if(!empty($loadsp)) {?>
     <div class="list-product-max">
         <?php 
         $list_30_pro = array_splice($loadsp,0,30);
@@ -80,4 +81,7 @@
             </a>
         <?php } ?>
     </div>
+    <?php } else {?>
+        Không có sản phẩm
+    <?php } ?>
 </div>

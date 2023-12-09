@@ -24,7 +24,11 @@ function update_product($id_product, $id_category, $name_product, $date_product,
     $sql = "UPDATE `product` SET `id_category`='$id_category',`name_product`='$name_product',`date_add`='$date_product',`image_product`='$image_product',`describe_product`='$describe',`quantity_product`='$quantity_product',`cost_product`='$origin_price',`discount_product`='$discount_product' WHERE `id_product` = '$id_product'";
     pdo_execute($sql);
 }
-
+//Check sản phẩm
+function check_pro_product($name){
+    $sql = "SELECT * FROM `product` WHERE name_product = '$name'";
+    return pdo_query($sql);
+}
 //Load sản phẩm theo danh mục
 function load_product_category($id)
 {
@@ -42,7 +46,12 @@ function loadAll_productAdmin($search)
 }
 function loadAll_product($search, $iddm, $filter_price, $min, $max)
 {
-    $sql = "SELECT *, (100 - CEILING((discount_product)/(cost_product)*100)) as phantram,CONCAT(FORMAT(discount_product, 0), ' đ') as price, CONCAT(FORMAT(cost_product, 0), ' đ') as discount from product WHERE status_product = 0";
+
+ 
+    $sql = "SELECT *, (100 - CEILING((discount_product)/(cost_product)*100)) as phantram,CONCAT(FORMAT(discount_product, 0), ' đ') as price, 
+    CONCAT(FORMAT(cost_product, 0), ' đ') as discount from product WHERE status_product = 0";
+
+
     if ($search != "") {
         $sql .= " AND name_product LIKE '%" . $search . "%' LIMIT 30";
     }
@@ -163,6 +172,7 @@ function inser_product_view($id)
 //Load sản phẩm bán chạy
 function load_product_buyrun()
 {
+
     $sql = "SELECT * FROM `detail_dh` JOIN product ON detail_dh.id_product = product.id_product LIMIT 5";
     return pdo_query($sql);
 }
@@ -202,10 +212,57 @@ function load_pro_view()
     $sql = "SELECT *, (100 - CEILING((discount_product)/(cost_product)*100)) as phantram,CONCAT(FORMAT(discount_product, 0), ' đ') as price, CONCAT(FORMAT(cost_product, 0), ' đ') as discount
     FROM `product` 
    order by veiw_product DESC LIMIT 5";
+
+    $sql = "SELECT *,SUM(quanlity_detail) as soluong FROM `detail_dh` JOIN product ON detail_dh.id_product = product.id_product
+    GROUP BY detail_dh.id_product order BY soluong DESC LIMIT 5";
+    return pdo_query($sql);
+}
+//Đánh giá sản phẩm
+function evalue_pro($id, $content_eva, $rating, $id_account, $date)
+{
+    $sql = "INSERT INTO `evaluate`(`id_account`, `id_product`, `content_avaluate`, `rating`, `date_eva`) VALUES ('$id_account','$id','$content_eva','$rating',CURDATE())";
+    pdo_execute($sql);
+}
+//Thống kê rating sản phẩm
+function thongke_evalue($id)
+{
+    $sql = "SELECT id_product, rating, COUNT(*) AS rating_count
+    FROM evaluate WHERE id_product = '$id'
+    GROUP BY id_product, rating
+    HAVING COUNT(*) > 1 UNION SELECT id_product, rating, COUNT(*) AS rating_count
+    FROM evaluate WHERE id_product = '$id'
+    GROUP BY id_product, rating
+    HAVING COUNT(*) = 1";
+    return pdo_query($sql);
+}
+//List đánh giá
+function list_evalue($id)
+{
+    $sql = "SELECT * FROM `evaluate` JOIN account ON evaluate.id_account = account.id_account WHERE id_product = '$id'";
+    return pdo_query($sql);
+}
+//Kiểm tra đánh giá
+function check_evalue($id_pro, $id_account)
+{
+    $sql = "SELECT * FROM `evaluate` WHERE id_account = '$id_account' AND id_product = '$id_pro'";
+    return pdo_query($sql);
+}
+//Load sản phẩm có lượt xem nhiều
+function load_pro_view()
+{
+    $sql = "SELECT *, (100 - CEILING((discount_product)/(cost_product)*100)) as phantram,CONCAT(FORMAT(discount_product, 0), ' đ') as price, 
+    CONCAT(FORMAT(cost_product, 0), ' đ') as discount
+    FROM `product` 
+    order by veiw_product DESC LIMIT 5";
+
     return pdo_query($sql);
 }
 function load_pro_cl($id,$iddm){
     $sql = "SELECT *, (100 - CEILING((discount_product)/(cost_product)*100)) as phantram,CONCAT(FORMAT(discount_product, 0), ' đ') as price, 
     CONCAT(FORMAT(cost_product, 0), ' đ') as discount FROM `product` WHERE id_category = '$iddm' AND id_product <> '$id'";
     return pdo_query($sql); 
+
 }
+
+}
+

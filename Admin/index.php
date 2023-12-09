@@ -1,9 +1,12 @@
 <?php
 ob_start();
 session_start();
+
 if (isset($_SESSION["login"]) && $_SESSION["login"]['role'] == '1'){
     echo'';
 }else{
+
+
     header('location: ../index.php');
 }
 include 'view/header.php';
@@ -16,6 +19,10 @@ include '../model/binhluan.php';
 include '../model/donhang.php';
 $xacnhan = thongke_order_xn();
 $doanhthu = doanhthu();
+
+
+$list_thongkes = thongke_order_date();
+
 $thongke_oder_tc = thongke_order_tc();
 $list_thongke = thongke_category_products();
 $list_bl = thongke_comment_product();
@@ -94,7 +101,11 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
                 if (empty($_POST['name-category'])) {
                     $error['name-category'] = 'Vui lòng nhập tên danh mục';
                 } else {
-                    $name_category = $_POST['name-category'];
+                    if (!empty(check_category($_POST['name-category']))) {
+                        $error['name-category'] = 'Tên danh mục đã tồn tại';
+                    } else {
+                        $name_category = $_POST['name-category'];
+                    }
                 }
                 if (empty($_POST['link'])) {
                     $error['link'] = 'Vui lòng điền đường dẫn tĩnh';
@@ -180,9 +191,12 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
                 if (empty($_POST['name_product'])) {
                     $error['name_product'] = 'Vui lòng nhập tên sản phẩm';
                 } else {
-                    $name_product = $_POST['name_product'];
+                    if (!empty(check_pro_product($_POST['name_product']))) {
+                        $error['name_product'] = 'Tên sản phẩm bạn nhập đã tồn tại';
+                    } else {
+                        $name_product = $_POST['name_product'];
+                    }
                 }
-
                 if (empty($_POST['quantity_product'])) {
                     $error['quantity_product'] = 'Vui lòng điền số lượng';
                 } else {
@@ -339,12 +353,16 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
             include 'THONGKE/sanpham.php';
             break;
         case 'doanhthu':
+
             if (isset($_POST['btn-search'])) {
                 $search = $_POST['search'];
             } else {
                 $search = '';
             }
             $list_thongke = thongke_order_date($search);
+
+          
+
             include 'THONGKE/doanhthuDate.php';
             break;
         case 'listspdm':

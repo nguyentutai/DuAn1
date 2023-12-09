@@ -35,13 +35,21 @@
                                 echo '<td style="font-weight:bold;">Chờ lấy hàng</td>';
                                 break;
                             case '3':
+
                                 echo '<td style="font-weight:bold;">Đã giao</td>';
+
+                                echo '<td style="font-weight:bold;">Trả hàng</td>';
+
                                 break;
                             case '4':
                                 echo '<td style="font-weight:bold;">Đã hủy</td>';
                                 break;
                             case '5':
+
                                 echo '<td style="font-weight:bold;">Trả hàng</td>';
+
+                                echo '<td style="font-weight:bold;">Đã giao</td>';
+
                                 break;
                         }
                         ?>

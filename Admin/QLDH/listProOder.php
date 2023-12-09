@@ -89,10 +89,17 @@
                                 echo '<span class="bg-warning h-50 ms-3 fw-bold text-light px-2 py-1 rounded-3">Chờ xác nhận</span>';
                                 break;
                             case '2':
+
                                 echo '<span class="bg-secondary h-50 ms-3 fw-bold text-light px-2 py-1 rounded-3">Chờ giao hàng</span>';
                                 break;
                             case '3':
                                 echo '<span class="bg-danger h-50 ms-3 fw-bold text-light px-2 py-1 rounded-3">Chờ lấy hàng</span>';
+
+                                echo '<span class="bg-secondary h-50 ms-3 fw-bold text-light px-2 py-1 rounded-3">Chờ lấy hàng</span>';
+                                break;
+                            case '3':
+                                echo '<span class="bg-danger h-50 ms-3 fw-bold text-light px-2 py-1 rounded-3">Trả hàng</span>';
+
                                 break;
                             case '4':
                                 echo '<span class="bg-black h-50 ms-3 fw-bold text-light px-2 py-1 rounded-3">Đã hủy</span>';
@@ -111,9 +118,15 @@
                     $options = array(
                         "1" => "Chờ xác nhận",
                         "2" => "Chờ lấy hàng",
+
                         "3" => "Đã giao",
                         "4" => "Đã hủy",
                         "5" => "Trả hàng"
+
+                        "5" => "Đã giao",
+                        "4" => "Đã hủy",
+                        "3" => "Trả hàng"
+
                     );
                     ?>
                     <form action="index.php?act=upStaOrder&id=<?= $_GET['id'] ?>" class="d-flex" method="POST">
