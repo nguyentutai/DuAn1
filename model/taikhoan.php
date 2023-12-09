@@ -5,8 +5,8 @@
         pdo_execute($sql);
     }
     //Hàm kiểm tra username người dùng có tồn tại hay không
-    function check_register($username) {
-        $sql = "SELECT * FROM `account` WHERE `user` = '$username'";
+    function check_register($username,$email) {
+        $sql = "SELECT * FROM `account` WHERE `user` = '$username' OR `email_account` = '$email'";
         return pdo_query_one($sql);
     }
     //Kiểm tra đăng nhập
@@ -42,13 +42,14 @@
     }
     //Đổi mật khẩu
     function doimk_taikhoan($idtk, $passconfim){
-        $sql = "UPDATE `account` SET `pass`='$passconfim' WHERE id= '$idtk'";
+        $sql = "UPDATE `account` SET `pass`='$passconfim' WHERE id_account= '$idtk'";
         pdo_execute($sql);
     }
     function update_account($id,$name_ac,$filename,$email_ac,$phone_ac){
         $sql = "UPDATE `account` SET `user`='$name_ac',`image_account`='$filename',`email_account`='$email_ac',`phone_account`='$phone_ac' WHERE id_account = '$id'";
         pdo_execute($sql);
     }
+    //Load tài khoản theo id
     //Hàm hiển thị lỗi cho người dùng
     function is_error($form_err){
         global $error;

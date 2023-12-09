@@ -37,8 +37,8 @@
                 </div>
                 <div id="menu">
                     <ul>
-                        <li><i class="fa-solid fa-heart"></i><a href="">Yêu thích</a></li>
-                        <li class="cart_num"><i class="fa-solid fa-cart-shopping"></i><a href="?act=addtocart">Giỏ hàng</a>
+                        <li><i class="fa-solid fa-heart"></i><a href="?act=allproduct">Sản Phẩm</a></li>
+                        <li class="cart_num"><i class="fa-solid fa-cart-shopping"></i><a href="?act=addtocart">Giỏ Hàng</a>
                             <span class="num_cart"><?php 
                                 if(isset($_SESSION['addToCard'])){
                                     echo count($_SESSION['addToCard']);
@@ -55,8 +55,8 @@
                                <li class="function"><img class="account_image" src="./upload/<?= $image_account ?>" alt=""><a class="name_account" href=""><?= $user ?></a>
                                     <div class="admini">
                                         <ul>
-                                            <li><i class="fa-solid fa-screwdriver-wrench" style="margin:0 10px;"></i><a href="?act=thongtintk">Thông tin tài khoản</a></li>
-                                            <li><i class="fa-solid fa-right-from-bracket" style="margin:0 10px;"></i><a href="?act=logout">Đăng Xuất</a></li>
+                                            <li><i class="fa-solid fa-screwdriver-wrench" style="margin:0 10px;color:blue;"></i><a href="?act=thongtintk">Thông tin tài khoản</a></li>
+                                            <li><i class="fa-solid fa-right-from-bracket" style="margin:0 10px;color:blue;"></i><a href="?act=logout">Đăng Xuất</a></li>
                                         </ul>
                                     </div>
                                 </li>
@@ -69,8 +69,8 @@
                                 <li class="function"><img class="account_image" src="./upload/<?= $image_account ?>" alt=""><a class="name_account" href=""><?= $user ?></a>
                                     <div class="admini">
                                         <ul>
-                                            <li><i class="fa-solid fa-screwdriver-wrench" style="margin:0 10px;"></i><a href="./Admin/index.php">Quản Trị</a></li>
-                                            <li><i class="fa-solid fa-right-from-bracket" style="margin:0 10px;"></i><a href="?act=logout">Đăng Xuất</a></li>
+                                            <li><i class="fa-solid fa-screwdriver-wrench" style="margin:0 10px;color:blue;"></i><a href="./Admin/index.php">Quản Trị</a></li>
+                                            <li><i class="fa-solid fa-right-from-bracket" style="margin:0 10px;color:blue;"></i><a href="?act=logout">Đăng Xuất</a></li>
                                         </ul>
                                     </div>
                                 </li>
@@ -82,8 +82,8 @@
                         <li class="account"><i class="fa-solid fa-user"></i><a href="?act=login">Tài khoản</a>
                             <div class="login-regis">
                                 <ul>
-                                    <li><i class="fa-solid fa-user-lock" style="margin:0 10px;"></i><a href="?act=login">Đăng Nhập</a></li>
-                                    <li><i class="fa-solid fa-user-plus" style="margin:0 10px;"></i><a href="?act=register">Đăng Kí</a></li>
+                                    <li><i class="fa-solid fa-user-lock" style="margin:0 10px;color:blue;"></i><a href="?act=login">Đăng Nhập</a></li>
+                                    <li><i class="fa-solid fa-user-plus" style="margin:0 10px;color:blue;"></i><a href="?act=register">Đăng Kí</a></li>
                                 </ul>
                             </div>
                         </li>

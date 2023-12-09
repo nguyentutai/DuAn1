@@ -17,8 +17,7 @@
         $i = 0;
         foreach ($_SESSION['addToCard'] as $cart) {
             $tongdonhang += $cart[6];
-            $i++;
-        ?>
+    ?>
             <div class="list-product-cart">
                 <div class="image-product-cart">
                     <img src="./upload/<?= $cart[1]; ?>" alt="" />
@@ -46,7 +45,9 @@
                 </div>
             </div>
 
-        <?php } ?>
+        <?php
+            $i += 1;
+        } ?>
         <div class="list-all-dh">
             <div class="tongdonhang">
                 <p>Tổng giá trị đơn hàng: <?= number_format($tongdonhang, 0, ',', '.') . ' đ' ?> </p>

@@ -1,4 +1,42 @@
-<div class="row p-4 mgtop">
+<div class="row p-4 mgtop ms-5">
+    <div class="row mb-5">
+        <a class="col-md-3 text-center text-decoration-none">
+            <div class="text-center p-4 bg-danger w-75 rounded-4">
+                <p class="text-light fs-6 fw-bold">Đơn Hàng Chờ Xác Nhận</p>
+                <p class="bg-dark text-light w-50 m-auto rounded-4 p-2 fw-bold fs-5"><?php if(empty($xacnhan)){
+                    echo '0';
+                }else{
+                    echo $xacnhan[0]['soluong'];
+                }
+                ?></p>
+            </div>
+        </a>
+        <a class="col-md-3 text-center text-decoration-none">
+            <div class="text-center p-4 bg-primary w-75 rounded-4">
+                <p class="text-light fs-6 fw-bold">Đơn Giao Thành Công</p>
+                <p class="bg-dark text-light w-50 m-auto rounded-4 p-2 fw-bold fs-5">
+                <?php if(empty($thongke_oder_tc)){
+                    echo '0';
+                }else{
+                    echo $thongke_oder_tc[0]['soluong'];
+                }
+                ?></p>
+            </div>
+        </a>
+        <a class="col-md-3 text-center text-decoration-none">
+            <div class="text-center p-4 bg-warning w-75 rounded-4">
+                <p class="text-light fs-6 fw-bold">Tổng Doanh Thu</p>
+                <p class="bg-dark text-danger w-70 m-auto rounded-4 p-2 fw-bold fs-5"><?= number_format($doanhthu[0]['doanhthu'], 0, ',', '.') . ' đ' ?></p>
+            </div>
+        </a>
+        <a class="col-md-3 text-decoration-none">
+            <div class="text-center p-4 bg-success w-75 rounded-4">
+                <p class="text-light fs-6 fw-bold">Tổng Doanh Thu</p>
+                <p class="bg-dark text-light w-50 m-auto rounded-4 p-2 fw-bold fs-5">4</p>
+            </div>
+        </a>
+    </div>
+
     <div class="col-md-6 rounded-2 bg-light p-3">
         <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>

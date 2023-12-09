@@ -7,7 +7,6 @@
     --yellow-color: rgba(255, 230, 0, 1);
     --black-color: black;
 }
-
 #header{
     background-color: var(--black-color);
     position: fixed;
@@ -317,24 +316,30 @@
     width: 100%;
 }
 .fa-product-sell{
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
     margin-top: 50px;
     border-radius: 30px;
     background-color: rgba(255, 230, 0, 1);
 }
 .title-product-sell{
     max-width: 100%;
-    text-align: center;
     font-family: sans-serif;
-    padding: 20px;
-    background-color: rgba(255, 168, 0, 1);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(255, 136, 0);
     border-radius: 30px 30px 0 0;
+}
+.title-product-sell img{
+    width: 50px;
+    margin-right: 10px;
 }
 .banner-sale{
     margin-top: 40px;
 }
 .title-product-sell h3{
-    width: 100%;
-    font-size: 25px;
+    font-size: 26px;
     font-weight: bold;
 }
 .list-product-sell{
@@ -344,8 +349,12 @@
     overflow: hidden;
     scroll-behavior: smooth;
 }
-
+.top-view-pro{
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    margin-top: 100px;
+}
 .product-sell{
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     position: relative;
     border-radius: 20px;
     margin: 0 25px;
@@ -379,6 +388,7 @@
 
 .fa-product-sell{
     position: relative;
+    text-align: center;
 }
 .next-product{
     position: absolute;
@@ -447,19 +457,21 @@
 }
 .container-4{
     margin-top: 60px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
 }
 .box-category-man{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    background-color: rgba(233, 232, 232, 1);
 }
 .title-category-man{
-    padding: 10px 20px;
-    background-color: rgba(183, 183, 183, 1);
-    border-radius: 7px 7px 0 0;
+    padding: 20px 30px;
+    border-radius: 7px 7px 0 0; 
 }
-
+.box-category-cl{
+    display: flex;
+    flex-wrap: wrap;
+}
 .title-category-man h3{
     font-size: 23px;
 }
@@ -468,16 +480,21 @@
     color: black;
     width: 16%;
     margin: 20px 28px;
-    background-color: white;
+    background-color: rgb(246, 246, 246);
     border-radius: 7px;
     position: relative;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
 .product-man-image{
-    max-width: 300px;
+    width: 300px;
+    max-width: 100%;
+    height: 250px;
+    max-height: 100%;
 }
 .product-man-image img{
     border-radius: 7px 7px 0 0;
     width: 100%;
+    height: 100%;
 }
 .heart-man{
     position: absolute;
@@ -507,6 +524,7 @@
 
 .container-woman{
     margin-top: 50px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
 footer{
     margin-top: 50px;
@@ -837,33 +855,42 @@ footer{
 }
 .admini{
     display: none;
-    background-color: rgb(240, 240, 240);
+    border-radius: 15px;
     top: 100%;
     position: absolute;
     left: -20%;
 }
 .admini ul{
+    background-color: black;
+    padding: 10px;
     width: 229px;
     display: flex;
     flex-wrap: wrap;
 }
 .admini ul li{
-    padding: 8px 10px;
+    padding: 12px 10px;
     width: 100%;
     list-style: none;
     display: flex;
     align-items: center;
     background-color: rgb(245, 245, 245);
+    border-radius: 10px;
 }
 .admini ul li:hover{
+    cursor: pointer;
     transition: .5s ease-in-out;
     background-color: var(--yellow-color);
+}
+.admini ul li:last-child{
+    margin-top: 5px;
 }
 .admini ul li a{
     color: black;
     text-decoration: none;
     font-weight: bold;
     padding-left: 10px;
+    font-size: 19px;
+    font-family: sans-serif;
 }
 .function:hover .admini{
     display: block;
@@ -875,10 +902,12 @@ footer{
     padding: 26px 0;
 }
 .login-regis{
+    padding: 10px;
     display: none;
-    background-color: rgb(240, 240, 240);
+    background-color: rgb(0, 0, 0);
     top: 100%;
     position: absolute;
+    left: -50%;
 }
 .login-regis ul{
     width: 190px;
@@ -886,13 +915,17 @@ footer{
     flex-wrap: wrap;
 }
 .login-regis ul li{
-    padding: 8px 10px;
+    padding: 12px 10px;
     cursor: pointer;
     width: 100%;
     list-style: none;
     display: flex;
     align-items: center;
     background-color: rgb(245, 245, 245);
+    border-radius: 10px;
+}
+.login-regis ul li:last-child{
+    margin-top: 10px;
 }
 .login-regis ul li:hover{
     transition: .5s ease-in-out;
@@ -903,6 +936,8 @@ footer{
     text-decoration: none;
     font-weight: bold;
     padding-left: 10px;
+    font-size: 18px;
+    font-family: sans-serif;
 }
 .account:hover .login-regis{
     display: block;
@@ -919,7 +954,11 @@ footer{
     width: 40%;
 }
 .image-detal{
+    width: 585px;
+    max-width: 100%;
     text-align: center;
+    height: 585px;
+    max-height: 100%;
 }
 .product-detal-body{
     display: flex;
@@ -936,10 +975,13 @@ footer{
     width: 100%;
 }
 .image-chidrent{
-    max-width: 210px;
+    padding: 10px;
+    width: 210px;
+    max-width: 100%;
 }
 .image-chidrent img{
     width: 100%;
+    height: 180px;
     border-radius: 30px;
 }
 .image-detal img{
@@ -958,6 +1000,9 @@ footer{
     padding: 5px;
     font-size: 18px;
     font-weight: bold;
+}
+.soluong:focus{
+    outline: none;
 }
 .product-detal-title h3{
     font-size: 25px;
@@ -1336,6 +1381,8 @@ footer{
 .tablinks {
     padding: 8px 16px;
     cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    /* background-color: aliceblue; */
 }
 .tablinks.active {
     background-color: #f9f500;
@@ -1356,6 +1403,8 @@ footer{
 }
 .tab-content ul li a{
     list-style: none;
+    font-size: 18px;
+    font-weight: bold;
     width: 100%;
     display: block;
 }
@@ -1410,7 +1459,7 @@ footer{
     font-size: 20px;
 }
 .account button{
-    background: linear-gradient(0deg, rgba(246,255,0,1) 0%, rgba(255,253,78,1) 32%, rgba(255,255,138,1) 58%, rgba(250,255,209,1) 80%, rgba(255,255,227,1) 100%);
+    background: linear-gradient(0deg, rgba(246,255,0,1) 0%, rgba(255,253,78,1) 32%, rgb(255, 255, 170) 58%, rgb(243, 255, 148) 80%, rgb(255, 255, 147) 100%);
     padding: 10px 15px;
     border-radius: 10px;
     margin-top: 10px;
@@ -1528,11 +1577,19 @@ footer{
     width: 600px;
     margin: 0 auto;
 }
+.pass_cu{
+    margin-top: 10px;
+}
 .changepassword form input{
     width: 100%;
     margin: 5px 10px;
     padding: 7px 10px;
     border-radius: 5px;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(133, 133, 133) 0px 0px 0px 1px inset;
+}
+.changepassword form input:focus{
+    outline: none;
 }
 .changepassword label{
     font-size: 17px;
@@ -1542,8 +1599,71 @@ footer{
 .changepassword .forms{
     text-align: center;
     margin-top: 10px;
+    padding: 10px;
 }
-
+.changepassword .forms button{
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+    font-size: 19px;
+    border-radius: 10px;
+    border: none;
+    background: yellow;
+    padding: 10px 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.changepassword .forms button:hover{
+    background-color: red;
+    color: rgb(255, 255, 255);
+    transition: .5s ease-in-out;
+}
+.list_order{
+    width: 100%;
+}
+.table-list,td,th{
+    border: 1px solid;
+}
+.table-list td{
+    padding: 15px 0;
+}
+.table-list td:first-child{
+    font-weight: bold;
+}
+.table-list td:nth-last-child(3){
+    font-weight: bold;
+    color: red;
+}
+.table-list td:nth-last-child(1) a{
+    text-decoration: none;
+    background-color: greenyellow;
+    color: #000;
+    padding: 5px;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+.table-list td:nth-last-child(2) a{
+    text-decoration: none;
+    background-color: rgb(255, 0, 0);
+    color: #ffffff;
+    font-weight: bold;
+    padding: 5px;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+    border-radius: 5px;
+}
+.table-list thead{
+    background-color: black;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+.table-list thead th{
+    padding: 10px 0;
+}
+.table-list{
+    text-align: center  ;
+    width: 100%;
+    border-collapse: collapse;
+}
 .product-detal-comment{
     margin-inline-start: 17%;
     padding-top: 30px;
@@ -1585,6 +1705,215 @@ footer{
     border-radius: 50%;
     color: red;
     font-weight: bold;
+}
+.list_order{
+    text-align: center;
+}
+.no-image{
+    margin: 0 auto;
+    width: 300px;
+    max-width: 100%;
+}
+.no-image img{
+    width: 100%;
+}
+.hom{
+    margin: 20px 0;
+    padding: 10px;
+    cursor: pointer;
+}
+.hom a{
+    padding: 0 20px;
+    text-decoration: none;
+}
+.rating {
+    width: 200px;
+    max-width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+}
 
+.rating input {
+    display: none;
+}
+
+.rating label {
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    background-size: cover;
+}
+
+.rating input:checked~label {
+    color: rgb(255, 0, 0);
+}
+.content-bl-dg{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 100px;
+}
+
+.title-evalue,.title-comment{
+    border-bottom: 1px solid rgb(201, 201, 201);
+    padding: 15px 30px;
+}
+.list-evalue,.nd-comment{
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+    border-radius: 10px;
+    display: flex;
+    margin: 20px 30px;
+    padding: 15px 20px;
+    position: relative;
+}
+
+.image-evalue{
+    width: 60px;
+    max-width: 100%;
+}
+.name-rating{
+    margin-left: 10px;
+}
+.name-evalue{
+    margin-right: 10px;
+}
+.image-evalue img{
+    width: 100%;
+    border-radius: 50%;
+}
+.rating-evalue{
+    margin-top: -4px;
+}
+.rating-evalue p{
+    font-size: 20px;
+    font-weight: bold;
+}
+.content-evalue{
+    border-radius: 15px;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+    width: 50%;
+}
+.rating-evalue{
+    display: flex;
+}
+.content-comment{
+    width: 48%;
+    border-radius: 15px;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+}
+.color-rating{
+    color: #f95700;
+}
+.name-evalue{
+    font-size: 19px;
+    font-family: sans-serif;
+}
+.from-bl{
+    width: 100%;
+    position: relative;
+    padding: 20px;
+}
+.from-bl input{
+    width: 100%;
+    padding: 20px 20px 100px 20px;
+    border: none;
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+}
+.from-bl button{
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    border: none;
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+}
+.from-bl button:hover{
+    background-color: #f9f500;
+    transition: .5s ease-in-out;
+    color: #000;
+}
+.from-bl input:focus{
+    outline: none;
+}
+.date-evalue{
+    position: absolute;
+    right: 5%;
+}
+.go-bl{
+    margin-top: 5px;
+}
+.go-bl a{
+    text-decoration: none;
+    color: blue;
+}
+.no-evalua{
+    margin-top: 67px;
+    text-align: center;
+}
+.no-evalua h3{
+    color: brown;
+    font-weight: bold;
+    font-size: 20px;
+}
+.order-details{
+    width: 75%;
+}
+.detail{
+    width: 100%;
+}
+
+.table-lists,td,th{
+    border: 1px solid;
+}
+.table-lists td{
+    padding: 15px 0;
+}
+.table-lists td:first-child{
+    font-weight: bold;
+}
+.table-lists td:nth-last-child(2){
+    font-weight: bold;
+    color: red;
+}
+.table-lists td:nth-last-child(1) a{
+    text-decoration: none;
+    background-color: rgb(255, 0, 0);
+    color: #ffffff;
+    font-weight: bold;
+    padding: 5px;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+    border-radius: 5px;
+}
+.table-lists thead{
+    background-color: black;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+.table-lists thead th{
+    padding: 10px 0;
+}
+.table-lists{
+    text-align: center  ;
+    width: 100%;
+    border-collapse: collapse;
+}
+.name-dg{
+    width: 180px;
+    height: 180px;
+    max-width: 100%;
+    max-height: 100%;
+}
+.name-dg img{    
+    padding: 15px;
+    width: 100%;
+    height: 100%;
 }
 
